@@ -1,23 +1,24 @@
 package pl.polsl.repairmanagment.entities;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
-@Repository
-public class ClientRepository  {
 
+@Repository
+public class AddressRepository {
+
+    @Autowired
     private final EntityManager entityManager;
 
-    public ClientRepository(EntityManager entityManager) {
+    public AddressRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     @Transactional
-    public void save(ClientEntity client) {
-        entityManager.persist(client);
+    public void save(AddressEntity address) {
+        entityManager.persist(address);
     }
-
-
 }

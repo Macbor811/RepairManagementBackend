@@ -16,6 +16,8 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+        session-factory:
+
 
 name:
   default: nazwa

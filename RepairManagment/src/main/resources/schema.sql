@@ -15,6 +15,11 @@ CREATE TABLE address (
                          number INTEGER
 );
 
+CREATE TABLE item_type (
+                    id INTEGER PRIMARY KEY NOT NULL,
+                    type VARCHAR(255)
+);
+
 CREATE TABLE item (
                        id INTEGER PRIMARY KEY NOT NULL,
                        name VARCHAR(255),
