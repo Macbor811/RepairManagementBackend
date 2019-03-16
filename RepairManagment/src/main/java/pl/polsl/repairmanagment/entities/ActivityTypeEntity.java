@@ -1,15 +1,13 @@
 package pl.polsl.repairmanagment.entities;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "item_type", schema = "public", catalog = "postgres")
-public class ItemTypeEntity {
+@Table(name = "activity_type", schema = "public", catalog = "postgres")
+public class ActivityTypeEntity {
     private Integer id;
     private String type;
-    private Collection<ItemEntity> itemsById;
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -35,7 +33,7 @@ public class ItemTypeEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ItemTypeEntity that = (ItemTypeEntity) o;
+        ActivityTypeEntity that = (ActivityTypeEntity) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(type, that.type);
     }
@@ -43,14 +41,5 @@ public class ItemTypeEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, type);
-    }
-
-    @OneToMany(mappedBy = "itemTypeByItemTypeId")
-    public Collection<ItemEntity> getItemsById() {
-        return itemsById;
-    }
-
-    public void setItemsById(Collection<ItemEntity> itemsById) {
-        this.itemsById = itemsById;
     }
 }

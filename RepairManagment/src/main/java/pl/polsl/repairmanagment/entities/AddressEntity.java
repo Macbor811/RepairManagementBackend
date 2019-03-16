@@ -1,28 +1,28 @@
 package pl.polsl.repairmanagment.entities;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.IdentityHashMap;
 import java.util.Objects;
 
 @Entity
 @Table(name = "address", schema = "public", catalog = "postgres")
 public class AddressEntity {
-
-    private int id;
+    private Integer id;
     private String postCode;
     private String city;
     private String street;
     private Integer number;
+    private Collection<ClientEntity> clientsById;
+    private Collection<PersonnelEntity> personnelsById;
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -71,7 +71,7 @@ public class AddressEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AddressEntity that = (AddressEntity) o;
-        return id == that.id &&
+        return Objects.equals(id, that.id) &&
                 Objects.equals(postCode, that.postCode) &&
                 Objects.equals(city, that.city) &&
                 Objects.equals(street, that.street) &&
@@ -81,5 +81,23 @@ public class AddressEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, postCode, city, street, number);
+    }
+
+    @OneToMany(mappedBy = "addressByAddressId")
+    public Collection<ClientEntity> getClientsById() {
+        return clientsById;
+    }
+
+    public void setClientsById(Collection<ClientEntity> clientsById) {
+        this.clientsById = clientsById;
+    }
+
+    @OneToMany(mappedBy = "addressByAddressId")
+    public Collection<PersonnelEntity> getPersonnelsById() {
+        return personnelsById;
+    }
+
+    public void setPersonnelsById(Collection<PersonnelEntity> personnelsById) {
+        this.personnelsById = personnelsById;
     }
 }

@@ -1,28 +1,30 @@
 package pl.polsl.repairmanagment.entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "item", schema = "public", catalog = "postgres")
 public class ItemEntity {
-    private int id;
+    private Integer id;
     private String name;
     private ItemTypeEntity itemTypeByItemTypeId;
     private ClientEntity clientByOwnerId;
+    private Collection<RequestEntity> requestsById;
 
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
-    @Column(name = "name", nullable = true, length = 100)
+    @Column(name = "name", nullable = true, length = 255)
     public String getName() {
         return name;
     }
@@ -36,7 +38,7 @@ public class ItemEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ItemEntity that = (ItemEntity) o;
-        return id == that.id &&
+        return Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name);
     }
 
@@ -63,5 +65,14 @@ public class ItemEntity {
 
     public void setClientByOwnerId(ClientEntity clientByOwnerId) {
         this.clientByOwnerId = clientByOwnerId;
+    }
+
+    @OneToMany(mappedBy = "itemByItemId")
+    public Collection<RequestEntity> getRequestsById() {
+        return requestsById;
+    }
+
+    public void setRequestsById(Collection<RequestEntity> requestsById) {
+        this.requestsById = requestsById;
     }
 }

@@ -4,11 +4,11 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
   batch:
-    initialize-schema: never
+    initialize-schema: always
   jpa:
     generate-ddl: true
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create-drop
     properties:
       hibernate:
         enable_lazy_load_no_trans: true
