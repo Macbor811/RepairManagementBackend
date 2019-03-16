@@ -1,6 +1,10 @@
-package pl.polsl.repairmanagementbackend.entities;
+package pl.polsl.repairmanagementbackend.activitytype;
+
+
+import pl.polsl.repairmanagementbackend.activity.ActivityEntity;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -8,6 +12,7 @@ import java.util.Objects;
 public class ActivityTypeEntity {
     private Integer id;
     private String type;
+    private Collection<ActivityEntity> activityById;
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -41,5 +46,14 @@ public class ActivityTypeEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, type);
+    }
+
+    @OneToMany(mappedBy = "activityTypeByActivityTypeId")
+    public Collection<ActivityEntity> getActivityById() {
+        return activityById;
+    }
+
+    public void setActivityById(Collection<ActivityEntity> activityById) {
+        this.activityById = activityById;
     }
 }

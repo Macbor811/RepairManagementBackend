@@ -1,11 +1,13 @@
-package pl.polsl.repairmanagementbackend.entities;
+package pl.polsl.repairmanagementbackend.address;
+
+import pl.polsl.repairmanagementbackend.client.ClientEntity;
+import pl.polsl.repairmanagementbackend.personnel.PersonnelEntity;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.IdentityHashMap;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "address")
 @Table(name = "address", schema = "public", catalog = "postgres")
 public class AddressEntity {
     private Integer id;
@@ -15,6 +17,19 @@ public class AddressEntity {
     private Integer number;
     private Collection<ClientEntity> clientsById;
     private Collection<PersonnelEntity> personnelsById;
+
+    public AddressEntity(String postCode, String city, String street, Integer number, Collection<ClientEntity> clientsById, Collection<PersonnelEntity> personnelsById) {
+        this.postCode = postCode;
+        this.city = city;
+        this.street = street;
+        this.number = number;
+        this.clientsById = clientsById;
+        this.personnelsById = personnelsById;
+    }
+
+    public AddressEntity(){
+
+    }
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

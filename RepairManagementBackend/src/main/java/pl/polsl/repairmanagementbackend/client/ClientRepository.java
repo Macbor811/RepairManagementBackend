@@ -1,7 +1,8 @@
-package pl.polsl.repairmanagementbackend.entities;
+package pl.polsl.repairmanagementbackend.client;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import pl.polsl.repairmanagementbackend.client.ClientEntity;
 
 import javax.persistence.EntityManager;
 

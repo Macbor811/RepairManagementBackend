@@ -1,4 +1,6 @@
-package pl.polsl.repairmanagementbackend.entities;
+package pl.polsl.repairmanagementbackend.itemtype;
+
+import pl.polsl.repairmanagementbackend.item.ItemEntity;
 
 import javax.persistence.*;
 import java.util.Collection;

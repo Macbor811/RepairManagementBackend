@@ -1,4 +1,8 @@
-package pl.polsl.repairmanagementbackend.entities;
+package pl.polsl.repairmanagementbackend.personnel;
+
+import pl.polsl.repairmanagementbackend.activity.ActivityEntity;
+import pl.polsl.repairmanagementbackend.address.AddressEntity;
+import pl.polsl.repairmanagementbackend.request.RequestEntity;
 
 import javax.persistence.*;
 import java.util.Collection;

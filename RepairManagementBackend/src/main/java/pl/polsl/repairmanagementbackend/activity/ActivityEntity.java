@@ -1,22 +1,29 @@
-package pl.polsl.repairmanagementbackend.entities;
+package pl.polsl.repairmanagementbackend.activity;
+
+import pl.polsl.repairmanagementbackend.activitytype.ActivityTypeEntity;
+import pl.polsl.repairmanagementbackend.personnel.PersonnelEntity;
+import pl.polsl.repairmanagementbackend.request.RequestEntity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "request", schema = "public", catalog = "postgres")
-public class RequestEntity {
+@Table(name = "activity", schema = "public", catalog = "postgres")
+public class ActivityEntity {
     private Integer id;
+    private Integer sequenceNum;
     private String description;
     private String result;
     private String status;
     private Timestamp registerDate;
     private Timestamp endDate;
-    private Collection<ActivityEntity> activitiesById;
-    private ItemEntity itemByItemId;
-    private PersonnelEntity personnelByManagerId;
+
+
+
+    private ActivityTypeEntity activityTypeByActivityTypeId;
+    private RequestEntity requestByRequestId;
+    private PersonnelEntity personnelByWorkerId;
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -26,6 +33,16 @@ public class RequestEntity {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "sequence_num", nullable = true)
+    public Integer getSequenceNum() {
+        return sequenceNum;
+    }
+
+    public void setSequenceNum(Integer sequenceNum) {
+        this.sequenceNum = sequenceNum;
     }
 
     @Basic
@@ -82,8 +99,9 @@ public class RequestEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RequestEntity that = (RequestEntity) o;
+        ActivityEntity that = (ActivityEntity) o;
         return Objects.equals(id, that.id) &&
+                Objects.equals(sequenceNum, that.sequenceNum) &&
                 Objects.equals(description, that.description) &&
                 Objects.equals(result, that.result) &&
                 Objects.equals(status, that.status) &&
@@ -93,35 +111,37 @@ public class RequestEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, result, status, registerDate, endDate);
-    }
-
-    @OneToMany(mappedBy = "requestByRequestId")
-    public Collection<ActivityEntity> getActivitiesById() {
-        return activitiesById;
-    }
-
-    public void setActivitiesById(Collection<ActivityEntity> activitiesById) {
-        this.activitiesById = activitiesById;
+        return Objects.hash(id, sequenceNum, description, result, status, registerDate, endDate);
     }
 
     @ManyToOne
-    @JoinColumn(name = "item_id", referencedColumnName = "id", nullable = false)
-    public ItemEntity getItemByItemId() {
-        return itemByItemId;
+    @JoinColumn(name = "request_id", referencedColumnName = "id", nullable = false)
+    public RequestEntity getRequestByRequestId() {
+        return requestByRequestId;
     }
 
-    public void setItemByItemId(ItemEntity itemByItemId) {
-        this.itemByItemId = itemByItemId;
+    public void setRequestByRequestId(RequestEntity requestByRequestId) {
+        this.requestByRequestId = requestByRequestId;
     }
 
     @ManyToOne
-    @JoinColumn(name = "manager_id", referencedColumnName = "id", nullable = false)
-    public PersonnelEntity getPersonnelByManagerId() {
-        return personnelByManagerId;
+    @JoinColumn(name = "worker_id", referencedColumnName = "id", nullable = false)
+    public PersonnelEntity getPersonnelByWorkerId() {
+        return personnelByWorkerId;
     }
 
-    public void setPersonnelByManagerId(PersonnelEntity personnelByManagerId) {
-        this.personnelByManagerId = personnelByManagerId;
+    public void setPersonnelByWorkerId(PersonnelEntity personnelByWorkerId) {
+        this.personnelByWorkerId = personnelByWorkerId;
+    }
+
+
+    @ManyToOne
+    @JoinColumn(name = "type_id", referencedColumnName = "id", nullable = false)
+    public ActivityTypeEntity getActivityTypeByActivityTypeId() {
+        return activityTypeByActivityTypeId;
+    }
+
+    public void setActivityTypeByActivityTypeId(ActivityTypeEntity activityTypeByActivityTypeId) {
+        this.activityTypeByActivityTypeId = activityTypeByActivityTypeId;
     }
 }
