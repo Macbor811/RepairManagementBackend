@@ -1,4 +1,4 @@
-package pl.polsl.repairmanagment.entities;
+package pl.polsl.repairmanagementbackend.entities;
 
 import javax.persistence.*;
 import java.util.Objects;

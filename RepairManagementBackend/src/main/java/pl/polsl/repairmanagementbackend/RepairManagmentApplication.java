@@ -1,4 +1,4 @@
-package pl.polsl.repairmanagment;
+package pl.polsl.repairmanagementbackend;
 
 
 import org.springframework.boot.SpringApplication;

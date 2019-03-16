@@ -1,4 +1,4 @@
-package pl.polsl.repairmanagment.entities;
+package pl.polsl.repairmanagementbackend.entities;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

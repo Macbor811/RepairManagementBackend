@@ -1,4 +1,4 @@
-package pl.polsl.repairmanagment.entities;
+package pl.polsl.repairmanagementbackend.entities;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
@@ -39,3 +39,4 @@ public interface AddressRepository extends PagingAndSortingRepository<AddressEnt
     @ResponseBody
     List<AddressEntity> findAllById(@RequestParam Integer id);
 }
+
