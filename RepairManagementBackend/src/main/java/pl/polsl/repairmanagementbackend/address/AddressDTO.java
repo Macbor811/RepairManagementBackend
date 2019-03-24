@@ -58,4 +58,8 @@ public class AddressDTO {
     public void setNumber(Integer number) {
         this.number = number;
     }
+
+    public AddressEntity toEntity(){
+        return new AddressEntity(getPostCode(), getCity(), getStreet(), getNumber(), null, null);
+    }
 }

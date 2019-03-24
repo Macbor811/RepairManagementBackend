@@ -13,9 +13,10 @@ import java.util.List;
 @Repository
 public class AddressRepository{
 
-    @Autowired
+
     private final EntityManager entityManager;
 
+    @Autowired
     public AddressRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
@@ -26,10 +27,14 @@ public class AddressRepository{
     }
 
 
+    @Transactional
     List<AddressEntity> findAll(){
        return entityManager.createQuery("SELECT a FROM address a").getResultList();
-    };
+    }
 
-    //List<AddressEntity> findAllById(@RequestParam Integer id);
+    @Transactional
+    AddressEntity findById(int id){
+        return (AddressEntity)entityManager.createQuery("SELECT a FROM address a WHERE a.id = :id").setParameter("id", id).getSingleResult();
+    }
 }
 

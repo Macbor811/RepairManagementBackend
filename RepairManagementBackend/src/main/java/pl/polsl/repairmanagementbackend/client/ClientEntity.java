@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "client")
 @Table(name = "client", schema = "public", catalog = "postgres")
 public class ClientEntity {
     private Integer id;
@@ -16,6 +16,15 @@ public class ClientEntity {
     private String phoneNumber;
     private AddressEntity addressByAddressId;
     private Collection<ItemEntity> itemsById;
+
+    public ClientEntity(){}
+    public ClientEntity(String firstName, String lastName, String phoneNumber, AddressEntity addressByAddressId, Collection<ItemEntity> itemsById) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.addressByAddressId = addressByAddressId;
+        this.itemsById = itemsById;
+    }
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -73,7 +82,7 @@ public class ClientEntity {
         return Objects.hash(id, firstName, lastName, phoneNumber);
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
     public AddressEntity getAddressByAddressId() {
         return addressByAddressId;
@@ -90,5 +99,9 @@ public class ClientEntity {
 
     public void setItemsById(Collection<ItemEntity> itemsById) {
         this.itemsById = itemsById;
+    }
+
+    public ClientDTO toDTO(){
+        return new ClientDTO(getId(), getFirstName(), getLastName(), getPhoneNumber(), getAddressByAddressId().toDTO());
     }
 }

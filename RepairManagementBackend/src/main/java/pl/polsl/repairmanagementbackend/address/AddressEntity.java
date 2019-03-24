@@ -115,4 +115,8 @@ public class AddressEntity {
     public void setPersonnelsById(Collection<PersonnelEntity> personnelsById) {
         this.personnelsById = personnelsById;
     }
+
+    public AddressDTO toDTO(){
+        return new AddressDTO(getId(), getPostCode(), getCity(), getStreet(), getNumber());
+    }
 }

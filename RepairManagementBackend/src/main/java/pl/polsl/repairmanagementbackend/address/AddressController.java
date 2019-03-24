@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 
 @RestController
+@RequestMapping("address")
 public class AddressController {
 
     private final AddressRepository repository;
@@ -16,29 +17,30 @@ public class AddressController {
         this.repository = repository;
     }
 
-    private AddressDTO toDTO(AddressEntity entity){
-        return new AddressDTO(entity.getId(), entity.getPostCode(), entity.getCity(), entity.getStreet(), entity.getNumber());
-    }
 
-    private AddressEntity toEntity(AddressDTO dto){
-        return new AddressEntity(dto.getPostCode(), dto.getCity(), dto.getStreet(), dto.getNumber(), null, null);
-    }
-
-
-    @GetMapping(path="/address")
-    public List<AddressDTO> findAll(){
+    @GetMapping
+    public List<AddressDTO> find(){
 
         List<AddressEntity> entities = repository.findAll();
-        List<AddressDTO> dtos = entities.stream().map(entity -> toDTO(entity)).collect(Collectors.toList());
+        List<AddressDTO> dtos = entities.stream().map(entity -> entity.toDTO()).collect(Collectors.toList());
         return dtos;
     }
 
-    @PostMapping(path="/address/save")
+    @GetMapping("/{id}")
+    public AddressDTO find(@PathVariable int id){
+
+        AddressEntity entity = repository.findById(id);
+        return entity.toDTO();
+    }
+
+    @PostMapping
     public void save(@RequestBody AddressDTO toSave){
 
-        repository.save(new AddressEntity(toSave.getPostCode(), toSave.getCity(), toSave.getStreet(), toSave.getNumber(),null, null));
+        repository.save(toSave.toEntity());
 
     }
+
+
 
 
 //    @GetMapping(path="/address/{id}")
