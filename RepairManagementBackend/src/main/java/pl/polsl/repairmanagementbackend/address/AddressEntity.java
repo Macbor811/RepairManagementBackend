@@ -15,16 +15,16 @@ public class AddressEntity {
     private String city;
     private String street;
     private Integer number;
-    private Collection<ClientEntity> clientsById;
-    private Collection<PersonnelEntity> personnelsById;
+    private Collection<ClientEntity> clients;
+    private Collection<PersonnelEntity> personnels;
 
-    public AddressEntity(String postCode, String city, String street, Integer number, Collection<ClientEntity> clientsById, Collection<PersonnelEntity> personnelsById) {
+    public AddressEntity(String postCode, String city, String street, Integer number, Collection<ClientEntity> clients, Collection<PersonnelEntity> personnels) {
         this.postCode = postCode;
         this.city = city;
         this.street = street;
         this.number = number;
-        this.clientsById = clientsById;
-        this.personnelsById = personnelsById;
+        this.clients = clients;
+        this.personnels = personnels;
     }
 
     public AddressEntity(){
@@ -98,22 +98,22 @@ public class AddressEntity {
         return Objects.hash(id, postCode, city, street, number);
     }
 
-    @OneToMany(mappedBy = "addressByAddressId")
-    public Collection<ClientEntity> getClientsById() {
-        return clientsById;
+    @OneToMany(mappedBy = "address")
+    public Collection<ClientEntity> getClients() {
+        return clients;
     }
 
-    public void setClientsById(Collection<ClientEntity> clientsById) {
-        this.clientsById = clientsById;
+    public void setClients(Collection<ClientEntity> clients) {
+        this.clients = clients;
     }
 
-    @OneToMany(mappedBy = "addressByAddressId")
-    public Collection<PersonnelEntity> getPersonnelsById() {
-        return personnelsById;
+    @OneToMany(mappedBy = "address")
+    public Collection<PersonnelEntity> getPersonnels() {
+        return personnels;
     }
 
-    public void setPersonnelsById(Collection<PersonnelEntity> personnelsById) {
-        this.personnelsById = personnelsById;
+    public void setPersonnels(Collection<PersonnelEntity> personnels) {
+        this.personnels = personnels;
     }
 
     public AddressDTO toDTO(){

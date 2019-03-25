@@ -18,9 +18,9 @@ public class PersonnelEntity {
     private String role;
     private String username;
     private String password;
-    private Collection<ActivityEntity> activitiesById;
-    private AddressEntity addressByAddressId;
-    private Collection<RequestEntity> requestsById;
+    private Collection<ActivityEntity> activities;
+    private AddressEntity address;
+    private Collection<RequestEntity> requests;
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -111,31 +111,31 @@ public class PersonnelEntity {
         return Objects.hash(id, firstName, lastName, phoneNumber, role, username, password);
     }
 
-    @OneToMany(mappedBy = "personnelByWorkerId")
-    public Collection<ActivityEntity> getActivitiesById() {
-        return activitiesById;
+    @OneToMany(mappedBy = "worker")
+    public Collection<ActivityEntity> getActivities() {
+        return activities;
     }
 
-    public void setActivitiesById(Collection<ActivityEntity> activitiesById) {
-        this.activitiesById = activitiesById;
+    public void setActivities(Collection<ActivityEntity> activities) {
+        this.activities = activities;
     }
 
     @ManyToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
-    public AddressEntity getAddressByAddressId() {
-        return addressByAddressId;
+    public AddressEntity getAddress() {
+        return address;
     }
 
-    public void setAddressByAddressId(AddressEntity addressByAddressId) {
-        this.addressByAddressId = addressByAddressId;
+    public void setAddress(AddressEntity address) {
+        this.address = address;
     }
 
-    @OneToMany(mappedBy = "personnelByManagerId")
-    public Collection<RequestEntity> getRequestsById() {
-        return requestsById;
+    @OneToMany(mappedBy = "manager")
+    public Collection<RequestEntity> getRequests() {
+        return requests;
     }
 
-    public void setRequestsById(Collection<RequestEntity> requestsById) {
-        this.requestsById = requestsById;
+    public void setRequests(Collection<RequestEntity> requests) {
+        this.requests = requests;
     }
 }

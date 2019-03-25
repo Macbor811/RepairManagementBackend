@@ -25,12 +25,7 @@ public class ClientController {
         return dtos;
     }
 
-//    @GetMapping("/{id}")
-//    public ClientDTO find(@PathVariable int id){
-//
-//        ClientEntity entity = repository.findById(id);
-//        return toDTO(entity);
-//    }
+
 
     @PostMapping
     public void save(@RequestBody ClientDTO toSave){

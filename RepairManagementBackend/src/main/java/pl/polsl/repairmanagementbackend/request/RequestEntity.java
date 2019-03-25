@@ -18,9 +18,9 @@ public class RequestEntity {
     private String status;
     private Timestamp registerDate;
     private Timestamp endDate;
-    private Collection<ActivityEntity> activitiesById;
-    private ItemEntity itemByItemId;
-    private PersonnelEntity personnelByManagerId;
+    private Collection<ActivityEntity> activities;
+    private ItemEntity item;
+    private PersonnelEntity manager;
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -100,32 +100,32 @@ public class RequestEntity {
         return Objects.hash(id, description, result, status, registerDate, endDate);
     }
 
-    @OneToMany(mappedBy = "requestByRequestId")
-    public Collection<ActivityEntity> getActivitiesById() {
-        return activitiesById;
+    @OneToMany(mappedBy = "request")
+    public Collection<ActivityEntity> getActivities() {
+        return activities;
     }
 
-    public void setActivitiesById(Collection<ActivityEntity> activitiesById) {
-        this.activitiesById = activitiesById;
+    public void setActivities(Collection<ActivityEntity> activities) {
+        this.activities = activities;
     }
 
     @ManyToOne
     @JoinColumn(name = "item_id", referencedColumnName = "id", nullable = false)
-    public ItemEntity getItemByItemId() {
-        return itemByItemId;
+    public ItemEntity getItem() {
+        return item;
     }
 
-    public void setItemByItemId(ItemEntity itemByItemId) {
-        this.itemByItemId = itemByItemId;
+    public void setItem(ItemEntity item) {
+        this.item = item;
     }
 
     @ManyToOne
     @JoinColumn(name = "manager_id", referencedColumnName = "id", nullable = false)
-    public PersonnelEntity getPersonnelByManagerId() {
-        return personnelByManagerId;
+    public PersonnelEntity getManager() {
+        return manager;
     }
 
-    public void setPersonnelByManagerId(PersonnelEntity personnelByManagerId) {
-        this.personnelByManagerId = personnelByManagerId;
+    public void setManager(PersonnelEntity manager) {
+        this.manager = manager;
     }
 }

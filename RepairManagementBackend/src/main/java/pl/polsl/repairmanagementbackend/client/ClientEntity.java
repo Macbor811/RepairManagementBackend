@@ -14,16 +14,16 @@ public class ClientEntity {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private AddressEntity addressByAddressId;
-    private Collection<ItemEntity> itemsById;
+    private AddressEntity address;
+    private Collection<ItemEntity> items;
 
     public ClientEntity(){}
-    public ClientEntity(String firstName, String lastName, String phoneNumber, AddressEntity addressByAddressId, Collection<ItemEntity> itemsById) {
+    public ClientEntity(String firstName, String lastName, String phoneNumber, AddressEntity address, Collection<ItemEntity> items) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        this.addressByAddressId = addressByAddressId;
-        this.itemsById = itemsById;
+        this.address = address;
+        this.items = items;
     }
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -84,24 +84,24 @@ public class ClientEntity {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
-    public AddressEntity getAddressByAddressId() {
-        return addressByAddressId;
+    public AddressEntity getAddress() {
+        return address;
     }
 
-    public void setAddressByAddressId(AddressEntity addressByAddressId) {
-        this.addressByAddressId = addressByAddressId;
+    public void setAddress(AddressEntity address) {
+        this.address = address;
     }
 
-    @OneToMany(mappedBy = "clientByOwnerId")
-    public Collection<ItemEntity> getItemsById() {
-        return itemsById;
+    @OneToMany(mappedBy = "owner")
+    public Collection<ItemEntity> getItems() {
+        return items;
     }
 
-    public void setItemsById(Collection<ItemEntity> itemsById) {
-        this.itemsById = itemsById;
+    public void setItems(Collection<ItemEntity> items) {
+        this.items = items;
     }
 
     public ClientDTO toDTO(){
-        return new ClientDTO(getId(), getFirstName(), getLastName(), getPhoneNumber(), getAddressByAddressId().toDTO());
+        return new ClientDTO(getId(), getFirstName(), getLastName(), getPhoneNumber(), getAddress().toDTO());
     }
 }

@@ -13,9 +13,9 @@ import java.util.Objects;
 public class ItemEntity {
     private Integer id;
     private String name;
-    private ItemTypeEntity itemTypeByItemTypeId;
-    private ClientEntity clientByOwnerId;
-    private Collection<RequestEntity> requestsById;
+    private ItemTypeEntity itemType;
+    private ClientEntity owner;
+    private Collection<RequestEntity> requests;
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -53,30 +53,30 @@ public class ItemEntity {
 
     @ManyToOne
     @JoinColumn(name = "item_type_id", referencedColumnName = "id", nullable = false)
-    public ItemTypeEntity getItemTypeByItemTypeId() {
-        return itemTypeByItemTypeId;
+    public ItemTypeEntity getItemType() {
+        return itemType;
     }
 
-    public void setItemTypeByItemTypeId(ItemTypeEntity itemTypeByItemTypeId) {
-        this.itemTypeByItemTypeId = itemTypeByItemTypeId;
+    public void setItemType(ItemTypeEntity itemType) {
+        this.itemType = itemType;
     }
 
     @ManyToOne
     @JoinColumn(name = "owner_id", referencedColumnName = "id", nullable = false)
-    public ClientEntity getClientByOwnerId() {
-        return clientByOwnerId;
+    public ClientEntity getOwner() {
+        return owner;
     }
 
-    public void setClientByOwnerId(ClientEntity clientByOwnerId) {
-        this.clientByOwnerId = clientByOwnerId;
+    public void setOwner(ClientEntity owner) {
+        this.owner = owner;
     }
 
-    @OneToMany(mappedBy = "itemByItemId")
-    public Collection<RequestEntity> getRequestsById() {
-        return requestsById;
+    @OneToMany(mappedBy = "item")
+    public Collection<RequestEntity> getRequests() {
+        return requests;
     }
 
-    public void setRequestsById(Collection<RequestEntity> requestsById) {
-        this.requestsById = requestsById;
+    public void setRequests(Collection<RequestEntity> requests) {
+        this.requests = requests;
     }
 }

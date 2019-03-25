@@ -11,7 +11,7 @@ import java.util.Objects;
 public class ItemTypeEntity {
     private Integer id;
     private String type;
-    private Collection<ItemEntity> itemsById;
+    private Collection<ItemEntity> items;
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -47,12 +47,12 @@ public class ItemTypeEntity {
         return Objects.hash(id, type);
     }
 
-    @OneToMany(mappedBy = "itemTypeByItemTypeId")
-    public Collection<ItemEntity> getItemsById() {
-        return itemsById;
+    @OneToMany(mappedBy = "itemType")
+    public Collection<ItemEntity> getItems() {
+        return items;
     }
 
-    public void setItemsById(Collection<ItemEntity> itemsById) {
-        this.itemsById = itemsById;
+    public void setItems(Collection<ItemEntity> items) {
+        this.items = items;
     }
 }

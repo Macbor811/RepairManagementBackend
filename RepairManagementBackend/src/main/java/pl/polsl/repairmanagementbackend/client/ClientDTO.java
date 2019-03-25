@@ -10,15 +10,15 @@ public class ClientDTO {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private AddressDTO addressByAddressId;
-    private Collection<ItemDTO> itemsById;
+    private AddressDTO address;
+    private Collection<ItemDTO> items;
 
-    public ClientDTO(Integer id, String firstName, String lastName, String phoneNumber, AddressDTO addressByAddressId) {
+    public ClientDTO(Integer id, String firstName, String lastName, String phoneNumber, AddressDTO address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        this.addressByAddressId = addressByAddressId;
+        this.address = address;
     }
 
 
@@ -54,23 +54,23 @@ public class ClientDTO {
         this.phoneNumber = phoneNumber;
     }
 
-    public AddressDTO getAddressByAddressId() {
-        return addressByAddressId;
+    public AddressDTO getAddress() {
+        return address;
     }
 
-    public void setAddressByAddressId(AddressDTO addressByAddressId) {
-        this.addressByAddressId = addressByAddressId;
+    public void setAddress(AddressDTO address) {
+        this.address = address;
     }
 
-    public Collection<ItemDTO> getItemsById() {
-        return itemsById;
+    public Collection<ItemDTO> getItems() {
+        return items;
     }
 
-    public void setItemsById(Collection<ItemDTO> itemsById) {
-        this.itemsById = itemsById;
+    public void setItems(Collection<ItemDTO> items) {
+        this.items = items;
     }
 
     public ClientEntity toEntity(){
-        return new ClientEntity(firstName, lastName, phoneNumber, addressByAddressId.toEntity(), null);
+        return new ClientEntity(firstName, lastName, phoneNumber, address.toEntity(), null);
     }
 }

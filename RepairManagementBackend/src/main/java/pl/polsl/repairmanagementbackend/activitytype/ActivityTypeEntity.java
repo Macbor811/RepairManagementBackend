@@ -48,7 +48,7 @@ public class ActivityTypeEntity {
         return Objects.hash(id, type);
     }
 
-    @OneToMany(mappedBy = "activityTypeByActivityTypeId")
+    @OneToMany(mappedBy = "activityType")
     public Collection<ActivityEntity> getActivityById() {
         return activityById;
     }

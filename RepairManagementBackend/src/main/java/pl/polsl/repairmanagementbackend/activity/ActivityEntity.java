@@ -18,12 +18,9 @@ public class ActivityEntity {
     private String status;
     private Timestamp registerDate;
     private Timestamp endDate;
-
-
-
-    private ActivityTypeEntity activityTypeByActivityTypeId;
-    private RequestEntity requestByRequestId;
-    private PersonnelEntity personnelByWorkerId;
+    private ActivityTypeEntity activityType;
+    private RequestEntity request;
+    private PersonnelEntity worker;
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -116,32 +113,32 @@ public class ActivityEntity {
 
     @ManyToOne
     @JoinColumn(name = "request_id", referencedColumnName = "id", nullable = false)
-    public RequestEntity getRequestByRequestId() {
-        return requestByRequestId;
+    public RequestEntity getRequest() {
+        return request;
     }
 
-    public void setRequestByRequestId(RequestEntity requestByRequestId) {
-        this.requestByRequestId = requestByRequestId;
+    public void setRequest(RequestEntity request) {
+        this.request = request;
     }
 
     @ManyToOne
     @JoinColumn(name = "worker_id", referencedColumnName = "id", nullable = false)
-    public PersonnelEntity getPersonnelByWorkerId() {
-        return personnelByWorkerId;
+    public PersonnelEntity getWorker() {
+        return worker;
     }
 
-    public void setPersonnelByWorkerId(PersonnelEntity personnelByWorkerId) {
-        this.personnelByWorkerId = personnelByWorkerId;
+    public void setWorker(PersonnelEntity worker) {
+        this.worker = worker;
     }
 
 
     @ManyToOne
     @JoinColumn(name = "type_id", referencedColumnName = "id", nullable = false)
-    public ActivityTypeEntity getActivityTypeByActivityTypeId() {
-        return activityTypeByActivityTypeId;
+    public ActivityTypeEntity getActivityType() {
+        return activityType;
     }
 
-    public void setActivityTypeByActivityTypeId(ActivityTypeEntity activityTypeByActivityTypeId) {
-        this.activityTypeByActivityTypeId = activityTypeByActivityTypeId;
+    public void setActivityType(ActivityTypeEntity activityType) {
+        this.activityType = activityType;
     }
 }

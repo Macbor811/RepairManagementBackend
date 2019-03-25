@@ -1,4 +1,4 @@
-package pl.polsl.repairmanagementbackend;
+package pl.polsl.repairmanagement;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
