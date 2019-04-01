@@ -1,4 +1,4 @@
-package pl.polsl.repairmanagementbackend.client;
+package pl.polsl.repairmanagementbackend.customer;
 
 import pl.polsl.repairmanagementbackend.address.AddressEntity;
 import pl.polsl.repairmanagementbackend.item.ItemEntity;
@@ -7,9 +7,9 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 
-@Entity(name = "client")
-@Table(name = "client", schema = "public", catalog = "postgres")
-public class ClientEntity {
+@Entity(name = "customer")
+@Table(name = "customer", schema = "public", catalog = "postgres")
+public class CustomerEntity {
     private Integer id;
     private String firstName;
     private String lastName;
@@ -17,8 +17,8 @@ public class ClientEntity {
     private AddressEntity address;
     private Collection<ItemEntity> items;
 
-    public ClientEntity(){}
-    public ClientEntity(String firstName, String lastName, String phoneNumber, AddressEntity address, Collection<ItemEntity> items) {
+    public CustomerEntity(){}
+    public CustomerEntity(String firstName, String lastName, String phoneNumber, AddressEntity address, Collection<ItemEntity> items) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -70,7 +70,7 @@ public class ClientEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ClientEntity that = (ClientEntity) o;
+        CustomerEntity that = (CustomerEntity) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(firstName, that.firstName) &&
                 Objects.equals(lastName, that.lastName) &&
@@ -101,7 +101,7 @@ public class ClientEntity {
         this.items = items;
     }
 
-    public ClientDTO toDTO(){
-        return new ClientDTO(getId(), getFirstName(), getLastName(), getPhoneNumber(), getAddress().toDTO());
+    public CustomerDTO toDTO(){
+        return new CustomerDTO(getId(), getFirstName(), getLastName(), getPhoneNumber(), getAddress().toDTO());
     }
 }

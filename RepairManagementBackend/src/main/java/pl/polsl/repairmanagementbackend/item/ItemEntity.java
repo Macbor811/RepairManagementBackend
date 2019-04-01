@@ -1,6 +1,6 @@
 package pl.polsl.repairmanagementbackend.item;
 
-import pl.polsl.repairmanagementbackend.client.ClientEntity;
+import pl.polsl.repairmanagementbackend.customer.CustomerEntity;
 import pl.polsl.repairmanagementbackend.itemtype.ItemTypeEntity;
 import pl.polsl.repairmanagementbackend.request.RequestEntity;
 
@@ -14,7 +14,7 @@ public class ItemEntity {
     private Integer id;
     private String name;
     private ItemTypeEntity itemType;
-    private ClientEntity owner;
+    private CustomerEntity owner;
     private Collection<RequestEntity> requests;
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -63,11 +63,11 @@ public class ItemEntity {
 
     @ManyToOne
     @JoinColumn(name = "owner_id", referencedColumnName = "id", nullable = false)
-    public ClientEntity getOwner() {
+    public CustomerEntity getOwner() {
         return owner;
     }
 
-    public void setOwner(ClientEntity owner) {
+    public void setOwner(CustomerEntity owner) {
         this.owner = owner;
     }
 

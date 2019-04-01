@@ -1,4 +1,4 @@
-CREATE TABLE client (
+CREATE TABLE customer (
                        id INTEGER PRIMARY KEY NOT NULL,
                        first_name VARCHAR(50),
                        last_name VARCHAR(50),
@@ -24,7 +24,7 @@ CREATE TABLE item (
                        id INTEGER PRIMARY KEY NOT NULL,
                        name VARCHAR(255),
                        item_type_id INTEGER REFERENCES item_type(id) NOT NULL,
-                       owner_id INTEGER REFERENCES client(id) NOT NULL
+                       owner_id INTEGER REFERENCES customer(id) NOT NULL
 );
 
 CREATE TABLE personnel (

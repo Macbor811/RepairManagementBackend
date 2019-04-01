@@ -1,6 +1,6 @@
 package pl.polsl.repairmanagementbackend.address;
 
-import pl.polsl.repairmanagementbackend.client.ClientEntity;
+import pl.polsl.repairmanagementbackend.customer.CustomerEntity;
 import pl.polsl.repairmanagementbackend.personnel.PersonnelEntity;
 
 import javax.persistence.*;
@@ -15,15 +15,15 @@ public class AddressEntity {
     private String city;
     private String street;
     private Integer number;
-    private Collection<ClientEntity> clients;
+    private Collection<CustomerEntity> customers;
     private Collection<PersonnelEntity> personnels;
 
-    public AddressEntity(String postCode, String city, String street, Integer number, Collection<ClientEntity> clients, Collection<PersonnelEntity> personnels) {
+    public AddressEntity(String postCode, String city, String street, Integer number, Collection<CustomerEntity> customers, Collection<PersonnelEntity> personnels) {
         this.postCode = postCode;
         this.city = city;
         this.street = street;
         this.number = number;
-        this.clients = clients;
+        this.customers = customers;
         this.personnels = personnels;
     }
 
@@ -99,12 +99,12 @@ public class AddressEntity {
     }
 
     @OneToMany(mappedBy = "address")
-    public Collection<ClientEntity> getClients() {
-        return clients;
+    public Collection<CustomerEntity> getCustomers() {
+        return customers;
     }
 
-    public void setClients(Collection<ClientEntity> clients) {
-        this.clients = clients;
+    public void setCustomers(Collection<CustomerEntity> customers) {
+        this.customers = customers;
     }
 
     @OneToMany(mappedBy = "address")

@@ -1,11 +1,11 @@
-package pl.polsl.repairmanagementbackend.client;
+package pl.polsl.repairmanagementbackend.customer;
 
 import pl.polsl.repairmanagementbackend.address.AddressDTO;
 import pl.polsl.repairmanagementbackend.item.ItemDTO;
 
 import java.util.Collection;
 
-public class ClientDTO {
+public class CustomerDTO {
     private Integer id;
     private String firstName;
     private String lastName;
@@ -13,7 +13,7 @@ public class ClientDTO {
     private AddressDTO address;
     private Collection<ItemDTO> items;
 
-    public ClientDTO(Integer id, String firstName, String lastName, String phoneNumber, AddressDTO address) {
+    public CustomerDTO(Integer id, String firstName, String lastName, String phoneNumber, AddressDTO address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -70,7 +70,7 @@ public class ClientDTO {
         this.items = items;
     }
 
-    public ClientEntity toEntity(){
-        return new ClientEntity(firstName, lastName, phoneNumber, address.toEntity(), null);
+    public CustomerEntity toEntity(){
+        return new CustomerEntity(firstName, lastName, phoneNumber, address.toEntity(), null);
     }
 }
