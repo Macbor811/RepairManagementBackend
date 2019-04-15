@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "request", schema = "public", catalog = "postgres")
@@ -143,6 +144,7 @@ public class RequestEntity implements pl.polsl.repairmanagementbackend.Entity {
 
     @Override
     public RequestDTO toDTO() {
-        return null;
+        return new RequestDTO(id, description, result, status, registerDate, endDate,
+                activities.stream().map(ActivityEntity::toDTO).collect(Collectors.toList()), item.toDTO(), manager.toDTO());
     }
 }

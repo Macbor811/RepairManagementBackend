@@ -2,10 +2,12 @@ package pl.polsl.repairmanagementbackend.employee;
 
 import pl.polsl.repairmanagementbackend.DTO;
 import pl.polsl.repairmanagementbackend.activity.ActivityDTO;
+import pl.polsl.repairmanagementbackend.activity.ActivityEntity;
 import pl.polsl.repairmanagementbackend.address.AddressDTO;
 import pl.polsl.repairmanagementbackend.request.RequestDTO;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class EmployeeDTO implements DTO {
 
@@ -125,6 +127,8 @@ public class EmployeeDTO implements DTO {
 
     @Override
     public EmployeeEntity toEntity(){
-        return null;
+        return new EmployeeEntity(firstName, lastName, phoneNumber, role, username, password,
+                activities.stream().map(ActivityDTO::toEntity).collect(Collectors.toList()), address.toEntity(),
+                requests.stream().map(RequestDTO::toEntity).collect(Collectors.toList()));
     }
 }

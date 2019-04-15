@@ -7,6 +7,7 @@ import pl.polsl.repairmanagementbackend.request.RequestEntity;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "employee", schema = "public", catalog = "postgres")
@@ -21,6 +22,18 @@ public class EmployeeEntity implements pl.polsl.repairmanagementbackend.Entity {
     private Collection<ActivityEntity> activities;
     private AddressEntity address;
     private Collection<RequestEntity> requests;
+
+    public EmployeeEntity(String firstName, String lastName, String phoneNumber, String role, String username, String password, Collection<ActivityEntity> activities, AddressEntity address, Collection<RequestEntity> requests) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.username = username;
+        this.password = password;
+        this.activities = activities;
+        this.address = address;
+        this.requests = requests;
+    }
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -142,6 +155,8 @@ public class EmployeeEntity implements pl.polsl.repairmanagementbackend.Entity {
     @Override
     public EmployeeDTO toDTO(){
         return new EmployeeDTO(id, firstName, lastName, phoneNumber, role,
-                username, password, null, address.toDTO(), null);
+                username, password,
+                activities.stream().map(ActivityEntity::toDTO).collect(Collectors.toList()),
+                address.toDTO(), requests.stream().map(RequestEntity::toDTO).collect(Collectors.toList()));
     }
 }
