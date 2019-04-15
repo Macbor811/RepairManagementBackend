@@ -1,8 +1,9 @@
 package pl.polsl.repairmanagementbackend.request;
 
+import pl.polsl.repairmanagementbackend.DTO;
 import pl.polsl.repairmanagementbackend.activity.ActivityEntity;
 import pl.polsl.repairmanagementbackend.item.ItemEntity;
-import pl.polsl.repairmanagementbackend.personnel.PersonnelEntity;
+import pl.polsl.repairmanagementbackend.employee.EmployeeEntity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -11,7 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "request", schema = "public", catalog = "postgres")
-public class RequestEntity {
+public class RequestEntity implements pl.polsl.repairmanagementbackend.Entity {
     private Integer id;
     private String description;
     private String result;
@@ -20,7 +21,18 @@ public class RequestEntity {
     private Timestamp endDate;
     private Collection<ActivityEntity> activities;
     private ItemEntity item;
-    private PersonnelEntity manager;
+    private EmployeeEntity manager;
+
+    public RequestEntity(String description, String result, String status, Timestamp registerDate, Timestamp endDate, Collection<ActivityEntity> activities, ItemEntity item, EmployeeEntity manager) {
+        this.description = description;
+        this.result = result;
+        this.status = status;
+        this.registerDate = registerDate;
+        this.endDate = endDate;
+        this.activities = activities;
+        this.item = item;
+        this.manager = manager;
+    }
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -121,11 +133,16 @@ public class RequestEntity {
 
     @ManyToOne
     @JoinColumn(name = "manager_id", referencedColumnName = "id", nullable = false)
-    public PersonnelEntity getManager() {
+    public EmployeeEntity getManager() {
         return manager;
     }
 
-    public void setManager(PersonnelEntity manager) {
+    public void setManager(EmployeeEntity manager) {
         this.manager = manager;
+    }
+
+    @Override
+    public RequestDTO toDTO() {
+        return null;
     }
 }

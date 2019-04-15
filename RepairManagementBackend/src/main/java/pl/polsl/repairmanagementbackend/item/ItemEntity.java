@@ -1,5 +1,6 @@
 package pl.polsl.repairmanagementbackend.item;
 
+import pl.polsl.repairmanagementbackend.DTO;
 import pl.polsl.repairmanagementbackend.customer.CustomerEntity;
 import pl.polsl.repairmanagementbackend.itemtype.ItemTypeEntity;
 import pl.polsl.repairmanagementbackend.request.RequestEntity;
@@ -10,7 +11,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "item", schema = "public", catalog = "postgres")
-public class ItemEntity {
+public class ItemEntity implements pl.polsl.repairmanagementbackend.Entity {
     private Integer id;
     private String name;
     private ItemTypeEntity itemType;
@@ -78,5 +79,10 @@ public class ItemEntity {
 
     public void setRequests(Collection<RequestEntity> requests) {
         this.requests = requests;
+    }
+
+    @Override
+    public ItemDTO toDTO() {
+        return null;
     }
 }

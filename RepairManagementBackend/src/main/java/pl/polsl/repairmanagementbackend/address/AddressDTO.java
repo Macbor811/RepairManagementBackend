@@ -1,17 +1,18 @@
 package pl.polsl.repairmanagementbackend.address;
 
 
+import pl.polsl.repairmanagementbackend.DTO;
 
-public class AddressDTO {
+public class AddressDTO implements DTO {
 
     private Integer id;
     private String postCode;
     private String city;
     private String street;
-    private Integer number;
+    private String number;
 
 
-    public AddressDTO(Integer id, String postCode, String city, String street, Integer number) {
+    public AddressDTO(Integer id, String postCode, String city, String street, String number) {
         this.id = id;
         this.postCode = postCode;
         this.city = city;
@@ -51,14 +52,15 @@ public class AddressDTO {
         this.street = street;
     }
 
-    public Integer getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
+    @Override
     public AddressEntity toEntity(){
         return new AddressEntity(getPostCode(), getCity(), getStreet(), getNumber(), null, null);
     }

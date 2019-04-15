@@ -1,5 +1,6 @@
 package pl.polsl.repairmanagementbackend.itemtype;
 
+import pl.polsl.repairmanagementbackend.DTO;
 import pl.polsl.repairmanagementbackend.item.ItemEntity;
 
 import javax.persistence.*;
@@ -8,7 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "item_type", schema = "public", catalog = "postgres")
-public class ItemTypeEntity {
+public class ItemTypeEntity implements pl.polsl.repairmanagementbackend.Entity {
     private Integer id;
     private String type;
     private Collection<ItemEntity> items;
@@ -54,5 +55,10 @@ public class ItemTypeEntity {
 
     public void setItems(Collection<ItemEntity> items) {
         this.items = items;
+    }
+
+    @Override
+    public ItemTypeDTO toDTO() {
+        return null;
     }
 }

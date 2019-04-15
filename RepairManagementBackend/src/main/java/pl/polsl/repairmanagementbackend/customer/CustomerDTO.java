@@ -1,11 +1,12 @@
 package pl.polsl.repairmanagementbackend.customer;
 
+import pl.polsl.repairmanagementbackend.DTO;
 import pl.polsl.repairmanagementbackend.address.AddressDTO;
 import pl.polsl.repairmanagementbackend.item.ItemDTO;
 
 import java.util.Collection;
 
-public class CustomerDTO {
+public class CustomerDTO implements DTO {
     private Integer id;
     private String firstName;
     private String lastName;
@@ -70,6 +71,7 @@ public class CustomerDTO {
         this.items = items;
     }
 
+    @Override
     public CustomerEntity toEntity(){
         return new CustomerEntity(firstName, lastName, phoneNumber, address.toEntity(), null);
     }

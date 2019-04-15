@@ -1,7 +1,7 @@
 package pl.polsl.repairmanagementbackend.address;
 
 import pl.polsl.repairmanagementbackend.customer.CustomerEntity;
-import pl.polsl.repairmanagementbackend.personnel.PersonnelEntity;
+import pl.polsl.repairmanagementbackend.employee.EmployeeEntity;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -9,22 +9,22 @@ import java.util.Objects;
 
 @Entity(name = "address")
 @Table(name = "address", schema = "public", catalog = "postgres")
-public class AddressEntity {
+public class AddressEntity implements pl.polsl.repairmanagementbackend.Entity {
     private Integer id;
     private String postCode;
     private String city;
     private String street;
-    private Integer number;
+    private String number;
     private Collection<CustomerEntity> customers;
-    private Collection<PersonnelEntity> personnels;
+    private Collection<EmployeeEntity> employees;
 
-    public AddressEntity(String postCode, String city, String street, Integer number, Collection<CustomerEntity> customers, Collection<PersonnelEntity> personnels) {
+    public AddressEntity(String postCode, String city, String street, String number, Collection<CustomerEntity> customers, Collection<EmployeeEntity> employees) {
         this.postCode = postCode;
         this.city = city;
         this.street = street;
         this.number = number;
         this.customers = customers;
-        this.personnels = personnels;
+        this.employees = employees;
     }
 
     public AddressEntity(){
@@ -72,12 +72,12 @@ public class AddressEntity {
     }
 
     @Basic
-    @Column(name = "number", nullable = true)
-    public Integer getNumber() {
+    @Column(name = "number", nullable = true, length = 7)
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
@@ -108,14 +108,15 @@ public class AddressEntity {
     }
 
     @OneToMany(mappedBy = "address")
-    public Collection<PersonnelEntity> getPersonnels() {
-        return personnels;
+    public Collection<EmployeeEntity> getEmployees() {
+        return employees;
     }
 
-    public void setPersonnels(Collection<PersonnelEntity> personnels) {
-        this.personnels = personnels;
+    public void setEmployees(Collection<EmployeeEntity> employees) {
+        this.employees = employees;
     }
 
+    @Override
     public AddressDTO toDTO(){
         return new AddressDTO(getId(), getPostCode(), getCity(), getStreet(), getNumber());
     }

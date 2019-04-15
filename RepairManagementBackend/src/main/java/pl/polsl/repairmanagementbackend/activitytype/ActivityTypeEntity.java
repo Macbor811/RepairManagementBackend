@@ -9,10 +9,15 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "activity_type", schema = "public", catalog = "postgres")
-public class ActivityTypeEntity {
+public class ActivityTypeEntity implements pl.polsl.repairmanagementbackend.Entity {
     private Integer id;
     private String type;
     private Collection<ActivityEntity> activityById;
+
+    public ActivityTypeEntity(String type, Collection<ActivityEntity> activityById) {
+        this.type = type;
+        this.activityById = activityById;
+    }
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -55,5 +60,10 @@ public class ActivityTypeEntity {
 
     public void setActivityById(Collection<ActivityEntity> activityById) {
         this.activityById = activityById;
+    }
+
+    @Override
+    public ActivityTypeDTO toDTO(){
+        return new ActivityTypeDTO(id, type);
     }
 }

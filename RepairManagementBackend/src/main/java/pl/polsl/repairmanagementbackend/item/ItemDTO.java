@@ -1,5 +1,12 @@
 package pl.polsl.repairmanagementbackend.item;
 
-public class ItemDTO {
+import pl.polsl.repairmanagementbackend.DTO;
+import pl.polsl.repairmanagementbackend.Entity;
 
+public class ItemDTO implements DTO {
+
+    @Override
+    public ItemEntity toEntity() {
+        return null;
+    }
 }

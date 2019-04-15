@@ -1,4 +1,4 @@
-package pl.polsl.repairmanagementbackend.personnel;
+package pl.polsl.repairmanagementbackend.employee;
 
 import pl.polsl.repairmanagementbackend.activity.ActivityEntity;
 import pl.polsl.repairmanagementbackend.address.AddressEntity;
@@ -9,8 +9,8 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "personnel", schema = "public", catalog = "postgres")
-public class PersonnelEntity {
+@Table(name = "employee", schema = "public", catalog = "postgres")
+public class EmployeeEntity implements pl.polsl.repairmanagementbackend.Entity {
     private Integer id;
     private String firstName;
     private String lastName;
@@ -96,7 +96,7 @@ public class PersonnelEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PersonnelEntity that = (PersonnelEntity) o;
+        EmployeeEntity that = (EmployeeEntity) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(firstName, that.firstName) &&
                 Objects.equals(lastName, that.lastName) &&
@@ -137,5 +137,11 @@ public class PersonnelEntity {
 
     public void setRequests(Collection<RequestEntity> requests) {
         this.requests = requests;
+    }
+
+    @Override
+    public EmployeeDTO toDTO(){
+        return new EmployeeDTO(id, firstName, lastName, phoneNumber, role,
+                username, password, null, address.toDTO(), null);
     }
 }

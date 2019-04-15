@@ -1,12 +1,14 @@
 package pl.polsl.repairmanagementbackend.activity;
 
+import pl.polsl.repairmanagementbackend.DTO;
+import pl.polsl.repairmanagementbackend.Entity;
 import pl.polsl.repairmanagementbackend.activitytype.ActivityTypeDTO;
-import pl.polsl.repairmanagementbackend.personnel.PersonnelDTO;
+import pl.polsl.repairmanagementbackend.employee.EmployeeDTO;
 import pl.polsl.repairmanagementbackend.request.RequestDTO;
 
 import java.sql.Timestamp;
 
-public class ActivityDTO {
+public class ActivityDTO implements DTO {
 
     private Integer id;
     private Integer sequenceNum;
@@ -16,7 +18,7 @@ public class ActivityDTO {
     private Timestamp registerDate;
     private Timestamp endDate;
     private RequestDTO request;
-    private PersonnelDTO personnel;
+    private EmployeeDTO employee;
     private ActivityTypeDTO activityType;
 
 
@@ -84,12 +86,12 @@ public class ActivityDTO {
         this.request = request;
     }
 
-    public PersonnelDTO getPersonnel() {
-        return personnel;
+    public EmployeeDTO getEmployee() {
+        return employee;
     }
 
-    public void setPersonnel(PersonnelDTO personnel) {
-        this.personnel = personnel;
+    public void setEmployee(EmployeeDTO employee) {
+        this.employee = employee;
     }
 
     public ActivityTypeDTO getActivityType() {
@@ -98,5 +100,11 @@ public class ActivityDTO {
 
     public void setActivityType(ActivityTypeDTO activityType) {
         this.activityType = activityType;
+    }
+
+
+    @Override
+    public ActivityEntity toEntity() {
+        return null;
     }
 }

@@ -22,7 +22,7 @@ public class AddressController {
     public List<AddressDTO> find(){
 
         List<AddressEntity> entities = repository.findAll();
-        List<AddressDTO> dtos = entities.stream().map(entity -> entity.toDTO()).collect(Collectors.toList());
+        List<AddressDTO> dtos = entities.stream().map(AddressEntity::toDTO).collect(Collectors.toList());
         return dtos;
     }
 

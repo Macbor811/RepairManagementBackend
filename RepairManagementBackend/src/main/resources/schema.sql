@@ -27,7 +27,7 @@ CREATE TABLE item (
                        owner_id INTEGER REFERENCES customer(id) NOT NULL
 );
 
-CREATE TABLE personnel (
+CREATE TABLE employee (
                       id INTEGER PRIMARY KEY NOT NULL,
                       first_name VARCHAR(50),
                       last_name VARCHAR(50),
@@ -48,7 +48,7 @@ CREATE TABLE request (
                     end_date TIMESTAMP,
 
                     item_id INTEGER REFERENCES item(id) NOT NULL,
-                    manager_id INTEGER REFERENCES personnel(id) NOT NULL
+                    manager_id INTEGER REFERENCES employee(id) NOT NULL
 );
 
 CREATE TABLE activity_type (
@@ -66,7 +66,7 @@ CREATE TABLE activity (
                        end_date TIMESTAMP,
 
                       request_id INTEGER REFERENCES request(id) NOT NULL,
-                      worker_id INTEGER REFERENCES personnel(id) NOT NULL
+                      worker_id INTEGER REFERENCES employee(id) NOT NULL
 
 );
 

@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Entity(name = "customer")
 @Table(name = "customer", schema = "public", catalog = "postgres")
-public class CustomerEntity {
+public class CustomerEntity implements pl.polsl.repairmanagementbackend.Entity {
     private Integer id;
     private String firstName;
     private String lastName;
@@ -101,6 +101,7 @@ public class CustomerEntity {
         this.items = items;
     }
 
+    @Override
     public CustomerDTO toDTO(){
         return new CustomerDTO(getId(), getFirstName(), getLastName(), getPhoneNumber(), getAddress().toDTO());
     }

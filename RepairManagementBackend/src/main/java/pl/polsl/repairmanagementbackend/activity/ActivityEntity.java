@@ -1,7 +1,8 @@
 package pl.polsl.repairmanagementbackend.activity;
 
+import pl.polsl.repairmanagementbackend.DTO;
 import pl.polsl.repairmanagementbackend.activitytype.ActivityTypeEntity;
-import pl.polsl.repairmanagementbackend.personnel.PersonnelEntity;
+import pl.polsl.repairmanagementbackend.employee.EmployeeEntity;
 import pl.polsl.repairmanagementbackend.request.RequestEntity;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "activity", schema = "public", catalog = "postgres")
-public class ActivityEntity {
+public class ActivityEntity implements pl.polsl.repairmanagementbackend.Entity {
     private Integer id;
     private Integer sequenceNum;
     private String description;
@@ -20,7 +21,7 @@ public class ActivityEntity {
     private Timestamp endDate;
     private ActivityTypeEntity activityType;
     private RequestEntity request;
-    private PersonnelEntity worker;
+    private EmployeeEntity worker;
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -123,11 +124,11 @@ public class ActivityEntity {
 
     @ManyToOne
     @JoinColumn(name = "worker_id", referencedColumnName = "id", nullable = false)
-    public PersonnelEntity getWorker() {
+    public EmployeeEntity getWorker() {
         return worker;
     }
 
-    public void setWorker(PersonnelEntity worker) {
+    public void setWorker(EmployeeEntity worker) {
         this.worker = worker;
     }
 
@@ -140,5 +141,10 @@ public class ActivityEntity {
 
     public void setActivityType(ActivityTypeEntity activityType) {
         this.activityType = activityType;
+    }
+
+    @Override
+    public ActivityDTO toDTO() {
+        return null;
     }
 }

@@ -1,9 +1,8 @@
-package pl.polsl.repairmanagementbackend.customer;
+package pl.polsl.repairmanagementbackend.request;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.polsl.repairmanagementbackend.address.AddressDTO;
 
 import javax.persistence.NoResultException;
 import java.net.URI;
@@ -12,28 +11,28 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("customer")
-public class CustomerController {
+@RequestMapping("request")
+public class RequestController {
 
-    private final CustomerRepository repository;
+    private final RequestRepository repository;
 
-    public CustomerController(CustomerRepository repository) {
+    @Autowired
+    public RequestController(RequestRepository repository) {
         this.repository = repository;
     }
 
-
     @GetMapping
-    public List<CustomerDTO> findAll(){
+    public List<RequestDTO> findAll(){
 
-        List<CustomerEntity> entities = repository.findAll();
-        List<CustomerDTO> dtos = entities.stream().map(CustomerEntity::toDTO).collect(Collectors.toList());
+        List<RequestEntity> entities = repository.findAll();
+        List<RequestDTO> dtos = entities.stream().map(RequestEntity::toDTO).collect(Collectors.toList());
         return dtos;
     }
 
 
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody CustomerDTO toSave) throws URISyntaxException {
+    public ResponseEntity<?> save(@RequestBody RequestDTO toSave) throws URISyntaxException {
 
         Integer id = repository.save(toSave.toEntity());
         return ResponseEntity.created(new URI("customer/" + id.toString())).build();
@@ -42,9 +41,9 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public CustomerDTO findById(@PathVariable int id){
+    public RequestDTO findById(@PathVariable int id){
 
-        CustomerEntity entity = repository.findById(id);
+        RequestEntity entity = repository.findById(id);
         return entity.toDTO();
     }
 
@@ -54,6 +53,4 @@ public class CustomerController {
     public ResponseEntity<?> handleNoResultException(NoResultException e) {
         return ResponseEntity.notFound().build();
     }
-
-
 }
