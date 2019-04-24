@@ -23,6 +23,20 @@ public class ActivityEntity implements pl.polsl.repairmanagementbackend.Entity {
     private RequestEntity request;
     private EmployeeEntity worker;
 
+    public ActivityEntity(){};
+
+    public ActivityEntity(Integer sequenceNum, String description, String result, String status, Timestamp registerDate, Timestamp endDate, ActivityTypeEntity activityType, RequestEntity request, EmployeeEntity worker) {
+        this.sequenceNum = sequenceNum;
+        this.description = description;
+        this.result = result;
+        this.status = status;
+        this.registerDate = registerDate;
+        this.endDate = endDate;
+        this.activityType = activityType;
+        this.request = request;
+        this.worker = worker;
+    }
+
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Integer getId() {

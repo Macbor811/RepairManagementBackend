@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Repository
-public class AddressRepository{
+public class AddressRepository {
 
 
     private final EntityManager entityManager;

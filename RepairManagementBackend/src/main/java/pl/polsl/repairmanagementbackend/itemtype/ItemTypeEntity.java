@@ -59,6 +59,9 @@ public class ItemTypeEntity implements pl.polsl.repairmanagementbackend.Entity {
 
     @Override
     public ItemTypeDTO toDTO() {
-        return null;
+        ItemTypeDTO dto = new ItemTypeDTO();
+        dto.setId(id);
+        dto.setType(type);
+        return dto;
     }
 }

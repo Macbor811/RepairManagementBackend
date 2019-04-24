@@ -12,11 +12,10 @@ import java.util.Objects;
 public class ActivityTypeEntity implements pl.polsl.repairmanagementbackend.Entity {
     private Integer id;
     private String type;
-    private Collection<ActivityEntity> activityById;
+    private Collection<ActivityEntity> activities;
 
-    public ActivityTypeEntity(String type, Collection<ActivityEntity> activityById) {
+    public ActivityTypeEntity(String type) {
         this.type = type;
-        this.activityById = activityById;
     }
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -54,12 +53,12 @@ public class ActivityTypeEntity implements pl.polsl.repairmanagementbackend.Enti
     }
 
     @OneToMany(mappedBy = "activityType")
-    public Collection<ActivityEntity> getActivityById() {
-        return activityById;
+    public Collection<ActivityEntity> getActivities() {
+        return activities;
     }
 
-    public void setActivityById(Collection<ActivityEntity> activityById) {
-        this.activityById = activityById;
+    public void setActivities(Collection<ActivityEntity> activities) {
+        this.activities = activities;
     }
 
     @Override

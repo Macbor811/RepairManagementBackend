@@ -111,6 +111,7 @@ public class RequestDTO implements DTO {
     public RequestEntity toEntity(){
         return new RequestEntity(description, result, status, registerDate, endDate,
                 activities.stream().map(ActivityDTO::toEntity).collect(Collectors.toList()),
-                item.toEntity(), manager.toEntity());
+                item.toEntity(),
+                manager.toEntity());
     }
 }

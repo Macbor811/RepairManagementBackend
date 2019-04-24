@@ -15,6 +15,6 @@ public class ActivityTypeDTO implements DTO {
 
     @Override
     public ActivityTypeEntity toEntity(){
-        return new ActivityTypeEntity(type, null);
+        return new ActivityTypeEntity(type);
     }
 }

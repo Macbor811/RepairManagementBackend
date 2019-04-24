@@ -18,12 +18,11 @@ public class CustomerEntity implements pl.polsl.repairmanagementbackend.Entity {
     private Collection<ItemEntity> items;
 
     public CustomerEntity(){}
-    public CustomerEntity(String firstName, String lastName, String phoneNumber, AddressEntity address, Collection<ItemEntity> items) {
+    public CustomerEntity(String firstName, String lastName, String phoneNumber, AddressEntity address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.items = items;
     }
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)

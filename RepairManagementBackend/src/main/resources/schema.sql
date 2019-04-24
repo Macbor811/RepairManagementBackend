@@ -33,7 +33,7 @@ CREATE TABLE employee (
                       last_name VARCHAR(50),
                       phone_number VARCHAR(10),
                       address_id INTEGER REFERENCES address(id) NOT NULL,
-                      role VARCHAR(10),
+                      role VARCHAR(3),
                       username VARCHAR(50),
                       password VARCHAR(50)
 );

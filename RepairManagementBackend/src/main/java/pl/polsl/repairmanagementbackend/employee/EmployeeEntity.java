@@ -23,6 +23,7 @@ public class EmployeeEntity implements pl.polsl.repairmanagementbackend.Entity {
     private AddressEntity address;
     private Collection<RequestEntity> requests;
 
+    public EmployeeEntity(){}
     public EmployeeEntity(String firstName, String lastName, String phoneNumber, String role, String username, String password, Collection<ActivityEntity> activities, AddressEntity address, Collection<RequestEntity> requests) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -133,7 +134,7 @@ public class EmployeeEntity implements pl.polsl.repairmanagementbackend.Entity {
         this.activities = activities;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
     public AddressEntity getAddress() {
         return address;
@@ -156,7 +157,7 @@ public class EmployeeEntity implements pl.polsl.repairmanagementbackend.Entity {
     public EmployeeDTO toDTO(){
         return new EmployeeDTO(id, firstName, lastName, phoneNumber, role,
                 username, password,
-                activities.stream().map(ActivityEntity::toDTO).collect(Collectors.toList()),
-                address.toDTO(), requests.stream().map(RequestEntity::toDTO).collect(Collectors.toList()));
+                activities == null ? null : activities.stream().map(ActivityEntity::toDTO).collect(Collectors.toList()),
+                address.toDTO(), requests == null ? null : requests.stream().map(RequestEntity::toDTO).collect(Collectors.toList()));
     }
 }

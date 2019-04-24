@@ -1,7 +1,6 @@
 package pl.polsl.repairmanagementbackend.activity;
 
 import pl.polsl.repairmanagementbackend.DTO;
-import pl.polsl.repairmanagementbackend.Entity;
 import pl.polsl.repairmanagementbackend.activitytype.ActivityTypeDTO;
 import pl.polsl.repairmanagementbackend.employee.EmployeeDTO;
 import pl.polsl.repairmanagementbackend.request.RequestDTO;
@@ -18,8 +17,21 @@ public class ActivityDTO implements DTO {
     private Timestamp registerDate;
     private Timestamp endDate;
     private RequestDTO request;
-    private EmployeeDTO employee;
+    private EmployeeDTO worker;
     private ActivityTypeDTO activityType;
+
+    public ActivityDTO(Integer id, Integer sequenceNum, String description, String result, String status, Timestamp registerDate, Timestamp endDate, RequestDTO request, EmployeeDTO worker, ActivityTypeDTO activityType) {
+        this.id = id;
+        this.sequenceNum = sequenceNum;
+        this.description = description;
+        this.result = result;
+        this.status = status;
+        this.registerDate = registerDate;
+        this.endDate = endDate;
+        this.request = request;
+        this.worker = worker;
+        this.activityType = activityType;
+    }
 
 
     public Integer getId() {
@@ -86,12 +98,12 @@ public class ActivityDTO implements DTO {
         this.request = request;
     }
 
-    public EmployeeDTO getEmployee() {
-        return employee;
+    public EmployeeDTO getWorker() {
+        return worker;
     }
 
-    public void setEmployee(EmployeeDTO employee) {
-        this.employee = employee;
+    public void setWorker(EmployeeDTO worker) {
+        this.worker = worker;
     }
 
     public ActivityTypeDTO getActivityType() {
@@ -105,6 +117,8 @@ public class ActivityDTO implements DTO {
 
     @Override
     public ActivityEntity toEntity() {
-        return null;
+
+        return new ActivityEntity(sequenceNum, description, result, status, registerDate, endDate, activityType.toEntity(),
+                request.toEntity(), worker.toEntity());
     }
 }

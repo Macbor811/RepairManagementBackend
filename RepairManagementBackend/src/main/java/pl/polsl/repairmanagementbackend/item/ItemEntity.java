@@ -18,6 +18,14 @@ public class ItemEntity implements pl.polsl.repairmanagementbackend.Entity {
     private CustomerEntity owner;
     private Collection<RequestEntity> requests;
 
+    public ItemEntity(){}
+
+    public ItemEntity(String name, ItemTypeEntity itemType, CustomerEntity owner) {
+        this.name = name;
+        this.itemType = itemType;
+        this.owner = owner;
+    }
+
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Integer getId() {
@@ -52,7 +60,7 @@ public class ItemEntity implements pl.polsl.repairmanagementbackend.Entity {
         return Objects.hash(id, name);
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "item_type_id", referencedColumnName = "id", nullable = false)
     public ItemTypeEntity getItemType() {
         return itemType;
@@ -83,6 +91,6 @@ public class ItemEntity implements pl.polsl.repairmanagementbackend.Entity {
 
     @Override
     public ItemDTO toDTO() {
-        return null;
+        return new ItemDTO(id, name, itemType.toDTO(), owner.toDTO());
     }
 }

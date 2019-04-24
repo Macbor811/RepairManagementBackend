@@ -73,6 +73,6 @@ public class CustomerDTO implements DTO {
 
     @Override
     public CustomerEntity toEntity(){
-        return new CustomerEntity(firstName, lastName, phoneNumber, address.toEntity(), null);
+        return new CustomerEntity(firstName, lastName, phoneNumber, address.toEntity());
     }
 }

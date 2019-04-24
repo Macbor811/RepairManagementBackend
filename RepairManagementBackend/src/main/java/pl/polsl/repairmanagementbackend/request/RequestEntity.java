@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-@Entity
+@Entity(name = "request")
 @Table(name = "request", schema = "public", catalog = "postgres")
 public class RequestEntity implements pl.polsl.repairmanagementbackend.Entity {
     private Integer id;
@@ -122,7 +122,7 @@ public class RequestEntity implements pl.polsl.repairmanagementbackend.Entity {
         this.activities = activities;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "item_id", referencedColumnName = "id", nullable = false)
     public ItemEntity getItem() {
         return item;
@@ -132,7 +132,7 @@ public class RequestEntity implements pl.polsl.repairmanagementbackend.Entity {
         this.item = item;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "manager_id", referencedColumnName = "id", nullable = false)
     public EmployeeEntity getManager() {
         return manager;
@@ -145,6 +145,6 @@ public class RequestEntity implements pl.polsl.repairmanagementbackend.Entity {
     @Override
     public RequestDTO toDTO() {
         return new RequestDTO(id, description, result, status, registerDate, endDate,
-                activities.stream().map(ActivityEntity::toDTO).collect(Collectors.toList()), item.toDTO(), manager.toDTO());
+               activities == null ? null : activities.stream().map(ActivityEntity::toDTO).collect(Collectors.toList()), item.toDTO(), manager.toDTO());
     }
 }

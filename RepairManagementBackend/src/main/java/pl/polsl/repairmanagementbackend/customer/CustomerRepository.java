@@ -33,7 +33,7 @@ public class CustomerRepository  {
     }
 
     @Transactional
-    CustomerEntity findById(int id){
+    public CustomerEntity findById(int id){
 
 
         return (CustomerEntity) entityManager
