@@ -7,7 +7,7 @@ import pl.polsl.repairmanagementbackend.request.RequestDTO;
 
 import java.sql.Timestamp;
 
-public class ActivityDTO implements DTO {
+public class ActivityDTO{
 
     private Integer id;
     private Integer sequenceNum;
@@ -115,10 +115,10 @@ public class ActivityDTO implements DTO {
     }
 
 
-    @Override
-    public ActivityEntity toEntity() {
-
-        return new ActivityEntity(sequenceNum, description, result, status, registerDate, endDate, activityType.toEntity(),
-                request.toEntity(), worker.toEntity());
-    }
+//    @Override
+//    public ActivityEntity toEntity() {
+//
+//        return new ActivityEntity(sequenceNum, description, result, status, registerDate, endDate, activityType.toEntity(),
+//                request.toEntity(), worker.toEntity());
+//    }
 }

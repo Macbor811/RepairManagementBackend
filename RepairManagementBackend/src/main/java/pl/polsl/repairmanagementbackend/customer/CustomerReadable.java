@@ -1,30 +1,15 @@
 package pl.polsl.repairmanagementbackend.customer;
 
-import pl.polsl.repairmanagementbackend.DTO;
 import pl.polsl.repairmanagementbackend.address.AddressDTO;
 
+import java.util.Collection;
 
-public class CustomerDTO implements DTO {
-
-
+public class CustomerReadable {
     private Integer id;
-
     private String firstName;
-
     private String lastName;
-
     private String phoneNumber;
-
     private AddressDTO address;
-
-    public CustomerDTO(Integer id, String firstName, String lastName, String phoneNumber, AddressDTO address) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-    }
-
 
     public Integer getId() {
         return id;
@@ -64,11 +49,5 @@ public class CustomerDTO implements DTO {
 
     public void setAddress(AddressDTO address) {
         this.address = address;
-    }
-
-
-    @Override
-    public CustomerEntity toEntity(){
-        return new CustomerEntity(firstName, lastName, phoneNumber, address.toEntity());
     }
 }

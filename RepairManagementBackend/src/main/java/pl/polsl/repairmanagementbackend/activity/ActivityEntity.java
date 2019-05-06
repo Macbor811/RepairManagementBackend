@@ -11,7 +11,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "activity", schema = "public", catalog = "postgres")
-public class ActivityEntity implements pl.polsl.repairmanagementbackend.Entity {
+public class ActivityEntity  {
     private Integer id;
     private Integer sequenceNum;
     private String description;
@@ -68,7 +68,7 @@ public class ActivityEntity implements pl.polsl.repairmanagementbackend.Entity {
     }
 
     @Basic
-    @Column(name = "result", nullable = true, length = 3)
+    @Column(name = "result", nullable = true, length = 1024)
     public String getResult() {
         return result;
     }
@@ -157,8 +157,4 @@ public class ActivityEntity implements pl.polsl.repairmanagementbackend.Entity {
         this.activityType = activityType;
     }
 
-    @Override
-    public ActivityDTO toDTO() {
-        return null;
-    }
 }

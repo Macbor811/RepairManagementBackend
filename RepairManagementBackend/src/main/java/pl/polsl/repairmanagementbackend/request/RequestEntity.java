@@ -1,5 +1,6 @@
 package pl.polsl.repairmanagementbackend.request;
 
+import org.hibernate.annotations.CreationTimestamp;
 import pl.polsl.repairmanagementbackend.DTO;
 import pl.polsl.repairmanagementbackend.activity.ActivityEntity;
 import pl.polsl.repairmanagementbackend.item.ItemEntity;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Entity(name = "request")
 @Table(name = "request", schema = "public", catalog = "postgres")
-public class RequestEntity implements pl.polsl.repairmanagementbackend.Entity {
+public class RequestEntity {
     private Integer id;
     private String description;
     private String result;
@@ -34,6 +35,8 @@ public class RequestEntity implements pl.polsl.repairmanagementbackend.Entity {
         this.item = item;
         this.manager = manager;
     }
+
+    public RequestEntity(){}
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -56,7 +59,7 @@ public class RequestEntity implements pl.polsl.repairmanagementbackend.Entity {
     }
 
     @Basic
-    @Column(name = "result", nullable = true, length = 3)
+    @Column(name = "result", nullable = true, length = 1024)
     public String getResult() {
         return result;
     }
@@ -76,6 +79,7 @@ public class RequestEntity implements pl.polsl.repairmanagementbackend.Entity {
     }
 
     @Basic
+    @CreationTimestamp
     @Column(name = "register_date", nullable = true)
     public Timestamp getRegisterDate() {
         return registerDate;
@@ -142,9 +146,9 @@ public class RequestEntity implements pl.polsl.repairmanagementbackend.Entity {
         this.manager = manager;
     }
 
-    @Override
-    public RequestDTO toDTO() {
-        return new RequestDTO(id, description, result, status, registerDate, endDate,
-               activities == null ? null : activities.stream().map(ActivityEntity::toDTO).collect(Collectors.toList()), item.toDTO(), manager.toDTO());
-    }
+//    @Override
+//    public RequestDTO toDTO() {
+//        return new RequestDTO(id, description, result, status, registerDate, endDate,
+//               activities == null ? null : activities.stream().map(ActivityEntity::toDTO).collect(Collectors.toList()), item.toDTO(), manager.toDTO());
+//    }
 }

@@ -1,25 +1,28 @@
 package pl.polsl.repairmanagementbackend.employee;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import pl.polsl.repairmanagementbackend.DTO;
 import pl.polsl.repairmanagementbackend.activity.ActivityDTO;
-import pl.polsl.repairmanagementbackend.activity.ActivityEntity;
 import pl.polsl.repairmanagementbackend.address.AddressDTO;
 import pl.polsl.repairmanagementbackend.request.RequestDTO;
 
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 public class EmployeeDTO implements DTO {
 
+
     private Integer id;
     private String firstName;
+
     private String lastName;
     private String phoneNumber;
     private String role;
     private String username;
     private String password;
+    @JsonIgnore
     private Collection<ActivityDTO> activities;
     private AddressDTO address;
+    @JsonIgnore
     private Collection<RequestDTO> requests;
 
     public EmployeeDTO(Integer id,
@@ -29,9 +32,10 @@ public class EmployeeDTO implements DTO {
                        String role,
                        String username,
                        String password,
-                       Collection<ActivityDTO> activities,
-                       AddressDTO address,
-                       Collection<RequestDTO> requests) {
+                      // Collection<ActivityDTO> activities,
+                       AddressDTO address
+                      // Collection<RequestDTO> requests
+    ) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -39,9 +43,9 @@ public class EmployeeDTO implements DTO {
         this.role = role;
         this.username = username;
         this.password = password;
-        this.activities = activities;
+        //this.activities = activities;
         this.address = address;
-        this.requests = requests;
+       // this.requests = requests;
     }
 
 
@@ -127,8 +131,9 @@ public class EmployeeDTO implements DTO {
 
     @Override
     public EmployeeEntity toEntity(){
-        return new EmployeeEntity(firstName, lastName, phoneNumber, role, username, password,
-                activities.stream().map(ActivityDTO::toEntity).collect(Collectors.toList()), address.toEntity(),
-                requests.stream().map(RequestDTO::toEntity).collect(Collectors.toList()));
+        return new EmployeeEntity(firstName, lastName, phoneNumber, role, username, password, address.toEntity());
+             //   activities == null ? null : activities.stream().map(ActivityDTO::toEntity).collect(Collectors.toList()),
+
+              //  requests == null ? null :requests.stream().map(RequestDTO::toEntity).collect(Collectors.toList()));
     }
 }

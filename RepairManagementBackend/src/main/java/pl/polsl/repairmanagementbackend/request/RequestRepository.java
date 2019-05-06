@@ -1,6 +1,7 @@
 package pl.polsl.repairmanagementbackend.request;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,38 +10,17 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
-public class RequestRepository {
-    private final EntityManager entityManager;
-
-    @Autowired
-    public RequestRepository(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+public interface RequestRepository extends JpaRepository<RequestEntity, Integer> {
 
 
     @Transactional
-    public Integer save(RequestEntity request) {
-        entityManager.persist(request);
-        return request.getId();
-    }
+    public RequestEntity save(RequestEntity request);
 
 
     @Transactional
-    List<RequestEntity> findAll(){
-
-        return entityManager
-                .createQuery("SELECT r FROM request r")
-                .getResultList();
-    }
+    List<RequestEntity> findAll();
 
     @Transactional
-    RequestEntity findById(int id){
-
-
-        return (RequestEntity) entityManager
-                .createQuery("SELECT r FROM request r WHERE r.id = :id")
-                .setParameter("id", id)
-                .getSingleResult();
-    }
+    RequestEntity findById(int id);
 
 }

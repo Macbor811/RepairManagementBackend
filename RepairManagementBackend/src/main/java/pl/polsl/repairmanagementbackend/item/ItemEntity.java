@@ -11,7 +11,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "item", schema = "public", catalog = "postgres")
-public class ItemEntity implements pl.polsl.repairmanagementbackend.Entity {
+public class ItemEntity {
     private Integer id;
     private String name;
     private ItemTypeEntity itemType;
@@ -89,8 +89,8 @@ public class ItemEntity implements pl.polsl.repairmanagementbackend.Entity {
         this.requests = requests;
     }
 
-    @Override
-    public ItemDTO toDTO() {
-        return new ItemDTO(id, name, itemType.toDTO(), owner.toDTO());
-    }
+//    @Override
+//    public ItemDTO toDTO() {
+//        return new ItemDTO(id, name, itemType.toDTO(), owner.toDTO());
+//    }
 }

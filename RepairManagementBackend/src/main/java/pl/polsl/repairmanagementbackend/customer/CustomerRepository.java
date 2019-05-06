@@ -1,45 +1,27 @@
 package pl.polsl.repairmanagementbackend.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pl.polsl.repairmanagementbackend.customer.CustomerEntity;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public class CustomerRepository  {
-
-    private final EntityManager entityManager;
-
-    @Autowired
-    public CustomerRepository(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
-    @Transactional
-    public Integer save(CustomerEntity customer) {
-        entityManager.persist(customer);
-        return customer.getId();
-    }
+public interface CustomerRepository extends JpaRepository<CustomerEntity, Integer> {
 
 
     @Transactional
-    List<CustomerEntity> findAll(){
-        return entityManager
-                .createQuery("SELECT c FROM customer c")
-                .getResultList();
-    }
+    public CustomerEntity save(CustomerEntity customer);
+
 
     @Transactional
-    public CustomerEntity findById(int id){
+    List<CustomerEntity> findAll();
 
-
-        return (CustomerEntity) entityManager
-                .createQuery("SELECT c FROM customer c WHERE c.id = :id")
-                .setParameter("id", id)
-                .getSingleResult();
-    }
-
+    @Transactional
+    public Optional<CustomerEntity> findById(Integer id);
 }

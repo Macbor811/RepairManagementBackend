@@ -11,6 +11,7 @@ public class AddressDTO implements DTO {
     private String street;
     private String number;
 
+    public AddressDTO(){}
 
     public AddressDTO(Integer id, String postCode, String city, String street, String number) {
         this.id = id;
@@ -23,7 +24,6 @@ public class AddressDTO implements DTO {
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
@@ -31,7 +31,6 @@ public class AddressDTO implements DTO {
     public String getPostCode() {
         return postCode;
     }
-
     public void setPostCode(String postCode) {
         this.postCode = postCode;
     }
@@ -39,7 +38,6 @@ public class AddressDTO implements DTO {
     public String getCity() {
         return city;
     }
-
     public void setCity(String city) {
         this.city = city;
     }
@@ -47,7 +45,6 @@ public class AddressDTO implements DTO {
     public String getStreet() {
         return street;
     }
-
     public void setStreet(String street) {
         this.street = street;
     }
@@ -55,7 +52,6 @@ public class AddressDTO implements DTO {
     public String getNumber() {
         return number;
     }
-
     public void setNumber(String number) {
         this.number = number;
     }

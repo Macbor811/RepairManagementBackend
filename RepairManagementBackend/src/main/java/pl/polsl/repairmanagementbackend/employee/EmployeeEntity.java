@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name = "employee", schema = "public", catalog = "postgres")
 public class EmployeeEntity implements pl.polsl.repairmanagementbackend.Entity {
+
     private Integer id;
     private String firstName;
     private String lastName;
@@ -24,16 +25,14 @@ public class EmployeeEntity implements pl.polsl.repairmanagementbackend.Entity {
     private Collection<RequestEntity> requests;
 
     public EmployeeEntity(){}
-    public EmployeeEntity(String firstName, String lastName, String phoneNumber, String role, String username, String password, Collection<ActivityEntity> activities, AddressEntity address, Collection<RequestEntity> requests) {
+    public EmployeeEntity(String firstName, String lastName, String phoneNumber, String role, String username, String password, AddressEntity address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.role = role;
         this.username = username;
         this.password = password;
-        this.activities = activities;
         this.address = address;
-        this.requests = requests;
     }
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -41,7 +40,6 @@ public class EmployeeEntity implements pl.polsl.repairmanagementbackend.Entity {
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
@@ -51,7 +49,6 @@ public class EmployeeEntity implements pl.polsl.repairmanagementbackend.Entity {
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -61,7 +58,6 @@ public class EmployeeEntity implements pl.polsl.repairmanagementbackend.Entity {
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -71,17 +67,15 @@ public class EmployeeEntity implements pl.polsl.repairmanagementbackend.Entity {
     public String getPhoneNumber() {
         return phoneNumber;
     }
-
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
     @Basic
-    @Column(name = "role", nullable = true, length = 10)
+    @Column(name = "role", nullable = true, length = 3)
     public String getRole() {
         return role;
     }
-
     public void setRole(String role) {
         this.role = role;
     }
@@ -91,20 +85,44 @@ public class EmployeeEntity implements pl.polsl.repairmanagementbackend.Entity {
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
 
     @Basic
-    @Column(name = "password", nullable = true, length = 50)
+    @Column(name = "password", nullable = true, length = 60)
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @OneToMany(mappedBy = "worker")
+    public Collection<ActivityEntity> getActivities() {
+        return activities;
+    }
+    public void setActivities(Collection<ActivityEntity> activities) {
+        this.activities = activities;
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
+    public AddressEntity getAddress() {
+        return address;
+    }
+    public void setAddress(AddressEntity address) {
+        this.address = address;
+    }
+
+    @OneToMany(mappedBy = "manager")
+    public Collection<RequestEntity> getRequests() {
+        return requests;
+    }
+    public void setRequests(Collection<RequestEntity> requests) {
+        this.requests = requests;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -125,39 +143,12 @@ public class EmployeeEntity implements pl.polsl.repairmanagementbackend.Entity {
         return Objects.hash(id, firstName, lastName, phoneNumber, role, username, password);
     }
 
-    @OneToMany(mappedBy = "worker")
-    public Collection<ActivityEntity> getActivities() {
-        return activities;
-    }
-
-    public void setActivities(Collection<ActivityEntity> activities) {
-        this.activities = activities;
-    }
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
-    public AddressEntity getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressEntity address) {
-        this.address = address;
-    }
-
-    @OneToMany(mappedBy = "manager")
-    public Collection<RequestEntity> getRequests() {
-        return requests;
-    }
-
-    public void setRequests(Collection<RequestEntity> requests) {
-        this.requests = requests;
-    }
-
     @Override
     public EmployeeDTO toDTO(){
         return new EmployeeDTO(id, firstName, lastName, phoneNumber, role,
-                username, password,
-                activities == null ? null : activities.stream().map(ActivityEntity::toDTO).collect(Collectors.toList()),
-                address.toDTO(), requests == null ? null : requests.stream().map(RequestEntity::toDTO).collect(Collectors.toList()));
+                username, password, address.toDTO());
+                //activities == null ? null : activities.stream().map(ActivityEntity::toDTO).collect(Collectors.toList()),
+
+                //requests == null ? null : requests.stream().map(RequestEntity::toDTO).collect(Collectors.toList()));
     }
 }
