@@ -1,4 +1,4 @@
-package pl.polsl.repairmanagement;
+/*package pl.polsl.repairmanagement;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +11,7 @@ import pl.polsl.repairmanagementbackend.customer.CustomerRepository;
 @SpringBootTest
 public class RepairmanagementbackendApplicationTests {
 
-    @Autowired
+   @Autowired
     private CustomerRepository customerRepository;
 
 
@@ -20,5 +20,5 @@ public class RepairmanagementbackendApplicationTests {
 
        // Assert.assertEquals(1, customerRepository.findByName("nazwa").size());
     }
-
 }
+*/
