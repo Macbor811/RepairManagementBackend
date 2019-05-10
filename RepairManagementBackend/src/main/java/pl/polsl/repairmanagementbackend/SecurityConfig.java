@@ -15,8 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.polsl.repairmanagementbackend.employee.EmployeeUserDetailsService;
 
 @Configuration
-//@EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final EmployeeUserDetailsService userDetailsService;
@@ -48,11 +48,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/address").hasRole("USER")
-//                .antMatchers("/customer").hasRole("ADMIN");
 
         http.csrf().disable()
                 .sessionManagement()

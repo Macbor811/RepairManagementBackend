@@ -1,5 +1,6 @@
 package pl.polsl.repairmanagementbackend.employee;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import pl.polsl.repairmanagementbackend.activity.ActivityEntity;
 import pl.polsl.repairmanagementbackend.address.AddressEntity;
 import pl.polsl.repairmanagementbackend.request.RequestEntity;
@@ -7,7 +8,6 @@ import pl.polsl.repairmanagementbackend.request.RequestEntity;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "employee", schema = "public", catalog = "postgres")
@@ -19,6 +19,8 @@ public class EmployeeEntity implements pl.polsl.repairmanagementbackend.Entity {
     private String phoneNumber;
     private String role;
     private String username;
+
+    @JsonDeserialize(using = PasswordDeserializer.class )
     private String password;
     private Collection<ActivityEntity> activities;
     private AddressEntity address;

@@ -41,7 +41,7 @@ public class EmployeeController {
         return dtos;
     }
 
-    @PreAuthorize("hasRole('MAN') || hasRole('ADM')")
+    //@PreAuthorize("hasRole('MAN') || hasRole('ADM')")
     @PostMapping
     public ResponseEntity<?> save(@RequestBody EmployeeSaveable toSave) throws URISyntaxException {
         toSave.setPassword(encoder.encode(toSave.getPassword()));

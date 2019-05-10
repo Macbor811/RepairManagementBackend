@@ -30,7 +30,6 @@ public class CustomerEntity implements pl.polsl.repairmanagementbackend.Entity {
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
@@ -40,7 +39,6 @@ public class CustomerEntity implements pl.polsl.repairmanagementbackend.Entity {
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
