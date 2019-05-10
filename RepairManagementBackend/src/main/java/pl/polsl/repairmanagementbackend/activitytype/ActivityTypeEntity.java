@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "activity_type", schema = "public", catalog = "postgres")
-public class ActivityTypeEntity implements pl.polsl.repairmanagementbackend.Entity {
+public class ActivityTypeEntity{
     private Integer id;
     private String type;
     private Collection<ActivityEntity> activities;
@@ -61,8 +61,4 @@ public class ActivityTypeEntity implements pl.polsl.repairmanagementbackend.Enti
         this.activities = activities;
     }
 
-    @Override
-    public ActivityTypeDTO toDTO(){
-        return new ActivityTypeDTO(id, type);
-    }
 }

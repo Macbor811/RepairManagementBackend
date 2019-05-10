@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
-@RepositoryRestResource(collectionResourceRel = "restdata", path = "restdata")
+@RepositoryRestResource(collectionResourceRel = "request", path = "request")
 public interface RequestRepository extends JpaRepository<RequestEntity, Integer> {
 
 

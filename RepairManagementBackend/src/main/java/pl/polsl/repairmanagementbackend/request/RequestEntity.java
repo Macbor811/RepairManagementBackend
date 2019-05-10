@@ -1,7 +1,6 @@
 package pl.polsl.repairmanagementbackend.request;
 
 import org.hibernate.annotations.CreationTimestamp;
-import pl.polsl.repairmanagementbackend.DTO;
 import pl.polsl.repairmanagementbackend.activity.ActivityEntity;
 import pl.polsl.repairmanagementbackend.item.ItemEntity;
 import pl.polsl.repairmanagementbackend.employee.EmployeeEntity;

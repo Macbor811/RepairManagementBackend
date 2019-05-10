@@ -2,6 +2,7 @@ package pl.polsl.repairmanagementbackend.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pl.polsl.repairmanagementbackend.customer.CustomerEntity;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@RepositoryRestResource(collectionResourceRel = "customer", path = "customer")
 public interface CustomerRepository extends JpaRepository<CustomerEntity, Integer> {
 
 

@@ -15,8 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.polsl.repairmanagementbackend.employee.EmployeeUserDetailsService;
 
 @Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final EmployeeUserDetailsService userDetailsService;

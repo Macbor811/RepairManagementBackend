@@ -11,7 +11,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "employee", schema = "public", catalog = "postgres")
-public class EmployeeEntity implements pl.polsl.repairmanagementbackend.Entity {
+public class EmployeeEntity {
 
     private Integer id;
     private String firstName;
@@ -145,12 +145,5 @@ public class EmployeeEntity implements pl.polsl.repairmanagementbackend.Entity {
         return Objects.hash(id, firstName, lastName, phoneNumber, role, username, password);
     }
 
-    @Override
-    public EmployeeDTO toDTO(){
-        return new EmployeeDTO(id, firstName, lastName, phoneNumber, role,
-                username, password, address.toDTO());
-                //activities == null ? null : activities.stream().map(ActivityEntity::toDTO).collect(Collectors.toList()),
 
-                //requests == null ? null : requests.stream().map(RequestEntity::toDTO).collect(Collectors.toList()));
-    }
 }

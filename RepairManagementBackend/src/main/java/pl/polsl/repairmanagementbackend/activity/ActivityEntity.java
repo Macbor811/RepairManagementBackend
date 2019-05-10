@@ -1,6 +1,5 @@
 package pl.polsl.repairmanagementbackend.activity;
 
-import pl.polsl.repairmanagementbackend.DTO;
 import pl.polsl.repairmanagementbackend.activitytype.ActivityTypeEntity;
 import pl.polsl.repairmanagementbackend.employee.EmployeeEntity;
 import pl.polsl.repairmanagementbackend.request.RequestEntity;

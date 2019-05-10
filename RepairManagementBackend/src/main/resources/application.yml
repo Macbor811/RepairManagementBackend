@@ -17,7 +17,9 @@ spring:
           lob:
             non_contextual_creation: true
         session-factory:
-
+  data:
+    rest:
+      base-path: api
 
 name:
   default: nazwa

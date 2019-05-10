@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 @RepositoryRestResource(collectionResourceRel = "item", path = "item")
 public interface ItemRepository extends JpaRepository<ItemEntity, Integer> {
 

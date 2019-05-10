@@ -1,6 +1,5 @@
 package pl.polsl.repairmanagementbackend.item;
 
-import pl.polsl.repairmanagementbackend.DTO;
 import pl.polsl.repairmanagementbackend.customer.CustomerEntity;
 import pl.polsl.repairmanagementbackend.itemtype.ItemTypeEntity;
 import pl.polsl.repairmanagementbackend.request.RequestEntity;
@@ -89,8 +88,4 @@ public class ItemEntity {
         this.requests = requests;
     }
 
-//    @Override
-//    public ItemDTO toDTO() {
-//        return new ItemDTO(id, name, itemType.toDTO(), owner.toDTO());
-//    }
 }
