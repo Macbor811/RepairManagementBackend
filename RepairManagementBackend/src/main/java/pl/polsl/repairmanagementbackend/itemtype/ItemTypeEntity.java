@@ -9,17 +9,17 @@ import java.util.Objects;
 @Entity
 @Table(name = "item_type", schema = "public", catalog = "postgres")
 public class ItemTypeEntity  {
-    private Integer id;
+    private String id;
     private String type;
     private Collection<ItemEntity> items;
 
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id //@GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
