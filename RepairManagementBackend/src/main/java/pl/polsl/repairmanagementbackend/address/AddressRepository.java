@@ -28,3 +28,4 @@ public interface AddressRepository extends JpaRepository<AddressEntity, Integer>
     AddressEntity findById(int id);
 
 }
+
