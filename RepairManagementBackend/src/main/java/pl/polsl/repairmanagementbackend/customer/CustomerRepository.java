@@ -25,18 +25,18 @@ public interface CustomerRepository extends
 
 
     @Override
-    default public void customize(QuerydslBindings bindings, QCustomerEntity user) {
+    default void customize(QuerydslBindings bindings, QCustomerEntity user) {
 
         bindings.bind(String.class).first((StringPath path, String value) -> path.startsWithIgnoreCase(value));
     }
 
-    @Transactional
-    public CustomerEntity save(CustomerEntity customer);
-
-
-    @Transactional
-    List<CustomerEntity> findAll();
-
-    @Transactional
-    public Optional<CustomerEntity> findById(Integer id);
+//    @Transactional
+//     CustomerEntity save(CustomerEntity customer);
+//
+//
+//    @Transactional
+//    List<CustomerEntity> findAll();
+//
+//    @Transactional
+//    public Optional<CustomerEntity> findById(Integer id);
 }
