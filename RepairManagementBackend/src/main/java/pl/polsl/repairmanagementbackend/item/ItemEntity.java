@@ -30,7 +30,6 @@ public class ItemEntity {
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
@@ -40,7 +39,6 @@ public class ItemEntity {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -64,7 +62,6 @@ public class ItemEntity {
     public ItemTypeEntity getItemType() {
         return itemType;
     }
-
     public void setItemType(ItemTypeEntity itemType) {
         this.itemType = itemType;
     }
@@ -74,7 +71,6 @@ public class ItemEntity {
     public CustomerEntity getOwner() {
         return owner;
     }
-
     public void setOwner(CustomerEntity owner) {
         this.owner = owner;
     }
@@ -83,7 +79,6 @@ public class ItemEntity {
     public Collection<RequestEntity> getRequests() {
         return requests;
     }
-
     public void setRequests(Collection<RequestEntity> requests) {
         this.requests = requests;
     }

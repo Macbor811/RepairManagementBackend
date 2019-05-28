@@ -14,16 +14,12 @@ public class ActivityTypeEntity{
     private String type;
     private Collection<ActivityEntity> activities;
 
-    public ActivityTypeEntity(String type) {
-        this.type = type;
-    }
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
@@ -33,9 +29,16 @@ public class ActivityTypeEntity{
     public String getType() {
         return type;
     }
-
     public void setType(String type) {
         this.type = type;
+    }
+
+    @OneToMany(mappedBy = "activityType")
+    public Collection<ActivityEntity> getActivities() {
+        return activities;
+    }
+    public void setActivities(Collection<ActivityEntity> activities) {
+        this.activities = activities;
     }
 
     @Override
@@ -51,14 +54,4 @@ public class ActivityTypeEntity{
     public int hashCode() {
         return Objects.hash(id, type);
     }
-
-    @OneToMany(mappedBy = "activityType")
-    public Collection<ActivityEntity> getActivities() {
-        return activities;
-    }
-
-    public void setActivities(Collection<ActivityEntity> activities) {
-        this.activities = activities;
-    }
-
 }

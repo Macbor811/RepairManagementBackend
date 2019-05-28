@@ -26,10 +26,10 @@ INSERT INTO public.item_type (id, type) VALUES ('Ford', 'Ford');
 INSERT INTO public.item_type (id, type) VALUES ('BMW', 'BMW');
 INSERT INTO public.item_type (id, type) VALUES ('Ferrari', 'Ferrari');
 
-INSERT INTO public.item ( name, item_type_id, owner_id) VALUES ( 'Continental GT', '1', 1);
-INSERT INTO public.item ( name, item_type_id, owner_id) VALUES ( 'Mustang GT 2019', '2', 2);
-INSERT INTO public.item ( name, item_type_id, owner_id) VALUES ( 'X5 2019', '3', 3);
-INSERT INTO public.item ( name, item_type_id, owner_id) VALUES ( 'F8 Tributo', '4', 4);
+INSERT INTO public.item ( name, item_type_id, owner_id) VALUES ( 'Continental GT', 'Bentley', 1);
+INSERT INTO public.item ( name, item_type_id, owner_id) VALUES ( 'Mustang GT 2019', 'Ford', 2);
+INSERT INTO public.item ( name, item_type_id, owner_id) VALUES ( 'X5 2019', 'BMW', 3);
+INSERT INTO public.item ( name, item_type_id, owner_id) VALUES ( 'F8 Tributo', 'Ferrari', 4);
 
 INSERT INTO public.request ( description, end_date, register_date, result, status, item_id, manager_id) VALUES ( 'RequestDescription1', null, '2019-05-26 15:44:17.264000', null, 'OPN', 1, 1);
 INSERT INTO public.request ( description, end_date, register_date, result, status, item_id, manager_id) VALUES ( 'RequestDescription2', null, '2019-05-26 15:44:20.504000', null, 'PRO', 2, 2);

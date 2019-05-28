@@ -18,7 +18,6 @@ public class ItemTypeEntity  {
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -28,7 +27,6 @@ public class ItemTypeEntity  {
     public String getType() {
         return type;
     }
-
     public void setType(String type) {
         this.type = type;
     }
@@ -51,7 +49,6 @@ public class ItemTypeEntity  {
     public Collection<ItemEntity> getItems() {
         return items;
     }
-
     public void setItems(Collection<ItemEntity> items) {
         this.items = items;
     }

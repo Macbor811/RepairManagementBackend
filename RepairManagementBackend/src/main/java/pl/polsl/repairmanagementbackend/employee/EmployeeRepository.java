@@ -1,7 +1,9 @@
 package pl.polsl.repairmanagementbackend.employee;
 
+import com.querydsl.core.types.dsl.StringPath;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Repository;
@@ -15,8 +17,14 @@ import java.util.Optional;
 @RepositoryRestResource(collectionResourceRel = "employee", path = "employee")
 public interface EmployeeRepository extends
         JpaRepository<EmployeeEntity, Integer>,
-        QuerydslPredicateExecutor<EmployeeEntity>
-{
+        QuerydslPredicateExecutor<EmployeeEntity>,
+        QuerydslBinderCustomizer<QEmployeeEntity>{
+
+    @Override
+    default void customize(QuerydslBindings bindings, QEmployeeEntity root) {
+
+        bindings.bind(String.class).first((StringPath path, String value) -> path.startsWithIgnoreCase(value));
+    }
 
     @Transactional
     EmployeeEntity save(EmployeeEntity Employee);

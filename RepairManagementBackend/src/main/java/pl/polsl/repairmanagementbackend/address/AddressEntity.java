@@ -18,19 +18,6 @@ public class AddressEntity{
     private Collection<CustomerEntity> customers;
     private Collection<EmployeeEntity> employees;
 
-    public AddressEntity(String postCode, String city, String street, String number, Collection<CustomerEntity> customers, Collection<EmployeeEntity> employees) {
-        this.postCode = postCode;
-        this.city = city;
-        this.street = street;
-        this.number = number;
-        this.customers = customers;
-        this.employees = employees;
-    }
-
-    public AddressEntity(){
-
-    }
-
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Integer getId() {
@@ -46,7 +33,6 @@ public class AddressEntity{
     public String getPostCode() {
         return postCode;
     }
-
     public void setPostCode(String postCode) {
         this.postCode = postCode;
     }
@@ -56,7 +42,6 @@ public class AddressEntity{
     public String getCity() {
         return city;
     }
-
     public void setCity(String city) {
         this.city = city;
     }
@@ -102,7 +87,6 @@ public class AddressEntity{
     public Collection<CustomerEntity> getCustomers() {
         return customers;
     }
-
     public void setCustomers(Collection<CustomerEntity> customers) {
         this.customers = customers;
     }
@@ -111,7 +95,6 @@ public class AddressEntity{
     public Collection<EmployeeEntity> getEmployees() {
         return employees;
     }
-
     public void setEmployees(Collection<EmployeeEntity> employees) {
         this.employees = employees;
     }

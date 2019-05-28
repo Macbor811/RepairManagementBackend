@@ -48,7 +48,6 @@ public class CustomerEntity {
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -58,9 +57,26 @@ public class CustomerEntity {
     public String getPhoneNumber() {
         return phoneNumber;
     }
-
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
+    public AddressEntity getAddress() {
+        return address;
+    }
+    public void setAddress(AddressEntity address) {
+        this.address = address;
+    }
+
+    @OneToMany(mappedBy = "owner")
+    public Collection<ItemEntity> getItems() {
+        return items;
+    }
+    public void setItems(Collection<ItemEntity> items) {
+        this.items = items;
     }
 
     @Override
@@ -78,24 +94,4 @@ public class CustomerEntity {
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, phoneNumber);
     }
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
-    public AddressEntity getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressEntity address) {
-        this.address = address;
-    }
-
-    @OneToMany(mappedBy = "owner")
-    public Collection<ItemEntity> getItems() {
-        return items;
-    }
-
-    public void setItems(Collection<ItemEntity> items) {
-        this.items = items;
-    }
-
 }

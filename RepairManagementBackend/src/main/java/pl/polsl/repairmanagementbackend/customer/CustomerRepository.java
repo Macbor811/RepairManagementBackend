@@ -25,7 +25,7 @@ public interface CustomerRepository extends
 
 
     @Override
-    default void customize(QuerydslBindings bindings, QCustomerEntity user) {
+    default void customize(QuerydslBindings bindings, QCustomerEntity root) {
 
         bindings.bind(String.class).first((StringPath path, String value) -> path.startsWithIgnoreCase(value));
     }
