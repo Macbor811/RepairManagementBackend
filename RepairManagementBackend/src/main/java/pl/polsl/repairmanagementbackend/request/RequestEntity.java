@@ -7,6 +7,7 @@ import pl.polsl.repairmanagementbackend.employee.EmployeeEntity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -18,13 +19,13 @@ public class RequestEntity {
     private String description;
     private String result;
     private String status;
-    private Timestamp registerDate;
-    private Timestamp endDate;
+    private LocalDateTime registerDate;
+    private LocalDateTime endDate;
     private Collection<ActivityEntity> activities;
     private ItemEntity item;
     private EmployeeEntity manager;
 
-    public RequestEntity(String description, String result, String status, Timestamp registerDate, Timestamp endDate, Collection<ActivityEntity> activities, ItemEntity item, EmployeeEntity manager) {
+    public RequestEntity(String description, String result, String status, LocalDateTime registerDate, LocalDateTime endDate, Collection<ActivityEntity> activities, ItemEntity item, EmployeeEntity manager) {
         this.description = description;
         this.result = result;
         this.status = status;
@@ -80,21 +81,21 @@ public class RequestEntity {
     @Basic
     @CreationTimestamp
     @Column(name = "register_date", nullable = true)
-    public Timestamp getRegisterDate() {
+    public LocalDateTime getRegisterDate() {
         return registerDate;
     }
 
-    public void setRegisterDate(Timestamp registerDate) {
+    public void setRegisterDate(LocalDateTime registerDate) {
         this.registerDate = registerDate;
     }
 
     @Basic
     @Column(name = "end_date", nullable = true)
-    public Timestamp getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Timestamp endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 

@@ -5,7 +5,7 @@ import pl.polsl.repairmanagementbackend.employee.EmployeeEntity;
 import pl.polsl.repairmanagementbackend.request.RequestEntity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -16,15 +16,15 @@ public class ActivityEntity  {
     private String description;
     private String result;
     private String status;
-    private Timestamp registerDate;
-    private Timestamp endDate;
+    private LocalDateTime registerDate;
+    private LocalDateTime endDate;
     private ActivityTypeEntity activityType;
     private RequestEntity request;
     private EmployeeEntity worker;
 
     public ActivityEntity(){};
 
-    public ActivityEntity(Integer sequenceNum, String description, String result, String status, Timestamp registerDate, Timestamp endDate, ActivityTypeEntity activityType, RequestEntity request, EmployeeEntity worker) {
+    public ActivityEntity(Integer sequenceNum, String description, String result, String status, LocalDateTime registerDate, LocalDateTime endDate, ActivityTypeEntity activityType, RequestEntity request, EmployeeEntity worker) {
         this.sequenceNum = sequenceNum;
         this.description = description;
         this.result = result;
@@ -88,21 +88,21 @@ public class ActivityEntity  {
 
     @Basic
     @Column(name = "register_date", nullable = true)
-    public Timestamp getRegisterDate() {
+    public LocalDateTime getRegisterDate() {
         return registerDate;
     }
 
-    public void setRegisterDate(Timestamp registerDate) {
+    public void setRegisterDate(LocalDateTime registerDate) {
         this.registerDate = registerDate;
     }
 
     @Basic
     @Column(name = "end_date", nullable = true)
-    public Timestamp getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Timestamp endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
