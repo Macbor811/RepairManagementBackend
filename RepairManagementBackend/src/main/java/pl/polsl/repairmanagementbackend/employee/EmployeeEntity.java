@@ -6,6 +6,7 @@ import pl.polsl.repairmanagementbackend.address.AddressEntity;
 import pl.polsl.repairmanagementbackend.request.RequestEntity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -19,6 +20,7 @@ public class EmployeeEntity {
     private String phoneNumber;
     private String role;
     private String username;
+    private LocalDateTime deactivationDate;
 
     @JsonDeserialize(using = PasswordDeserializer.class )
     private String password;
@@ -89,6 +91,15 @@ public class EmployeeEntity {
     }
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Basic
+    @Column(name = "deactivation_date", nullable = true)
+    public LocalDateTime getDeactivationDate() {
+        return deactivationDate;
+    }
+    public void setDeactivationDate(LocalDateTime deactivationDate) {
+        this.deactivationDate = deactivationDate;
     }
 
     @Basic
