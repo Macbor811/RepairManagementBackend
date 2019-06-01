@@ -47,7 +47,7 @@ public class ActivityEntity  {
     }
 
     @Basic
-    @Column(name = "sequence_num", nullable = true)
+    @Column(name = "sequence_num", nullable = false)
     public Integer getSequenceNum() {
         return sequenceNum;
     }
@@ -57,7 +57,7 @@ public class ActivityEntity  {
     }
 
     @Basic
-    @Column(name = "description", nullable = true, length = 1024)
+    @Column(name = "description", nullable = false, length = 1024)
     public String getDescription() {
         return description;
     }
@@ -77,7 +77,7 @@ public class ActivityEntity  {
     }
 
     @Basic
-    @Column(name = "status", nullable = true, length = 3)
+    @Column(name = "status", nullable = false, length = 3)
     public String getStatus() {
         return status;
     }
@@ -87,7 +87,7 @@ public class ActivityEntity  {
     }
 
     @Basic
-    @Column(name = "register_date", nullable = true)
+    @Column(name = "register_date", nullable = false)
     public LocalDateTime getRegisterDate() {
         return registerDate;
     }

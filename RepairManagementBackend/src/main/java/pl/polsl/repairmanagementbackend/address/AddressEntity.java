@@ -29,7 +29,7 @@ public class AddressEntity{
     }
 
     @Basic
-    @Column(name = "post_code", nullable = true, length = 7)
+    @Column(name = "post_code", nullable = false, length = 7)
     public String getPostCode() {
         return postCode;
     }
@@ -38,7 +38,7 @@ public class AddressEntity{
     }
 
     @Basic
-    @Column(name = "city", nullable = true, length = 50)
+    @Column(name = "city", nullable = false, length = 50)
     public String getCity() {
         return city;
     }
@@ -47,7 +47,7 @@ public class AddressEntity{
     }
 
     @Basic
-    @Column(name = "street", nullable = true, length = 50)
+    @Column(name = "street", nullable = false, length = 50)
     public String getStreet() {
         return street;
     }
@@ -57,7 +57,7 @@ public class AddressEntity{
     }
 
     @Basic
-    @Column(name = "number", nullable = true, length = 7)
+    @Column(name = "number", nullable = false, length = 7)
     public String getNumber() {
         return number;
     }

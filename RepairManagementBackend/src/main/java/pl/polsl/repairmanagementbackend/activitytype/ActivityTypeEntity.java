@@ -25,7 +25,7 @@ public class ActivityTypeEntity{
     }
 
     @Basic
-    @Column(name = "type", nullable = true, length = 50)
+    @Column(name = "type", nullable = false, length = 50)
     public String getType() {
         return type;
     }

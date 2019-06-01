@@ -35,7 +35,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "first_name", nullable = true, length = 50)
+    @Column(name = "first_name", nullable = false, length = 50)
     public String getFirstName() {
         return firstName;
     }
@@ -44,7 +44,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @Column(name = "last_name", nullable = true, length = 50)
+    @Column(name = "last_name", nullable = false, length = 50)
     public String getLastName() {
         return lastName;
     }

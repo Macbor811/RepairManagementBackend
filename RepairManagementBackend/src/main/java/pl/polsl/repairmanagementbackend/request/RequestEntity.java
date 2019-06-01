@@ -49,7 +49,7 @@ public class RequestEntity {
     }
 
     @Basic
-    @Column(name = "description", nullable = true, length = 1024)
+    @Column(name = "description", nullable = false, length = 1024)
     public String getDescription() {
         return description;
     }
@@ -69,7 +69,7 @@ public class RequestEntity {
     }
 
     @Basic
-    @Column(name = "status", nullable = true, length = 3)
+    @Column(name = "status", nullable = false, length = 3)
     public String getStatus() {
         return status;
     }
@@ -80,7 +80,7 @@ public class RequestEntity {
 
     @Basic
     @CreationTimestamp
-    @Column(name = "register_date", nullable = true)
+    @Column(name = "register_date", nullable = false)
     public LocalDateTime getRegisterDate() {
         return registerDate;
     }

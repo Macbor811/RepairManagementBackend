@@ -49,7 +49,7 @@ public class EmployeeEntity {
     }
 
     @Basic
-    @Column(name = "first_name", nullable = true, length = 50)
+    @Column(name = "first_name", nullable = false, length = 50)
     public String getFirstName() {
         return firstName;
     }
@@ -58,7 +58,7 @@ public class EmployeeEntity {
     }
 
     @Basic
-    @Column(name = "last_name", nullable = true, length = 50)
+    @Column(name = "last_name", nullable = false, length = 50)
     public String getLastName() {
         return lastName;
     }
@@ -76,7 +76,7 @@ public class EmployeeEntity {
     }
 
     @Basic
-    @Column(name = "role", nullable = true, length = 3)
+    @Column(name = "role", nullable = false, length = 3)
     public String getRole() {
         return role;
     }
@@ -85,7 +85,7 @@ public class EmployeeEntity {
     }
 
     @Basic
-    @Column(name = "username", nullable = true, length = 50)
+    @Column(name = "username", nullable = false, length = 50)
     public String getUsername() {
         return username;
     }
@@ -103,7 +103,7 @@ public class EmployeeEntity {
     }
 
     @Basic
-    @Column(name = "password", nullable = true, length = 60)
+    @Column(name = "password", nullable = false, length = 60)
     public String getPassword() {
         return password;
     }
