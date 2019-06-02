@@ -1,13 +1,13 @@
-package pl.polsl.repairmanagementbackend;
+package pl.polsl.repairmanagementbackend.employee;
 
-public enum UserRole {
+public enum EmployeeUserRole {
     ADMIN("ADM"),
     MANAGER("MAN"),
     WORKER("WRK");
 
     private final String text;
 
-    UserRole(final String text) {
+    EmployeeUserRole(final String text) {
         this.text = text;
     }
 

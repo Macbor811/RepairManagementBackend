@@ -14,13 +14,15 @@ import java.io.IOException;
 
 
 @Component
-public class PasswordDeserializer extends JsonDeserializer<String> {
+public class PasswordEncodeDeserializer extends JsonDeserializer<String> {
 
-    private final PasswordEncoder encoder;
+    //@Autowired
+    private PasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    public PasswordDeserializer(PasswordEncoder encoder) {
-        this.encoder = encoder;
-    }
+
+//    public PasswordEncodeDeserializer(PasswordEncoder encoder) {
+//        this.encoder = encoder;
+//    }
 
 
     public String deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {

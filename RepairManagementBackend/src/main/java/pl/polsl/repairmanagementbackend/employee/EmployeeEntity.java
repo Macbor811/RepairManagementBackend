@@ -22,7 +22,7 @@ public class EmployeeEntity {
     private String username;
     private LocalDateTime deactivationDate;
 
-    @JsonDeserialize(using = PasswordDeserializer.class )
+    @JsonDeserialize(using = PasswordEncodeDeserializer.class )
     private String password;
     private Collection<ActivityEntity> activities;
     private AddressEntity address;
@@ -85,7 +85,7 @@ public class EmployeeEntity {
     }
 
     @Basic
-    @Column(name = "username", nullable = false, length = 50)
+    @Column(name = "username", nullable = false, length = 50, unique = true)
     public String getUsername() {
         return username;
     }
