@@ -17,9 +17,9 @@ import java.io.IOException;
 public class PasswordEncodeDeserializer extends JsonDeserializer<String> {
 
     //@Autowired
-    private PasswordEncoder encoder = new BCryptPasswordEncoder();
-
-
+//    private PasswordEncoder encoder;
+//
+//    @Autowired
 //    public PasswordEncodeDeserializer(PasswordEncoder encoder) {
 //        this.encoder = encoder;
 //    }
@@ -28,7 +28,8 @@ public class PasswordEncodeDeserializer extends JsonDeserializer<String> {
     public String deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         ObjectCodec oc = jsonParser.getCodec();
         JsonNode node = oc.readTree(jsonParser);
-        String encodedPassword = encoder.encode(node.asText());
-        return encodedPassword;
+        //String encodedPassword = encoder.encode(node.asText());
+        //return encodedPassword;
+        return node.asText();
     }
 }
