@@ -20,6 +20,14 @@ spring:
   data:
     rest:
       base-path: api
-
-name:
-  default: nazwa
+#security:
+  #require-ssl: true
+server:
+  ssl:
+    key-store: 'classpath:keystore/repairman.jks'
+    key-store-type: JKS
+    key-password: password
+    key-alias: repairman
+    #trust-store: 'classpath:keystore/repairman.jks'
+    #trust-store-password: password
+    key-store-password: password
