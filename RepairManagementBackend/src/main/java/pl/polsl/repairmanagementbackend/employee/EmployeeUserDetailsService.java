@@ -31,7 +31,7 @@ public class EmployeeUserDetailsService implements UserDetailsService {
             grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + user.get().getRole()));
             var employeeUser = new EmployeeUser(
                     user.get().getUsername(),
-                    "{noop}" + user.get().getPassword(),
+                    "{bcrypt}" + user.get().getPassword(),
                     grantedAuthorities,
                     user.get().getId()
             );

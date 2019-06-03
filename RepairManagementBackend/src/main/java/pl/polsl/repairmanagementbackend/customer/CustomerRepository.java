@@ -2,11 +2,14 @@ package pl.polsl.repairmanagementbackend.customer;
 
         import com.querydsl.core.types.dsl.StringPath;
         import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.data.domain.Page;
+        import org.springframework.data.domain.Pageable;
         import org.springframework.data.jpa.repository.JpaRepository;
         import org.springframework.data.querydsl.QuerydslPredicateExecutor;
         import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
         import org.springframework.data.querydsl.binding.QuerydslBindings;
         import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+        import org.springframework.security.access.prepost.PreAuthorize;
         import org.springframework.stereotype.Repository;
         import org.springframework.transaction.annotation.Transactional;
         import pl.polsl.repairmanagementbackend.customer.QCustomerEntity;
@@ -18,6 +21,7 @@ package pl.polsl.repairmanagementbackend.customer;
 
 @Repository
 @RepositoryRestResource(collectionResourceRel = "customer", path = "customer")
+@PreAuthorize("hasRole('ADM')")
 public interface CustomerRepository extends
         JpaRepository<CustomerEntity, Integer>,
         QuerydslPredicateExecutor<CustomerEntity>,
@@ -29,6 +33,14 @@ public interface CustomerRepository extends
 
         bindings.bind(String.class).first((StringPath path, String value) -> path.startsWithIgnoreCase(value));
     }
+
+    @PreAuthorize("hasRole('ADM')")
+    @Override
+    Page<CustomerEntity> findAll(Pageable pageable);
+
+    @PreAuthorize("hasRole('ADM')")
+    @Override
+    List<CustomerEntity> findAll();
 
 //    @Transactional
 //     CustomerEntity save(CustomerEntity customer);

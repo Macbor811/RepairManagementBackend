@@ -2,6 +2,7 @@ package pl.polsl.repairmanagementbackend.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
@@ -20,12 +21,28 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.
-                csrf().disable()
+//        http.
+//                csrf().disable()
+//                //.anonymous().disable()
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler())
+//                .and().authorizeRequests()
+//                .antMatchers("/api/**").authenticated()
+//                ;
+               //and()
+
+        http
+                .csrf().disable()
                 .anonymous().disable()
                 .authorizeRequests()
-                .antMatchers("/api/**").authenticated()
-                .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+                .antMatchers("/oauth/token").permitAll()
+                .antMatchers("/api/customer/**").fullyAuthenticated()
+                .antMatchers("/api/**").denyAll()
+                .and().sessionManagement()
+              .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+               .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
+
 
 }
