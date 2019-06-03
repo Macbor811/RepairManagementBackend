@@ -4,6 +4,7 @@ package pl.polsl.repairmanagementbackend.customer;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.data.domain.Page;
         import org.springframework.data.domain.Pageable;
+        import org.springframework.data.domain.Sort;
         import org.springframework.data.jpa.repository.JpaRepository;
         import org.springframework.data.querydsl.QuerydslPredicateExecutor;
         import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
@@ -12,6 +13,7 @@ package pl.polsl.repairmanagementbackend.customer;
         import org.springframework.security.access.prepost.PreAuthorize;
         import org.springframework.stereotype.Repository;
         import org.springframework.transaction.annotation.Transactional;
+        import org.springframework.web.bind.annotation.PathVariable;
         import pl.polsl.repairmanagementbackend.customer.QCustomerEntity;
 
         import javax.persistence.EntityManager;
@@ -21,7 +23,7 @@ package pl.polsl.repairmanagementbackend.customer;
 
 @Repository
 @RepositoryRestResource(collectionResourceRel = "customer", path = "customer")
-@PreAuthorize("hasRole('ADM')")
+//@PreAuthorize("hasRole('ADM')")
 public interface CustomerRepository extends
         JpaRepository<CustomerEntity, Integer>,
         QuerydslPredicateExecutor<CustomerEntity>,
@@ -34,13 +36,15 @@ public interface CustomerRepository extends
         bindings.bind(String.class).first((StringPath path, String value) -> path.startsWithIgnoreCase(value));
     }
 
-    @PreAuthorize("hasRole('ADM')")
-    @Override
+    //@PreAuthorize("hasRole('BL')")
     Page<CustomerEntity> findAll(Pageable pageable);
 
-    @PreAuthorize("hasRole('ADM')")
-    @Override
+    //@PreAuthorize("hasRole('b')")
     List<CustomerEntity> findAll();
+
+    //@PreAuthorize("hasRole('b')")
+    List<CustomerEntity> findAll(Sort sort);
+
 
 //    @Transactional
 //     CustomerEntity save(CustomerEntity customer);
@@ -49,6 +53,7 @@ public interface CustomerRepository extends
 //    @Transactional
 //    List<CustomerEntity> findAll();
 //
-//    @Transactional
-//    public Optional<CustomerEntity> findById(Integer id);
+   // @Transactional
+    @PreAuthorize("hasRole('MAN') || (hasRole('ADM') && #id == principal.id)")
+    Optional<CustomerEntity> findById(@PathVariable("id") Integer id);
 }

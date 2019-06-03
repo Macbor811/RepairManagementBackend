@@ -15,6 +15,7 @@ import java.util.Optional;
 
 @Repository
 @RepositoryRestResource(collectionResourceRel = "employee", path = "employee")
+//@PreAuthorize("hasRole('BLOCK')")
 public interface EmployeeRepository extends
         JpaRepository<EmployeeEntity, Integer>,
         QuerydslPredicateExecutor<EmployeeEntity>,

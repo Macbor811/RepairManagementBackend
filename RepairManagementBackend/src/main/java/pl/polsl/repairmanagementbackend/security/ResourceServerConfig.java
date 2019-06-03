@@ -1,6 +1,7 @@
 package pl.polsl.repairmanagementbackend.security;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -37,11 +38,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .anonymous().disable()
                 .authorizeRequests()
                 .antMatchers("/oauth/token").permitAll()
-                .antMatchers("/api/customer/**").fullyAuthenticated()
+                .antMatchers("/oauth/user").fullyAuthenticated()
+                //.antMatchers("/api/customer/**").fullyAuthenticated()
+                .antMatchers(HttpMethod.GET, "/api/customer").hasRole("ADM")
+                .antMatchers(HttpMethod.GET, "/api/customer/{id}").access("hasRole('MAN') || (hasRole('ADM'))")
                 .antMatchers("/api/**").denyAll()
-                .and().sessionManagement()
-              .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-               .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
 
 
