@@ -40,8 +40,25 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers("/oauth/token").permitAll()
                 .antMatchers("/oauth/user").fullyAuthenticated()
                 //.antMatchers("/api/customer/**").fullyAuthenticated()
-                .antMatchers(HttpMethod.GET, "/api/customer").hasRole("ADM")
-                .antMatchers(HttpMethod.GET, "/api/customer/{id}").access("hasRole('MAN') || (hasRole('ADM'))")
+                .antMatchers(HttpMethod.GET, "/api/customer").access("hasAnyRole('WRK', 'MAN')")
+                .antMatchers(HttpMethod.POST, "/api/customer").access("hasAnyRole('WRK', 'MAN')")
+                .antMatchers(HttpMethod.GET, "/api/customer/{id}").access("hasAnyRole('WRK', 'MAN')")
+                .antMatchers(HttpMethod.GET, "/api/customer/{id}/**").access("hasAnyRole('WRK', 'MAN')")
+
+
+                .antMatchers(HttpMethod.GET, "/api/employee").access("hasAnyRole('WRK', 'MAN')")
+                .antMatchers(HttpMethod.POST, "/api/employee").access("(hasRole('ADM'))")
+                .antMatchers(HttpMethod.GET, "/api/employee/{id}").access("hasAnyRole('WRK', 'MAN', 'ADM')")
+                .antMatchers(HttpMethod.GET, "/api/employee/{id}/**").access("hasAnyRole('WRK', 'MAN', 'ADM')")
+
+
+                .antMatchers(HttpMethod.GET, "/api/item").access("hasAnyRole('WRK', 'MAN')")
+                .antMatchers(HttpMethod.POST, "/api/item").access("hasAnyRole('WRK', 'MAN')")
+                .antMatchers(HttpMethod.GET, "/api/item/{id}").access("hasAnyRole('WRK', 'MAN')")
+
+                .antMatchers(HttpMethod.GET, "/api/customer").access("hasAnyRole('WRK', 'MAN')")
+                .antMatchers(HttpMethod.GET, "/api/customer/{id}").access("hasAnyRole('WRK', 'MAN')")
+
                 .antMatchers("/api/**").denyAll()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());

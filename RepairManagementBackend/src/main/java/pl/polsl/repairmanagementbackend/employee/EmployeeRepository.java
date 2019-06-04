@@ -35,7 +35,7 @@ public interface EmployeeRepository extends
     List<EmployeeEntity> findAll();
 
     @Transactional
-    @PreAuthorize("hasRole('MAN') || (hasRole('WRK') && #id == principal.id)")
+    @PreAuthorize("(hasRole('WRK') && #id == principal.id) || hasRole('MAN') ||  hasRole('ADM')")
     Optional<EmployeeEntity> findById(Integer id);
 
     @Transactional

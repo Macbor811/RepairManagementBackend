@@ -39,7 +39,7 @@ public class UserRoleController {
         this.userDetailsService = userDetailsService;
     }
 
-    @GetMapping("/oauth2/user")
+    @GetMapping("/oauth/user")
     @ResponseBody
     private UserData getLoggedInUserData(Principal principal){
 //        return userDetailsService

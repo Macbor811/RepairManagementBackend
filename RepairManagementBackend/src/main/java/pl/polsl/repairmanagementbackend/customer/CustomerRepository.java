@@ -36,24 +36,5 @@ public interface CustomerRepository extends
         bindings.bind(String.class).first((StringPath path, String value) -> path.startsWithIgnoreCase(value));
     }
 
-    //@PreAuthorize("hasRole('BL')")
-    Page<CustomerEntity> findAll(Pageable pageable);
 
-    //@PreAuthorize("hasRole('b')")
-    List<CustomerEntity> findAll();
-
-    //@PreAuthorize("hasRole('b')")
-    List<CustomerEntity> findAll(Sort sort);
-
-
-//    @Transactional
-//     CustomerEntity save(CustomerEntity customer);
-//
-//
-//    @Transactional
-//    List<CustomerEntity> findAll();
-//
-   // @Transactional
-    @PreAuthorize("hasRole('MAN') || (hasRole('ADM') && #id == principal.id)")
-    Optional<CustomerEntity> findById(@PathVariable("id") Integer id);
 }
