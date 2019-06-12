@@ -1,18 +1,16 @@
 spring:
   datasource:
-    platform: postgres
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
+    platform: h2
+    url: jdbc:h2:mem:default
+    username: sa
   batch:
     initialize-schema: always
   jpa:
     generate-ddl: true
-    hibernate:
-      ddl-auto: create-drop
     properties:
       hibernate:
         enable_lazy_load_no_trans: true
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.H2Dialect
         jdbc:
           lob:
             non_contextual_creation: true
