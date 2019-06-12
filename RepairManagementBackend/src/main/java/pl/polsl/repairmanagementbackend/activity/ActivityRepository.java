@@ -8,11 +8,13 @@ import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
 @Repository
 @RepositoryRestResource(collectionResourceRel = "activity", path = "activity")
+@CrossOrigin
 public interface ActivityRepository extends
         JpaRepository<ActivityEntity, Integer>,
         QuerydslPredicateExecutor<ActivityEntity>,

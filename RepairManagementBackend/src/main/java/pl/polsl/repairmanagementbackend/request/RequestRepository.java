@@ -9,6 +9,7 @@ import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
         import org.springframework.stereotype.Repository;
         import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import pl.polsl.repairmanagementbackend.customer.QCustomerEntity;
 
 
@@ -17,6 +18,7 @@ import javax.persistence.EntityManager;
 
 @Repository
 @RepositoryRestResource(collectionResourceRel = "request", path = "request")
+@CrossOrigin
 public interface RequestRepository extends
         JpaRepository<RequestEntity, Integer>,
         QuerydslPredicateExecutor<RequestEntity>,

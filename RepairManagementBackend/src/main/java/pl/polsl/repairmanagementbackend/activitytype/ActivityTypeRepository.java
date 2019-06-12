@@ -1,4 +1,4 @@
-package pl.polsl.repairmanagementbackend.itemtype;
+package pl.polsl.repairmanagementbackend.activitytype;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
@@ -12,18 +12,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@RepositoryRestResource(collectionResourceRel = "item-type", path = "item-type")
+@RepositoryRestResource(collectionResourceRel = "activity-type", path = "activity-type")
 @CrossOrigin
-public interface ItemTypeRepository extends
-        JpaRepository<ItemTypeEntity, String> {
+public interface ActivityTypeRepository extends
+        JpaRepository<ActivityTypeEntity, String> {
 
     @Transactional
-    ItemTypeEntity save(ItemTypeEntity item);
+    ActivityTypeEntity save(ActivityTypeEntity activity);
 
 
     @Transactional
-    List<ItemTypeEntity> findAll();
+    List<ActivityTypeEntity> findAll();
 
     @Transactional
-    Optional<ItemTypeEntity> findById(String id);
+    Optional<ActivityTypeEntity> findById(String id);
 }
+

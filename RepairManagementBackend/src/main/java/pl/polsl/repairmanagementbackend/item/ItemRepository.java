@@ -8,12 +8,14 @@ package pl.polsl.repairmanagementbackend.item;
         import org.springframework.data.rest.core.annotation.RepositoryRestResource;
         import org.springframework.stereotype.Repository;
         import org.springframework.transaction.annotation.Transactional;
+        import org.springframework.web.bind.annotation.CrossOrigin;
 
         import java.util.List;
         import java.util.Optional;
 
 @Repository
 @RepositoryRestResource(collectionResourceRel = "item", path = "item")
+@CrossOrigin
 public interface ItemRepository extends
         JpaRepository<ItemEntity, Integer>,
         QuerydslPredicateExecutor<ItemEntity>,

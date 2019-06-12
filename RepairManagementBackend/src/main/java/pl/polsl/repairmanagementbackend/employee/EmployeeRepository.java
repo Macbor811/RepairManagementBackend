@@ -9,12 +9,14 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 @RepositoryRestResource(collectionResourceRel = "employee", path = "employee")
+@CrossOrigin
 public interface EmployeeRepository extends
         JpaRepository<EmployeeEntity, Integer>,
         QuerydslPredicateExecutor<EmployeeEntity>,
