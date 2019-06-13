@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "employee", schema = "public", catalog = "default")
+@Table(name = "employee")
 public class EmployeeEntity {
 
     private Integer id;

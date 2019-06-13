@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity(name = "customer")
-@Table(name = "customer", schema = "public", catalog = "default")
+@Table(name = "customer")
 public class CustomerEntity {
     private Integer id;
     private String firstName;

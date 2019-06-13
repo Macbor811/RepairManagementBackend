@@ -13,7 +13,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Entity(name = "request")
-@Table(name = "request", schema = "public", catalog = "default")
+@Table(name = "request")
 public class RequestEntity {
     private Integer id;
     private String description;

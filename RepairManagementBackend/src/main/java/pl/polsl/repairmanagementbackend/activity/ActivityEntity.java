@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-@Table(name = "activity", schema = "public", catalog = "default")
+@Table(name = "activity")
 public class ActivityEntity  {
     private Integer id;
     private Integer sequenceNum;

@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity(name = "address")
-@Table(name = "address", schema = "public", catalog = "default")
+@Table(name = "address")
 public class AddressEntity{
     private Integer id;
     private String postCode;

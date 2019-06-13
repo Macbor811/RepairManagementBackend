@@ -1,14 +1,16 @@
 spring:
   datasource:
     platform: h2
-    url: jdbc:h2:mem:default
+    url: jdbc:h2:tcp://localhost/~/test
     username: sa
+    driver-class-name: org.h2.Driver
   batch:
     initialize-schema: always
   jpa:
     generate-ddl: true
     properties:
       hibernate:
+        ddl-auto: update
         enable_lazy_load_no_trans: true
         dialect: org.hibernate.dialect.H2Dialect
         jdbc:
@@ -18,6 +20,9 @@ spring:
   data:
     rest:
       base-path: api
+  h2:
+    console:
+      enabled: true
 
 name:
   default: nazwa
