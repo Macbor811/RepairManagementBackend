@@ -29,7 +29,7 @@ public class RepairManagmentApplication extends SpringBootServletInitializer {
 
     private static void startH2Server() {
         try {
-            Server h2Server = Server.createTcpServer().start();
+            Server h2Server = Server.createTcpServer("-ifNotExists").start();
             if (h2Server.isRunning(true)) {
                 System.out.println("H2 server was started and is running.");
             } else {
