@@ -28,6 +28,9 @@ public interface RequestRepository extends
     default void customize(QuerydslBindings bindings, QRequestEntity root) {
 
         bindings.bind(String.class).first((StringPath path, String value) -> path.startsWithIgnoreCase(value));
+
+        bindings.bind(root.registerDate).first((path,  value) -> { return (path.dayOfMonth().eq(value.getDayOfMonth()));});
+        bindings.bind(root.endDate).first((path,  value) -> { return (path.dayOfMonth().eq(value.getDayOfMonth()));});
     }
 
     @Transactional

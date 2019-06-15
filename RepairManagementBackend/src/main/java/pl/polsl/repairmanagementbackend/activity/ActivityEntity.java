@@ -1,5 +1,6 @@
 package pl.polsl.repairmanagementbackend.activity;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.polsl.repairmanagementbackend.activitytype.ActivityTypeEntity;
 import pl.polsl.repairmanagementbackend.employee.EmployeeEntity;
 import pl.polsl.repairmanagementbackend.request.RequestEntity;
@@ -16,7 +17,9 @@ public class ActivityEntity  {
     private String description;
     private String result;
     private String status;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime registerDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime endDate;
     private ActivityTypeEntity activityType;
     private RequestEntity request;
