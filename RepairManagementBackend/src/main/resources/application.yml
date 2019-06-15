@@ -20,8 +20,24 @@ spring:
   data:
     rest:
       base-path: api
-#security:
-  #require-ssl: true
+  security:
+    oauth2:
+      client:
+        client-id: client-id
+        client-secret: client-secret
+        scope: read,write, trust
+        auto-approve-scopes: '.*'
+facebook:
+  client:
+    clientId: 1082626168602167
+    clientSecret: 08e29ac19e9f456cd05292cb5952c51e
+    accessTokenUri: https://graph.facebook.com/oauth/access_token
+    userAuthorizationUri: https://www.facebook.com/dialog/oauth
+    tokenName: oauth_token
+    authenticationScheme: query
+    clientAuthenticationScheme: form
+  resource:
+    userInfoUri: https://graph.facebook.com/me
 server:
   ssl:
     key-store: 'classpath:keystore/repairman.jks'
