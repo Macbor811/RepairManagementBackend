@@ -85,7 +85,7 @@ public class ActivityEntity  {
     }
 
     @Basic
-    @Column(name = "status", insertable = false, nullable = false, length = 3)
+    @Column(name = "status", nullable = false, length = 3)
     public String getStatus() {
         return status;
     }
