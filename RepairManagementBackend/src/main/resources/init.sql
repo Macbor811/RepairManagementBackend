@@ -30,11 +30,15 @@ INSERT INTO public.item ( name, item_type_id, owner_id) VALUES ( 'Continental GT
 INSERT INTO public.item ( name, item_type_id, owner_id) VALUES ( 'Mustang GT 2019', 'Ford', 2);
 INSERT INTO public.item ( name, item_type_id, owner_id) VALUES ( 'X5 2019', 'BMW', 3);
 INSERT INTO public.item ( name, item_type_id, owner_id) VALUES ( 'F8 Tributo', 'Ferrari', 4);
+INSERT INTO public.item ( name, item_type_id, owner_id) VALUES ( 'Focus RS', 'Ford', 2);
 
 INSERT INTO public.request ( description, end_date, register_date, result, status, item_id, manager_id) VALUES ( 'RequestDescription1', null, '2019-05-26 15:44:17.264000', null, 'OPN', 1, 1);
 INSERT INTO public.request ( description, end_date, register_date, result, status, item_id, manager_id) VALUES ( 'RequestDescription2', null, '2019-05-26 15:44:20.504000', null, 'PRO', 2, 2);
 INSERT INTO public.request ( description, end_date, register_date, result, status, item_id, manager_id) VALUES ( 'RequestDescription3', '2019-05-31 20:44:34.109000', '2019-05-26 15:44:21.304000', 'ResultCAN', 'CAN', 3, 3);
 INSERT INTO public.request ( description, end_date, register_date, result, status, item_id, manager_id) VALUES ( 'RequestDescription4', '2019-05-31 19:44:25.155000', '2019-05-26 15:44:21.961000', 'ResultFIN', 'FIN', 4, 3);
+INSERT INTO public.request ( description, end_date, register_date, result, status, item_id, manager_id) VALUES ( 'RequestDescription4', '2019-05-31 19:44:25.155000', '2019-05-26 15:44:21.961000', 'ResultFIN', 'FIN', 5, 3);
+
+
 
 INSERT INTO public.activity_type ( type) VALUES ( 'Inspekcja');
 INSERT INTO public.activity_type ( type) VALUES ( 'Naprawa');

@@ -1,5 +1,8 @@
 package pl.polsl.repairmanagementbackend.activity;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.polsl.repairmanagementbackend.activitytype.ActivityTypeEntity;
 import pl.polsl.repairmanagementbackend.employee.EmployeeEntity;
 import pl.polsl.repairmanagementbackend.request.RequestEntity;
@@ -16,11 +19,15 @@ public class ActivityEntity  {
     private String description;
     private String result;
     private String status;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime registerDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime endDate;
     private ActivityTypeEntity activityType;
     private RequestEntity request;
     private EmployeeEntity worker;
+
+    //private final static String DEFAULT_STATUS = ActivityStatus.OPEN.toString();
 
     public ActivityEntity(){};
 
@@ -35,6 +42,7 @@ public class ActivityEntity  {
         this.request = request;
         this.worker = worker;
     }
+
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -77,7 +85,7 @@ public class ActivityEntity  {
     }
 
     @Basic
-    @Column(name = "status", nullable = false, length = 3)
+    @Column(name = "status", insertable = false, nullable = false, length = 3)
     public String getStatus() {
         return status;
     }
@@ -87,7 +95,8 @@ public class ActivityEntity  {
     }
 
     @Basic
-    @Column(name = "register_date", nullable = false)
+    @Column(name = "register_date", insertable = false, updatable = false)
+    @CreationTimestamp
     public LocalDateTime getRegisterDate() {
         return registerDate;
     }

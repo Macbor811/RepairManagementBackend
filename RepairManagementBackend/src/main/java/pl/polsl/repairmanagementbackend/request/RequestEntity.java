@@ -1,6 +1,7 @@
 package pl.polsl.repairmanagementbackend.request;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.polsl.repairmanagementbackend.activity.ActivityEntity;
 import pl.polsl.repairmanagementbackend.item.ItemEntity;
 import pl.polsl.repairmanagementbackend.employee.EmployeeEntity;
@@ -19,7 +20,9 @@ public class RequestEntity {
     private String description;
     private String result;
     private String status;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime registerDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime endDate;
     private Collection<ActivityEntity> activities;
     private ItemEntity item;

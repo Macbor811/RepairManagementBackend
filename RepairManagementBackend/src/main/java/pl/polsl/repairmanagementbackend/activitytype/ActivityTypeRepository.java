@@ -15,7 +15,7 @@ import java.util.Optional;
 @RepositoryRestResource(collectionResourceRel = "activity-type", path = "activity-type")
 @CrossOrigin
 public interface ActivityTypeRepository extends
-        JpaRepository<ActivityTypeEntity, String> {
+        JpaRepository<ActivityTypeEntity, Integer> {
 
     @Transactional
     ActivityTypeEntity save(ActivityTypeEntity activity);
@@ -25,6 +25,6 @@ public interface ActivityTypeRepository extends
     List<ActivityTypeEntity> findAll();
 
     @Transactional
-    Optional<ActivityTypeEntity> findById(String id);
+    Optional<ActivityTypeEntity> findById(Integer id);
 }
 
