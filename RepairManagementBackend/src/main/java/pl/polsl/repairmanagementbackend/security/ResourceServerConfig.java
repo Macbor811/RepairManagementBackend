@@ -22,18 +22,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-//        http.
-//                csrf().disable()
-//                //.anonymous().disable()
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler())
-//                .and().authorizeRequests()
-//                .antMatchers("/api/**").authenticated()
-//                ;
-               //and()
+
 
         http
+                .antMatcher("/api/**")
                 .csrf().disable()
                 .anonymous().disable()
                 .authorizeRequests()
