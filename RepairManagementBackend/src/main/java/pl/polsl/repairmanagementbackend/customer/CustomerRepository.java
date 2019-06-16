@@ -1,5 +1,6 @@
 package pl.polsl.repairmanagementbackend.customer;
 
+        import com.querydsl.core.BooleanBuilder;
         import com.querydsl.core.types.dsl.StringPath;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,6 +15,7 @@ package pl.polsl.repairmanagementbackend.customer;
 
         import javax.persistence.EntityManager;
         import javax.persistence.NoResultException;
+        import java.util.Collection;
         import java.util.List;
         import java.util.Optional;
 
@@ -29,7 +31,11 @@ public interface CustomerRepository extends
     @Override
     default void customize(QuerydslBindings bindings, QCustomerEntity root) {
 
-        bindings.bind(String.class).first((StringPath path, String value) -> path.startsWithIgnoreCase(value));
+        bindings.bind(String.class).all((StringPath path, Collection<? extends String> values) -> {
+            BooleanBuilder predicate = new BooleanBuilder();
+            values.forEach( value -> predicate.or(path.startsWithIgnoreCase(value) ));
+            return Optional.of(predicate);
+        });
     }
 
 //    @Transactional

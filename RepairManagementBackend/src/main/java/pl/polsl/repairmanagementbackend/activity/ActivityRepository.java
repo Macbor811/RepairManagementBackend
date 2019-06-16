@@ -30,8 +30,6 @@ public interface ActivityRepository extends
     @Override
     default void customize(QuerydslBindings bindings, QActivityEntity root) {
 
-
-
         bindings.bind(String.class).all((StringPath path, Collection<? extends String> values) -> {
             BooleanBuilder predicate = new BooleanBuilder();
             values.forEach( value -> predicate.or(path.startsWithIgnoreCase(value) ));
