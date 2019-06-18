@@ -38,12 +38,14 @@ facebook:
     clientAuthenticationScheme: form
   resource:
     userInfoUri: https://graph.facebook.com/me
-server:
-  ssl:
-    key-store: 'classpath:keystore/repairman.jks'
-    key-store-type: JKS
-    key-password: password
-    key-alias: repairman
-    #trust-store: 'classpath:keystore/repairman.jks'
-    #trust-store-password: password
-    key-store-password: password
+
+
+#server:
+#  ssl:
+#    key-store: 'classpath:keystore/repairman.jks'
+#    key-store-type: JKS
+#    key-password: password
+#    key-alias: repairman
+#    #trust-store: 'classpath:keystore/repairman.jks'
+#    #trust-store-password: password
+#    key-store-password: password
