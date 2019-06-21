@@ -8,7 +8,7 @@ import pl.polsl.repairmanagementbackend.employee.EmployeeEntity;
 import pl.polsl.repairmanagementbackend.request.RequestEntity;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Objects;
 
 @Entity
@@ -19,19 +19,15 @@ public class ActivityEntity  {
     private String description;
     private String result;
     private String status;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime registerDate;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime endDate;
+    private Instant registerDate;
+    private Instant endDate;
     private ActivityTypeEntity activityType;
     private RequestEntity request;
     private EmployeeEntity worker;
 
-    //private final static String DEFAULT_STATUS = ActivityStatus.OPEN.toString();
-
     public ActivityEntity(){};
 
-    public ActivityEntity(Integer sequenceNum, String description, String result, String status, LocalDateTime registerDate, LocalDateTime endDate, ActivityTypeEntity activityType, RequestEntity request, EmployeeEntity worker) {
+    public ActivityEntity(Integer sequenceNum, String description, String result, String status, Instant registerDate, Instant endDate, ActivityTypeEntity activityType, RequestEntity request, EmployeeEntity worker) {
         this.sequenceNum = sequenceNum;
         this.description = description;
         this.result = result;
@@ -95,23 +91,22 @@ public class ActivityEntity  {
     }
 
     @Basic
-    @Column(name = "register_date", insertable = false, updatable = false)
+    @Column(name = "register_date", updatable = false)
     @CreationTimestamp
-    public LocalDateTime getRegisterDate() {
+    public Instant getRegisterDate() {
         return registerDate;
     }
-
-    public void setRegisterDate(LocalDateTime registerDate) {
+    public void setRegisterDate(Instant registerDate) {
         this.registerDate = registerDate;
     }
 
     @Basic
     @Column(name = "end_date", nullable = true)
-    public LocalDateTime getEndDate() {
+    public Instant getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
+    public void setEndDate(Instant endDate) {
         this.endDate = endDate;
     }
 

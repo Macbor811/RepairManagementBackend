@@ -16,6 +16,7 @@ import pl.polsl.repairmanagementbackend.customer.QCustomerEntity;
 
 
 import javax.persistence.EntityManager;
+import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -39,8 +40,8 @@ public interface RequestRepository extends
         });
 
 
-        bindings.bind(root.registerDate).first((path,  value) -> { return (path.dayOfMonth().eq(value.getDayOfMonth()));});
-        bindings.bind(root.endDate).first((path,  value) -> { return (path.dayOfMonth().eq(value.getDayOfMonth()));});
+        bindings.bind(root.registerDate).first((path,  value) -> path.between(value, value.plus(1, ChronoUnit.DAYS)));
+        bindings.bind(root.endDate).first((path,  value) -> path.between(value, value.plus(1, ChronoUnit.DAYS)));
     }
 
     @Transactional
