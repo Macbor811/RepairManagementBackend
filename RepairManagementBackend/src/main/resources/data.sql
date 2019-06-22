@@ -15,11 +15,11 @@ INSERT INTO public.customer ( first_name, last_name, phone_number, address_id) V
 INSERT INTO public.customer ( first_name, last_name, phone_number, address_id) VALUES ( 'Henryk', 'Sienkiewicz', '444444444', 4);
 INSERT INTO public.customer ( first_name, last_name, phone_number, address_id) VALUES ( 'Jan', 'Matejko', '555555555', 5);
 
-INSERT INTO public.employee ( first_name, last_name, password, phone_number, role, username, address_id) VALUES ( 'Zygmunt', 'Waza', 'password4', '999999999', 'MAN', 'username4', 9);
+INSERT INTO public.employee ( first_name, last_name, password, phone_number, role, username, address_id, deactivation_date) VALUES ( 'Zygmunt', 'Waza', 'password4', '999999999', 'MAN', 'username4', 9, '1632-04-30 12:00:00.000000');
 INSERT INTO public.employee ( first_name, last_name, password, phone_number, role, username, address_id) VALUES ( 'Tadeusz', 'Soplica', 'password2', '777777777', 'WRK', 'username2', 7);
 INSERT INTO public.employee ( first_name, last_name, password, phone_number, role, username, address_id) VALUES ( 'Gerwazy', 'Rębajło', 'password3', '888888888', 'MAN', 'username3', 8);
 INSERT INTO public.employee ( first_name, last_name, password, phone_number, role, username, address_id) VALUES ( 'Jacek', 'Soplica', 'password1', '666666666', 'ADM', 'username1', 6);
-INSERT INTO public.employee ( first_name, last_name, password, phone_number, role, username, address_id) VALUES ( 'Fryderyk', 'Chopin', 'password5', '123456789', 'WRK', 'username5', 10);
+INSERT INTO public.employee ( first_name, last_name, password, phone_number, role, username, address_id, deactivation_date) VALUES ( 'Fryderyk', 'Chopin', 'password5', '123456789', 'WRK', 'username5', 10, '2021-05-26 00:00:00.000000');
 
 INSERT INTO public.item_type (id, type) VALUES ('Bentley', 'Bentley');
 INSERT INTO public.item_type (id, type) VALUES ('Ford', 'Ford');

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -32,6 +33,9 @@ public interface EmployeeRepository extends
             values.forEach( value -> predicate.or(path.startsWithIgnoreCase(value) ));
             return Optional.of(predicate);
         });
+
+        bindings.bind(root.deactivationDate).first((path,  value) -> path.between(value, value.plus(1, ChronoUnit.DAYS)));
+
     }
 
     @Transactional
