@@ -101,7 +101,7 @@ public class ActivityEntity  {
     }
 
     @Basic
-    @Column(name = "end_date", nullable = true)
+    @Column(name = "end_date", insertable = false, nullable = true)
     public Instant getEndDate() {
         return endDate;
     }
