@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableOAuth2Client
 @Order(200)
@@ -58,6 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);//.passwordEncoder(passwordEncoder());
+
     }
 
     @Override
@@ -65,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // @formatter:off
         http.antMatcher("/**").authorizeRequests().antMatchers("/", "/login**").permitAll().anyRequest()
                 .authenticated().and().exceptionHandling()
-                .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/")).and().logout()
+                .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("http://localhost:3000")).and().logout()
                 .logoutSuccessUrl("/").permitAll().and().csrf()
                 .disable()
                 .addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class);

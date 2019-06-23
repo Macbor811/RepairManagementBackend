@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.polsl.repairmanagementbackend.employee.EmployeeUser;
 import pl.polsl.repairmanagementbackend.employee.EmployeeUserDetailsService;
@@ -37,6 +38,12 @@ public class UserRoleController {
     @Autowired
     public UserRoleController(EmployeeUserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
+    }
+
+
+    @RequestMapping("/fuser")
+    public String home(Principal user) {
+        return "Hello " + user.getName();
     }
 
     @GetMapping("/oauth/user")
