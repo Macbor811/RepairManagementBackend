@@ -71,7 +71,7 @@ public class ActivityEntity  {
     }
 
     @Basic
-    @Column(name = "result", nullable = true, length = 1024)
+    @Column(name = "result", insertable = false, nullable = true, length = 1024)
     public String getResult() {
         return result;
     }
@@ -92,7 +92,7 @@ public class ActivityEntity  {
 
     @Basic
     @Column(name = "register_date", updatable = false)
-    @CreationTimestamp
+    //@CreationTimestamp
     public Instant getRegisterDate() {
         return registerDate;
     }

@@ -1,5 +1,6 @@
 package pl.polsl.repairmanagementbackend.employee;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import pl.polsl.repairmanagementbackend.activity.ActivityEntity;
 import pl.polsl.repairmanagementbackend.address.AddressEntity;
@@ -24,8 +25,10 @@ public class EmployeeEntity {
 
     @JsonDeserialize(using = PasswordEncodeDeserializer.class )
     private String password;
+    @JsonIgnore
     private Collection<ActivityEntity> activities;
     private AddressEntity address;
+    @JsonIgnore
     private Collection<RequestEntity> requests;
 
     public EmployeeEntity(){}
@@ -154,6 +157,10 @@ public class EmployeeEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, phoneNumber, role, username, password);
+    }
+
+    public EmployeeUserRole roleEnum(){
+        return EmployeeUserRole.fromString(getRole()).orElse(null);
     }
 
 

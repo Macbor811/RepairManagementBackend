@@ -1,5 +1,8 @@
 package pl.polsl.repairmanagementbackend.employee;
 
+
+import java.util.Optional;
+
 public enum EmployeeUserRole {
     ADMIN("ADM"),
     MANAGER("MAN"),
@@ -14,5 +17,14 @@ public enum EmployeeUserRole {
     @Override
     public String toString() {
         return text;
+    }
+
+    public static Optional<EmployeeUserRole> fromString(String string){
+        for (var value : EmployeeUserRole.values()){
+            if (string.equals(value.toString())){
+                return Optional.of(value);
+            }
+        }
+        return Optional.empty();
     }
 }

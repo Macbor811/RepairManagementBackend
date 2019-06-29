@@ -60,7 +60,7 @@ public class RequestEntity {
     }
 
     @Basic
-    @Column(name = "result", nullable = true, length = 1024)
+    @Column(name = "result", insertable = false, nullable = true, length = 1024)
     public String getResult() {
         return result;
     }
@@ -80,7 +80,7 @@ public class RequestEntity {
     }
 
     @Basic
-    @CreationTimestamp
+    //@CreationTimestamp
     @Column(name = "register_date", updatable = false, nullable = false)
     public Instant getRegisterDate() {
         return registerDate;
