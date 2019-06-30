@@ -1,6 +1,6 @@
 package pl.polsl.repairmanagementbackend.springsocial.security;
 
-import pl.polsl.repairmanagementbackend.springsocial.model.UserEntity;
+import pl.polsl.repairmanagementbackend.springsocial.model.SocialUserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +22,7 @@ public class UserPrincipal implements OAuth2User, UserDetails {
         this.authorities = authorities;
     }
 
-    public static UserPrincipal create(UserEntity user) {
+    public static UserPrincipal create(SocialUserEntity user) {
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         authorities.add(new SimpleGrantedAuthority("ROLE_SOCIAL_USER"));
@@ -35,7 +35,7 @@ public class UserPrincipal implements OAuth2User, UserDetails {
         );
     }
 
-    public static UserPrincipal create(UserEntity user, Map<String, Object> attributes) {
+    public static UserPrincipal create(SocialUserEntity user, Map<String, Object> attributes) {
         UserPrincipal userPrincipal = UserPrincipal.create(user);
         userPrincipal.setAttributes(attributes);
         return userPrincipal;

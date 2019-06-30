@@ -2,8 +2,8 @@ package pl.polsl.repairmanagementbackend.springsocial.security.oauth2;
 
 import pl.polsl.repairmanagementbackend.springsocial.exception.OAuth2AuthenticationProcessingException;
 import pl.polsl.repairmanagementbackend.springsocial.model.AuthProvider;
-import pl.polsl.repairmanagementbackend.springsocial.model.UserEntity;
-import pl.polsl.repairmanagementbackend.springsocial.repository.UserRepository;
+import pl.polsl.repairmanagementbackend.springsocial.model.SocialUserEntity;
+import pl.polsl.repairmanagementbackend.springsocial.repository.SocialUserRepository;
 import pl.polsl.repairmanagementbackend.springsocial.security.UserPrincipal;
 import pl.polsl.repairmanagementbackend.springsocial.security.oauth2.user.OAuth2UserInfo;
 import pl.polsl.repairmanagementbackend.springsocial.security.oauth2.user.OAuth2UserInfoFactory;
@@ -23,7 +23,7 @@ import java.util.Optional;
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private SocialUserRepository socialUserRepository;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest oAuth2UserRequest) throws OAuth2AuthenticationException {
@@ -45,8 +45,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             throw new OAuth2AuthenticationProcessingException("Email not found from OAuth2 provider");
         }
 
-        Optional<UserEntity> userOptional = userRepository.findByEmail(oAuth2UserInfo.getEmail());
-        UserEntity user;
+        Optional<SocialUserEntity> userOptional = socialUserRepository.findByEmail(oAuth2UserInfo.getEmail());
+        SocialUserEntity user;
         if(userOptional.isPresent()) {
             user = userOptional.get();
             if(!user.getProvider().equals(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()))) {
@@ -62,21 +62,21 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         return UserPrincipal.create(user, oAuth2User.getAttributes());
     }
 
-    private UserEntity registerNewUser(OAuth2UserRequest oAuth2UserRequest, OAuth2UserInfo oAuth2UserInfo) {
-        UserEntity user = new UserEntity();
+    private SocialUserEntity registerNewUser(OAuth2UserRequest oAuth2UserRequest, OAuth2UserInfo oAuth2UserInfo) {
+        SocialUserEntity user = new SocialUserEntity();
 
         user.setProvider(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()));
         user.setProviderId(oAuth2UserInfo.getId());
         user.setName(oAuth2UserInfo.getName());
         user.setEmail(oAuth2UserInfo.getEmail());
         user.setImageUrl(oAuth2UserInfo.getImageUrl());
-        return userRepository.save(user);
+        return socialUserRepository.save(user);
     }
 
-    private UserEntity updateExistingUser(UserEntity existingUser, OAuth2UserInfo oAuth2UserInfo) {
+    private SocialUserEntity updateExistingUser(SocialUserEntity existingUser, OAuth2UserInfo oAuth2UserInfo) {
         existingUser.setName(oAuth2UserInfo.getName());
         existingUser.setImageUrl(oAuth2UserInfo.getImageUrl());
-        return userRepository.save(existingUser);
+        return socialUserRepository.save(existingUser);
     }
 
 }

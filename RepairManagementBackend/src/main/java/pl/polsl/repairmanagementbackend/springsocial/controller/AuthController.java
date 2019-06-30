@@ -2,12 +2,12 @@ package pl.polsl.repairmanagementbackend.springsocial.controller;
 
 import pl.polsl.repairmanagementbackend.springsocial.exception.BadRequestException;
 import pl.polsl.repairmanagementbackend.springsocial.model.AuthProvider;
-import pl.polsl.repairmanagementbackend.springsocial.model.UserEntity;
+import pl.polsl.repairmanagementbackend.springsocial.model.SocialUserEntity;
 import pl.polsl.repairmanagementbackend.springsocial.payload.ApiResponse;
 import pl.polsl.repairmanagementbackend.springsocial.payload.AuthResponse;
 import pl.polsl.repairmanagementbackend.springsocial.payload.LoginRequest;
 import pl.polsl.repairmanagementbackend.springsocial.payload.SignUpRequest;
-import pl.polsl.repairmanagementbackend.springsocial.repository.UserRepository;
+import pl.polsl.repairmanagementbackend.springsocial.repository.SocialUserRepository;
 import pl.polsl.repairmanagementbackend.springsocial.security.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +33,7 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserRepository userRepository;
+    private SocialUserRepository socialUserRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -59,12 +59,12 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
-        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
+        if(socialUserRepository.existsByEmail(signUpRequest.getEmail())) {
             throw new BadRequestException("Email address already in use.");
         }
 
         // Creating user's account
-        UserEntity user = new UserEntity();
+        SocialUserEntity user = new SocialUserEntity();
         user.setName(signUpRequest.getName());
         user.setEmail(signUpRequest.getEmail());
         user.setPassword(signUpRequest.getPassword());
@@ -72,14 +72,14 @@ public class AuthController {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        UserEntity result = userRepository.save(user);
+        SocialUserEntity result = socialUserRepository.save(user);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/user/me")
                 .buildAndExpand(result.getId()).toUri();
 
         return ResponseEntity.created(location)
-                .body(new ApiResponse(true, "UserEntity registered successfully@"));
+                .body(new ApiResponse(true, "SocialUserEntity registered successfully@"));
     }
 
 }

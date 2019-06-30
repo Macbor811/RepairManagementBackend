@@ -90,8 +90,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .disable()
                 .formLogin()
                     .disable()
-                .httpBasic()
-                    .disable()
                 .exceptionHandling()
                     .authenticationEntryPoint(new RestAuthenticationEntryPoint())
                     .and()
@@ -124,7 +122,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .userService(customOAuth2UserService)
                         .and()
                     .successHandler(oAuth2AuthenticationSuccessHandler)
-                    .failureHandler(oAuth2AuthenticationFailureHandler);
+                    .failureHandler(oAuth2AuthenticationFailureHandler)
+                    .and()
+                .httpBasic();
 
         // Add our custom Token based authentication filter
         http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "social_user", uniqueConstraints = {
         @UniqueConstraint(columnNames = "email")
 })
-public class UserEntity {
+public class SocialUserEntity {
 
     private Long id;
     private String name;
