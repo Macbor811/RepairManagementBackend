@@ -33,14 +33,14 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username)
+    public UserDetails loadUserByUsername(String usernameOrEmail)
             throws UsernameNotFoundException {
 
-        var socialUser = socialUserRepository.findByEmail(username);
+        var socialUser = socialUserRepository.findByEmail(usernameOrEmail);
         if (socialUser.isPresent()){
             return UserPrincipal.create(socialUser.get());
         } else {
-            var employee = employeeRepository.findByUsername(username);
+            var employee = employeeRepository.findByUsername(usernameOrEmail);
             if (employee.isPresent()){
                  var grantedAuthorities = new HashSet<GrantedAuthority>();
                 grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + employee.get().getRole()));
@@ -53,7 +53,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             }
         }
 
-        throw new UsernameNotFoundException("Could not find user identified by: " + username);
+        throw new UsernameNotFoundException("Could not find user identified by: " + usernameOrEmail);
 
     }
 

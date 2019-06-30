@@ -105,5 +105,10 @@ public class CustomerEntity {
         return Objects.hash(id, firstName, lastName, phoneNumber);
     }
 
+    @Override
+    public String toString(){
+        return getId().toString();
+    }
+
 
 }

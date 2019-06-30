@@ -1,5 +1,7 @@
 package pl.polsl.repairmanagementbackend.springsocial.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import pl.polsl.repairmanagementbackend.customer.CustomerEntity;
 
 import javax.persistence.*;
@@ -15,10 +17,9 @@ public class SocialUserEntity {
     private Long id;
     private String name;
     private String email;
-    private String imageUrl;
+
     private Boolean emailVerified = false;
-    @JsonIgnore
-    private String password;
+
     private AuthProvider provider;
     private String providerId;
     private CustomerEntity customer;
@@ -49,12 +50,6 @@ public class SocialUserEntity {
         this.email = email;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 
     @Column(nullable = false)
     public Boolean getEmailVerified() {
@@ -64,12 +59,6 @@ public class SocialUserEntity {
         this.emailVerified = emailVerified;
     }
 
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -89,6 +78,7 @@ public class SocialUserEntity {
 
     @OneToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    @JsonSerialize(using = ToStringSerializer.class)
     public CustomerEntity getCustomer() {
         return customer;
     }
