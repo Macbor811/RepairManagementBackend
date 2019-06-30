@@ -1,7 +1,7 @@
 package pl.polsl.repairmanagementbackend.springsocial.controller;
 
 import pl.polsl.repairmanagementbackend.springsocial.exception.ResourceNotFoundException;
-import pl.polsl.repairmanagementbackend.springsocial.model.User;
+import pl.polsl.repairmanagementbackend.springsocial.model.UserEntity;
 import pl.polsl.repairmanagementbackend.springsocial.repository.UserRepository;
 import pl.polsl.repairmanagementbackend.springsocial.security.CurrentUser;
 import pl.polsl.repairmanagementbackend.springsocial.security.UserPrincipal;
@@ -18,8 +18,8 @@ public class UserController {
 
     @GetMapping("/user/me")
     @PreAuthorize("hasRole('USER')")
-    public User getCurrentUser(@CurrentUser UserPrincipal userPrincipal) {
+    public UserEntity getCurrentUser(@CurrentUser UserPrincipal userPrincipal) {
         return userRepository.findById(userPrincipal.getId())
-                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userPrincipal.getId()));
+                .orElseThrow(() -> new ResourceNotFoundException("UserEntity", "id", userPrincipal.getId()));
     }
 }

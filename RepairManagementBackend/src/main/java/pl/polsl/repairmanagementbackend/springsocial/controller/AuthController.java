@@ -2,7 +2,7 @@ package pl.polsl.repairmanagementbackend.springsocial.controller;
 
 import pl.polsl.repairmanagementbackend.springsocial.exception.BadRequestException;
 import pl.polsl.repairmanagementbackend.springsocial.model.AuthProvider;
-import pl.polsl.repairmanagementbackend.springsocial.model.User;
+import pl.polsl.repairmanagementbackend.springsocial.model.UserEntity;
 import pl.polsl.repairmanagementbackend.springsocial.payload.ApiResponse;
 import pl.polsl.repairmanagementbackend.springsocial.payload.AuthResponse;
 import pl.polsl.repairmanagementbackend.springsocial.payload.LoginRequest;
@@ -64,7 +64,7 @@ public class AuthController {
         }
 
         // Creating user's account
-        User user = new User();
+        UserEntity user = new UserEntity();
         user.setName(signUpRequest.getName());
         user.setEmail(signUpRequest.getEmail());
         user.setPassword(signUpRequest.getPassword());
@@ -72,14 +72,14 @@ public class AuthController {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        User result = userRepository.save(user);
+        UserEntity result = userRepository.save(user);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/user/me")
                 .buildAndExpand(result.getId()).toUri();
 
         return ResponseEntity.created(location)
-                .body(new ApiResponse(true, "User registered successfully@"));
+                .body(new ApiResponse(true, "UserEntity registered successfully@"));
     }
 
 }
