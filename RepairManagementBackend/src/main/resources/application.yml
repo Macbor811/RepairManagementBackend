@@ -57,3 +57,15 @@ app:
       - http://localhost:3000/oauth2/redirect
       - myandroidapp://oauth2/redirect
       - myiosapp://oauth2/redirect
+
+
+
+#server:
+#  ssl:
+#    key-store: 'classpath:keystore/repairman.jks'
+#    key-store-type: JKS
+#    key-password: password
+#    key-alias: repairman
+#    #trust-store: 'classpath:keystore/repairman.jks'
+#    #trust-store-password: password
+#    key-store-password: password

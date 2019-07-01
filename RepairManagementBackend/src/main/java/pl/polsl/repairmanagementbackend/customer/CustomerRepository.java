@@ -3,11 +3,15 @@ package pl.polsl.repairmanagementbackend.customer;
         import com.querydsl.core.BooleanBuilder;
         import com.querydsl.core.types.dsl.StringPath;
         import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.data.domain.Page;
+        import org.springframework.data.domain.Pageable;
+        import org.springframework.data.domain.Sort;
         import org.springframework.data.jpa.repository.JpaRepository;
         import org.springframework.data.querydsl.QuerydslPredicateExecutor;
         import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
         import org.springframework.data.querydsl.binding.QuerydslBindings;
         import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+        import org.springframework.security.access.prepost.PreAuthorize;
         import org.springframework.stereotype.Repository;
         import org.springframework.transaction.annotation.Transactional;
         import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +26,7 @@ package pl.polsl.repairmanagementbackend.customer;
 @Repository
 @RepositoryRestResource(collectionResourceRel = "customer", path = "customer")
 @CrossOrigin
+//@PreAuthorize("hasRole('ADM')")
 public interface CustomerRepository extends
         JpaRepository<CustomerEntity, Integer>,
         QuerydslPredicateExecutor<CustomerEntity>,
@@ -38,13 +43,5 @@ public interface CustomerRepository extends
         });
     }
 
-//    @Transactional
-//     CustomerEntity save(CustomerEntity customer);
-//
-//
-//    @Transactional
-//    List<CustomerEntity> findAll();
-//
-//    @Transactional
-//    public Optional<CustomerEntity> findById(Integer id);
+
 }

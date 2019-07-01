@@ -12,6 +12,16 @@ import java.util.Objects;
 public class AddressEntity{
     private Integer id;
     private String postCode;
+
+    public AddressEntity(){}
+
+    public AddressEntity(String postCode, String city, String street, String number) {
+        this.postCode = postCode;
+        this.city = city;
+        this.street = street;
+        this.number = number;
+    }
+
     private String city;
     private String street;
     private String number;

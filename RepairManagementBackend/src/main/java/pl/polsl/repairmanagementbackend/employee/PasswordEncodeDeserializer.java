@@ -19,7 +19,7 @@ public class PasswordEncodeDeserializer extends JsonDeserializer<String> {
     //@Autowired
     private PasswordEncoder encoder = new BCryptPasswordEncoder();
 
-
+//    @Autowired
 //    public PasswordEncodeDeserializer(PasswordEncoder encoder) {
 //        this.encoder = encoder;
 //    }

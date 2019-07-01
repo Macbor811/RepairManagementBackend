@@ -29,12 +29,13 @@ public class EmployeeUserDetailsService implements UserDetailsService {
 
             var grantedAuthorities = new HashSet<GrantedAuthority>();
             grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + user.get().getRole()));
-            return new EmployeeUser(
+            var employeeUser = new EmployeeUser(
                     user.get().getUsername(),
-                    user.get().getPassword(),
+                    "{bcrypt}" + user.get().getPassword(),
                     grantedAuthorities,
                     user.get().getId()
             );
+            return employeeUser;
         } else {
             throw new UsernameNotFoundException("No employee with username " + username + " found.");
         }
