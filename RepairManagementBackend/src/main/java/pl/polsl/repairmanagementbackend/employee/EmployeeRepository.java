@@ -1,5 +1,6 @@
 package pl.polsl.repairmanagementbackend.employee;
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.StringPath;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
@@ -11,12 +12,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.time.temporal.ChronoUnit;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 @RepositoryRestResource(collectionResourceRel = "employee", path = "employee")
 @CrossOrigin
+//@PreAuthorize("hasAnyRole('ADM', 'MAN')")
 public interface EmployeeRepository extends
         JpaRepository<EmployeeEntity, Integer>,
         QuerydslPredicateExecutor<EmployeeEntity>,
@@ -25,20 +29,23 @@ public interface EmployeeRepository extends
     @Override
     default void customize(QuerydslBindings bindings, QEmployeeEntity root) {
 
-        bindings.bind(String.class).first((StringPath path, String value) -> path.startsWithIgnoreCase(value));
+        bindings.bind(String.class).all((StringPath path, Collection<? extends String> values) -> {
+            BooleanBuilder predicate = new BooleanBuilder();
+            values.forEach( value -> predicate.or(path.startsWithIgnoreCase(value) ));
+            return Optional.of(predicate);
+        });
+
+        bindings.bind(root.deactivationDate).first((path,  value) -> path.between(value, value.plus(1, ChronoUnit.DAYS)));
+
     }
 
-    @Transactional
     EmployeeEntity save(EmployeeEntity Employee);
 
 
-    @Transactional
     List<EmployeeEntity> findAll();
 
-    @Transactional
-    @PreAuthorize("hasRole('MAN') || (hasRole('WRK') && #id == principal.id)")
+    @PreAuthorize("(hasRole('WRK') && #id == principal.id) || hasRole('MAN') ||  hasRole('ADM')")
     Optional<EmployeeEntity> findById(Integer id);
 
-    @Transactional
     Optional<EmployeeEntity> findByUsername(String username);
 }

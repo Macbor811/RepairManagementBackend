@@ -8,7 +8,7 @@ import pl.polsl.repairmanagementbackend.employee.EmployeeEntity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -20,15 +20,13 @@ public class RequestEntity {
     private String description;
     private String result;
     private String status;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime registerDate;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime endDate;
+    private Instant registerDate;
+    private Instant endDate;
     private Collection<ActivityEntity> activities;
     private ItemEntity item;
     private EmployeeEntity manager;
 
-    public RequestEntity(String description, String result, String status, LocalDateTime registerDate, LocalDateTime endDate, Collection<ActivityEntity> activities, ItemEntity item, EmployeeEntity manager) {
+    public RequestEntity(String description, String result, String status, Instant registerDate, Instant endDate, Collection<ActivityEntity> activities, ItemEntity item, EmployeeEntity manager) {
         this.description = description;
         this.result = result;
         this.status = status;
@@ -62,7 +60,7 @@ public class RequestEntity {
     }
 
     @Basic
-    @Column(name = "result", nullable = true, length = 1024)
+    @Column(name = "result", insertable = false, nullable = true, length = 1024)
     public String getResult() {
         return result;
     }
@@ -82,23 +80,23 @@ public class RequestEntity {
     }
 
     @Basic
-    @CreationTimestamp
-    @Column(name = "register_date", nullable = false)
-    public LocalDateTime getRegisterDate() {
+    //@CreationTimestamp
+    @Column(name = "register_date", updatable = false, nullable = false)
+    public Instant getRegisterDate() {
         return registerDate;
     }
 
-    public void setRegisterDate(LocalDateTime registerDate) {
+    public void setRegisterDate(Instant registerDate) {
         this.registerDate = registerDate;
     }
 
     @Basic
     @Column(name = "end_date", nullable = true)
-    public LocalDateTime getEndDate() {
+    public Instant getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
+    public void setEndDate(Instant endDate) {
         this.endDate = endDate;
     }
 
@@ -149,9 +147,4 @@ public class RequestEntity {
         this.manager = manager;
     }
 
-//    @Override
-//    public RequestDTO toDTO() {
-//        return new RequestDTO(id, description, result, status, registerDate, endDate,
-//               activities == null ? null : activities.stream().map(ActivityEntity::toDTO).collect(Collectors.toList()), item.toDTO(), manager.toDTO());
-//    }
 }

@@ -1,12 +1,13 @@
 package pl.polsl.repairmanagementbackend.employee;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import pl.polsl.repairmanagementbackend.activity.ActivityEntity;
 import pl.polsl.repairmanagementbackend.address.AddressEntity;
 import pl.polsl.repairmanagementbackend.request.RequestEntity;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -20,12 +21,16 @@ public class EmployeeEntity {
     private String phoneNumber;
     private String role;
     private String username;
-    private LocalDateTime deactivationDate;
+    private Instant deactivationDate;
 
     @JsonDeserialize(using = PasswordEncodeDeserializer.class )
+    @JsonIgnore
     private String password;
+
+    @JsonIgnore
     private Collection<ActivityEntity> activities;
     private AddressEntity address;
+    @JsonIgnore
     private Collection<RequestEntity> requests;
 
     public EmployeeEntity(){}
@@ -95,10 +100,10 @@ public class EmployeeEntity {
 
     @Basic
     @Column(name = "deactivation_date", nullable = true)
-    public LocalDateTime getDeactivationDate() {
+    public Instant getDeactivationDate() {
         return deactivationDate;
     }
-    public void setDeactivationDate(LocalDateTime deactivationDate) {
+    public void setDeactivationDate(Instant deactivationDate) {
         this.deactivationDate = deactivationDate;
     }
 
@@ -154,6 +159,10 @@ public class EmployeeEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, phoneNumber, role, username, password);
+    }
+
+    public EmployeeUserRole roleEnum(){
+        return EmployeeUserRole.fromString(getRole()).orElse(null);
     }
 
 

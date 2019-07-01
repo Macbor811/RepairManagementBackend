@@ -18,6 +18,15 @@ public class AddressEntity{
     private Collection<CustomerEntity> customers;
     private Collection<EmployeeEntity> employees;
 
+    public AddressEntity(){}
+    public AddressEntity(String postCode, String city, String street, String number) {
+
+        this.postCode = postCode;
+        this.city = city;
+        this.street = street;
+        this.number = number;
+    }
+
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Integer getId() {

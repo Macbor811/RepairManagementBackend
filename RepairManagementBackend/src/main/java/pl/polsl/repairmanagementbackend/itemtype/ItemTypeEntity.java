@@ -45,7 +45,7 @@ public class ItemTypeEntity  {
         return Objects.hash(id, type);
     }
 
-    @OneToMany(mappedBy = "itemType")
+    @OneToMany(mappedBy = "type")
     public Collection<ItemEntity> getItems() {
         return items;
     }

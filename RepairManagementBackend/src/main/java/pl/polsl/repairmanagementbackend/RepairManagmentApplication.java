@@ -6,12 +6,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
+import pl.polsl.repairmanagementbackend.springsocial.config.AppProperties;
 
 import java.sql.SQLException;
 
 @SpringBootApplication
+@EnableConfigurationProperties(AppProperties.class)
 //@EnableSpringDataWebSupport
 public class RepairManagmentApplication extends SpringBootServletInitializer {
 

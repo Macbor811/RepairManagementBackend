@@ -1,0 +1,460 @@
+{
+	"info": {
+		"_postman_id": "87dd5e97-9fef-4016-91c3-a70540967cab",
+		"name": "RepairManagement",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/api/customer/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n \t\"firstName\": \"Jan\",\n    \"lastName\": \"Kowalski\",\n    \"phoneNumber\": \"123456789\",\n    \"address\": \"http://localhost:8080/api/address/1\"\n\n }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/employee",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Jan\",\n    \"lastName\": \"Manadzer\",\n    \"phoneNumber\": \"123456789\",\n    \"username\":\"username\",\n    \"password\":\"password\",\n    \"role\":\"MAN\",\n    \"address\": \"http://localhost:8080/api/address/1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/employee",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"employee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/item-type/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"Audi\",\n\t\"type\":\"Audi\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/item-type/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"item-type",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/address",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"postCode\": \"12-345\",\n        \"city\": \"Miasto\",\n        \"street\": \"Ulica\",\n        \"number\": 42\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/address",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"address"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Oauth2 Manager",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "cf0e3481-fedc-4a89-87ef-acae11eacc5b",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://localhost:8080/api/employee?firstName=Ad",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"employee"
+					],
+					"query": [
+						{
+							"key": "firstName",
+							"value": "Ad"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Oauth2 get token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "client-secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "client-id",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "client-secret",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "client_id",
+							"value": "client-id",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "pass",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:8080/oauth/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "admin",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "pass",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Oauth2 Admin",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "f7f65444-1fdc-4224-807c-7e444cd3968b",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://localhost:8080/api/customer?firstName=J",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"customer"
+					],
+					"query": [
+						{
+							"key": "firstName",
+							"value": "J"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Oauth2 Worker",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "acb9d331-e182-4403-9d6e-4e8da782c6ec",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://localhost:8080/api/employee/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"employee",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/api/activity",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n                \"sequenceNum\": 1,\n                \"description\": \"ActivityDescription1\",\n                \"result\": \"\",\n                \"status\": \"OPN\",\n                \"registerDate\": \"2019-05-01T16:04:05.844\",\n                \"endDate\": null,\n                    \"worker\": \"http://localhost:8080/api/employee/1\",\n                    \"activityType\": \"http://localhost:8080/api/activity-type/1\",                  \n                    \"request\":\"http://localhost:8080/api/request/1\"\n               \n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/activity",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"activity"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

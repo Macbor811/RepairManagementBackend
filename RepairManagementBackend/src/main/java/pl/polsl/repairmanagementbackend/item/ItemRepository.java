@@ -1,5 +1,6 @@
 package pl.polsl.repairmanagementbackend.item;
 
+        import com.querydsl.core.BooleanBuilder;
         import com.querydsl.core.types.dsl.StringPath;
         import org.springframework.data.jpa.repository.JpaRepository;
         import org.springframework.data.querydsl.QuerydslPredicateExecutor;
@@ -10,6 +11,7 @@ package pl.polsl.repairmanagementbackend.item;
         import org.springframework.transaction.annotation.Transactional;
         import org.springframework.web.bind.annotation.CrossOrigin;
 
+        import java.util.Collection;
         import java.util.List;
         import java.util.Optional;
 
@@ -24,7 +26,11 @@ public interface ItemRepository extends
     @Override
     default void customize(QuerydslBindings bindings, QItemEntity root) {
 
-        bindings.bind(String.class).first((StringPath path, String value) -> path.startsWithIgnoreCase(value));
+        bindings.bind(String.class).all((StringPath path, Collection<? extends String> values) -> {
+            BooleanBuilder predicate = new BooleanBuilder();
+            values.forEach( value -> predicate.or(path.startsWithIgnoreCase(value) ));
+            return Optional.of(predicate);
+        });
     }
 
     @Transactional
