@@ -1,21 +1,16 @@
 package pl.polsl.repairmanagementbackend.springsocial.controller;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import pl.polsl.repairmanagementbackend.employee.EmployeeRepository;
-import pl.polsl.repairmanagementbackend.employee.EmployeeUser;
 import pl.polsl.repairmanagementbackend.springsocial.exception.ResourceNotFoundException;
-import pl.polsl.repairmanagementbackend.springsocial.model.SocialUserEntity;
 import pl.polsl.repairmanagementbackend.springsocial.repository.SocialUserRepository;
-import pl.polsl.repairmanagementbackend.springsocial.security.CurrentUser;
-import pl.polsl.repairmanagementbackend.springsocial.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
-import java.util.HashSet;
+import java.time.Instant;
 
 @RestController
 public class UserController {
@@ -24,14 +19,14 @@ public class UserController {
         public String id;
         public String role;
         public String usernameOrEmail;
+        public Boolean isActive;
 
-        public UserData(String id, String role, String usernameOrEmail) {
+        public UserData(Boolean isActive, String id, String role, String usernameOrEmail) {
+            this.isActive = isActive;
             this.id = id;
             this.role = role;
             this.usernameOrEmail = usernameOrEmail;
         }
-
-
     }
 
     @Autowired
@@ -48,15 +43,19 @@ public class UserController {
 
         var socialUser = socialUserRepository.findByEmail(usernameOrEmail);
         if (socialUser.isPresent()){
-            return new UserData(socialUser.get().getId().toString(),
+            Boolean isVerified = socialUser.get().getCustomer() != null;
+            return new UserData(
+                    isVerified,
+                    isVerified ? socialUser.get().getCustomer().getId().toString() : null,
                     "SOCIAL_USER",
                     socialUser.get().getEmail()
             );
         } else {
             var employee = employeeRepository.findByUsername(usernameOrEmail);
             if (employee.isPresent()){
-
+                Boolean isActive = employee.get().getDeactivationDate() == null || employee.get().getDeactivationDate().isAfter(Instant.now());
                 return new UserData(
+                        isActive,
                         employee.get().getId().toString(),
                         employee.get().getRole(),
                         employee.get().getUsername()
@@ -64,6 +63,8 @@ public class UserController {
             }
         }
 
-        throw new ResourceNotFoundException("SocialUserEntity", "id", userPrincipal.getName());
+        throw new ResourceNotFoundException("User", "usernameOrEmail", userPrincipal.getName());
     }
+
+
 }
