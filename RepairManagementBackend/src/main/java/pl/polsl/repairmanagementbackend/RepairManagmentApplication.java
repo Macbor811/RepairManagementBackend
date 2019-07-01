@@ -9,12 +9,11 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
-import pl.polsl.repairmanagementbackend.springsocial.config.AppProperties;
 
 import java.sql.SQLException;
 
 @SpringBootApplication
-@EnableConfigurationProperties(AppProperties.class)
+//@EnableConfigurationProperties(AppProperties.class)
 //@EnableSpringDataWebSupport
 public class RepairManagmentApplication extends SpringBootServletInitializer {
 

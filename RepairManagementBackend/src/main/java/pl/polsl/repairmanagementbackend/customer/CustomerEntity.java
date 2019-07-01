@@ -2,7 +2,6 @@ package pl.polsl.repairmanagementbackend.customer;
 
 import pl.polsl.repairmanagementbackend.address.AddressEntity;
 import pl.polsl.repairmanagementbackend.item.ItemEntity;
-import pl.polsl.repairmanagementbackend.springsocial.model.SocialUserEntity;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -16,7 +15,7 @@ public class CustomerEntity {
     private String lastName;
     private String phoneNumber;
     private AddressEntity address;
-    private SocialUserEntity user;
+   // private SocialUserEntity user;
     private Collection<ItemEntity> items;
 
     public CustomerEntity(){}
@@ -73,13 +72,6 @@ public class CustomerEntity {
         this.address = address;
     }
 
-    @OneToOne(mappedBy = "customer")
-    public SocialUserEntity getUser() {
-        return user;
-    }
-    public void setUser(SocialUserEntity user) {
-        this.user = user;
-    }
 
     @OneToMany(mappedBy = "owner")
     public Collection<ItemEntity> getItems() {
