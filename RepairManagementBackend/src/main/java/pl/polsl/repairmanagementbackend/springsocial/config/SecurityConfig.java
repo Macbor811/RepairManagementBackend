@@ -1,5 +1,6 @@
 package pl.polsl.repairmanagementbackend.springsocial.config;
 
+import org.springframework.http.HttpMethod;
 import pl.polsl.repairmanagementbackend.springsocial.security.*;
 import pl.polsl.repairmanagementbackend.springsocial.security.oauth2.CustomOAuth2UserService;
 import pl.polsl.repairmanagementbackend.springsocial.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository;
@@ -128,5 +129,36 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Add our custom Token based authentication filter
         http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
+       /* http
+                .antMatcher("/api/**")
+                .csrf().disable()
+                .anonymous().disable()
+                .authorizeRequests()
+                .antMatchers("/oauth/token").permitAll()
+                .antMatchers("/oauth/user").fullyAuthenticated()
+                //.antMatchers("/api/customer/**").fullyAuthenticated()
+                .antMatchers(HttpMethod.GET, "/api/customer").access("hasAnyRole('WRK', 'MAN')")
+                .antMatchers(HttpMethod.POST, "/api/customer").access("hasAnyRole('WRK', 'MAN')")
+                .antMatchers(HttpMethod.GET, "/api/customer/{id}").access("hasAnyRole('WRK', 'MAN')")
+                .antMatchers(HttpMethod.GET, "/api/customer/{id}/**").access("hasAnyRole('WRK', 'MAN')")
+
+
+                .antMatchers(HttpMethod.GET, "/api/employee").access("hasAnyRole('WRK', 'MAN')")
+                .antMatchers(HttpMethod.POST, "/api/employee").access("(hasRole('ADM'))")
+                .antMatchers(HttpMethod.GET, "/api/employee/{id}").access("hasAnyRole('WRK', 'MAN', 'ADM')")
+                .antMatchers(HttpMethod.GET, "/api/employee/{id}/**").access("hasAnyRole('WRK', 'MAN', 'ADM')")
+
+
+                .antMatchers(HttpMethod.GET, "/api/item").access("hasAnyRole('WRK', 'MAN')")
+                .antMatchers(HttpMethod.POST, "/api/item").access("hasAnyRole('WRK', 'MAN')")
+                .antMatchers(HttpMethod.GET, "/api/item/{id}").access("hasAnyRole('WRK', 'MAN')")
+
+                .antMatchers(HttpMethod.GET, "/api/customer").access("hasAnyRole('WRK', 'MAN')")
+                .antMatchers(HttpMethod.GET, "/api/customer/{id}").access("hasAnyRole('WRK', 'MAN')")
+
+                .antMatchers("/api/**").denyAll()
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());*/
     }
 }

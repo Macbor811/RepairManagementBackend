@@ -24,7 +24,9 @@ public class EmployeeEntity {
     private Instant deactivationDate;
 
     @JsonDeserialize(using = PasswordEncodeDeserializer.class )
+    @JsonIgnore
     private String password;
+
     @JsonIgnore
     private Collection<ActivityEntity> activities;
     private AddressEntity address;

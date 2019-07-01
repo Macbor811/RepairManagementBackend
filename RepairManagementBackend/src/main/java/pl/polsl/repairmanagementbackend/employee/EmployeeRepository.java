@@ -20,7 +20,7 @@ import java.util.Optional;
 @Repository
 @RepositoryRestResource(collectionResourceRel = "employee", path = "employee")
 @CrossOrigin
-//@PreAuthorize("hasRole('BLOCK')")
+//@PreAuthorize("hasAnyRole('ADM', 'MAN')")
 public interface EmployeeRepository extends
         JpaRepository<EmployeeEntity, Integer>,
         QuerydslPredicateExecutor<EmployeeEntity>,
@@ -39,17 +39,13 @@ public interface EmployeeRepository extends
 
     }
 
-    @Transactional
     EmployeeEntity save(EmployeeEntity Employee);
 
 
-    @Transactional
     List<EmployeeEntity> findAll();
 
-    @Transactional
     @PreAuthorize("(hasRole('WRK') && #id == principal.id) || hasRole('MAN') ||  hasRole('ADM')")
     Optional<EmployeeEntity> findById(Integer id);
 
-    @Transactional
     Optional<EmployeeEntity> findByUsername(String username);
 }

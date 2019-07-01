@@ -16,6 +16,7 @@ package pl.polsl.repairmanagementbackend.customer;
         import org.springframework.transaction.annotation.Transactional;
         import org.springframework.web.bind.annotation.CrossOrigin;
         import pl.polsl.repairmanagementbackend.customer.QCustomerEntity;
+        import pl.polsl.repairmanagementbackend.employee.EmployeeEntity;
 
         import javax.persistence.EntityManager;
         import javax.persistence.NoResultException;
@@ -43,5 +44,8 @@ public interface CustomerRepository extends
         });
     }
 
+
+    @PreAuthorize("(hasRole('SOCIAL_USER') && #id == principal.id) || hasRole('MAN') ||  hasRole('ADM')")
+    Optional<CustomerEntity> findById(Integer id);
 
 }
