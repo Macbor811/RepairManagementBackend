@@ -1,7 +1,5 @@
 package pl.polsl.repairmanagementbackend.springsocial.controller;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import pl.polsl.repairmanagementbackend.employee.EmployeeRepository;
 import pl.polsl.repairmanagementbackend.springsocial.exception.ResourceNotFoundException;
 import pl.polsl.repairmanagementbackend.springsocial.repository.SocialUserRepository;
@@ -19,10 +17,10 @@ public class UserController {
         public String id;
         public String role;
         public String usernameOrEmail;
-        public Boolean isActive;
+        public Boolean active;
 
-        public UserData(Boolean isActive, String id, String role, String usernameOrEmail) {
-            this.isActive = isActive;
+        public UserData(Boolean active, String id, String role, String usernameOrEmail) {
+            this.active = active;
             this.id = id;
             this.role = role;
             this.usernameOrEmail = usernameOrEmail;
