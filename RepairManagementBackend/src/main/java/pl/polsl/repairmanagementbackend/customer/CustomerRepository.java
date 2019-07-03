@@ -45,7 +45,7 @@ public interface CustomerRepository extends
     }
 
 
-    @PreAuthorize("(hasRole('SOCIAL_USER') && #id == principal.id) || hasRole('MAN') ||  hasRole('ADM')")
+    //@PreAuthorize("(hasRole('SOCIAL_USER') && #id == principal.id) || hasRole('MAN') ||  hasRole('ADM')")
     Optional<CustomerEntity> findById(Integer id);
 
 }

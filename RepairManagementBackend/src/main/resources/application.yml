@@ -29,8 +29,8 @@ spring:
       client:
         registration:
           google:
-            clientId: 5014057553-8gm9um6vnli3cle5rgigcdjpdrid14m9.apps.googleusercontent.com
-            clientSecret: tWZKVLxaD_ARWsriiiUFYoIk
+            clientId: 840952461997-5ckd3obuqnvpi13s6i501coahaja8f33.apps.googleusercontent.com
+            clientSecret: kYCuVan0ijxdQTrRFljsxGhC
             redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
             scope:
               - email
