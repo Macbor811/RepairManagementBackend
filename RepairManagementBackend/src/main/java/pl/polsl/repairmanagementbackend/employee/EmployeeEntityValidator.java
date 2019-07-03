@@ -6,6 +6,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import javax.persistence.Column;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
