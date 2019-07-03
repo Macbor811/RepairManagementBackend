@@ -1,5 +1,8 @@
 package pl.polsl.repairmanagementbackend.springsocial.controller;
 
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import pl.polsl.repairmanagementbackend.customer.CustomerRepository;
 import pl.polsl.repairmanagementbackend.employee.EmployeeRepository;
 import pl.polsl.repairmanagementbackend.springsocial.exception.ResourceNotFoundException;
 import pl.polsl.repairmanagementbackend.springsocial.repository.SocialUserRepository;
@@ -29,6 +32,9 @@ public class UserController {
 
     @Autowired
     private SocialUserRepository socialUserRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @Autowired
     private EmployeeRepository employeeRepository;
@@ -64,5 +70,19 @@ public class UserController {
         throw new ResourceNotFoundException("User", "usernameOrEmail", userPrincipal.getName());
     }
 
+
+    @PostMapping("/user/me/{id}")
+    public void assign(@PathVariable Integer id, Principal userPrincipal) {
+        var customer = customerRepository.findById(id);
+
+        var user = socialUserRepository.findByEmail(userPrincipal.getName());
+
+        if (user.isPresent() && customer.isPresent()){
+            user.get().setCustomer(customer.get());
+            socialUserRepository.save(user.get());
+        } else {
+            throw  new IllegalArgumentException("Invalid user or customer");
+        }
+    }
 
 }
