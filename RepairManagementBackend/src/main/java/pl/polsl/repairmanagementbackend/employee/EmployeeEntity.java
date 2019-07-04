@@ -23,8 +23,8 @@ public class EmployeeEntity {
     private String username;
     private Instant deactivationDate;
 
-    @JsonDeserialize(using = PasswordEncodeDeserializer.class )
-    @JsonIgnore
+    //@JsonDeserialize(using = PasswordEncodeDeserializer.class )
+    //@JsonIgnore
     private String password;
 
     @JsonIgnore
