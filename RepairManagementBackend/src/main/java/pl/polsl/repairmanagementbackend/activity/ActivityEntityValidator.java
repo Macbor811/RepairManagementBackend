@@ -8,7 +8,7 @@ import pl.polsl.repairmanagementbackend.employee.EmployeeUserRole;
 
 import java.util.stream.Stream;
 
-@Component("beforeCreateActivityEntityValidator")
+@Component("beforeSaveActivityEntityValidator")
 public class ActivityEntityValidator implements Validator {
 
 
@@ -36,4 +36,5 @@ public class ActivityEntityValidator implements Validator {
             }
         }
     }
+
 }

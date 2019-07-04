@@ -32,16 +32,7 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-//        var grantedAuthorities = new HashSet<GrantedAuthority>();
-//
-//        grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + "ADM"));
-//        grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + "MAN"));
-//        grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + "WRK"));
-//
-//        Authentication auth =
-//                new UsernamePasswordAuthenticationToken(null, null, grantedAuthorities);
 
-       // SecurityContextHolder.getContext().setAuthentication(auth);
 
         var adminEmployee = new EmployeeEntity("Admin", "Admin", "000000000",
                 EmployeeUserRole.ADMIN.toString(), "admin", new BCryptPasswordEncoder().encode("pass"),
