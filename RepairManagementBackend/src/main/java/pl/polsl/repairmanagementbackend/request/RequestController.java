@@ -1,4 +1,4 @@
-package pl.polsl.repairmanagementbackend.activity;
+package pl.polsl.repairmanagementbackend.request;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
@@ -9,30 +9,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import pl.polsl.repairmanagementbackend.FinalizationData;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 
 
 @RepositoryRestController
-public class ActivityController {
+public class RequestController {
 
-    private final ActivityRepository repository;
+    private final RequestRepository repository;
 
     @Autowired
-    public ActivityController(ActivityRepository repository) {
+    public RequestController(RequestRepository repository) {
         this.repository = repository;
     }
 
 
-    @PutMapping("activity/{id}/finalize")
+    @PutMapping("request/{id}/finalize")
     public ResponseEntity<?> update(@PathVariable String id, @RequestBody FinalizationData data){
         var entityOptional = repository.findById(Integer.valueOf(id));
 
         if (entityOptional.isPresent()){
             var oldEntity = entityOptional.get();
 
-            var status = ActivityStatus
+            var status = RequestStatus
                     .fromString(data.getStatus())
-                    .orElseThrow(() -> new IllegalArgumentException("Can't convert string to ActivityStatus"));
+                    .orElseThrow(() -> new IllegalArgumentException("Can't convert string to RequestStatus"));
 
 
             if (status.hasEnded() && oldEntity.getEndDate() == null){

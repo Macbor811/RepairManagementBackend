@@ -6,6 +6,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import javax.persistence.Column;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -32,10 +33,9 @@ public class EmployeeEntityValidator implements Validator {
         if (errors.getFieldErrorCount("username") == 0){
             if (repository.findByUsername(entity.getUsername()).isPresent()) {
                 errors.rejectValue("username", "username.exists", "This username is already in use.");
+            } else if (!entity.getUsername().matches("[A-Za-z0-9_]+")){
+                errors.rejectValue("username", "username.invalid", "Username can contain only latin letters, digits and underscore.");
             }
-//            } else if (!entity.getUsername().matches("")){
-//                errors.rejectValue("username", "username.exists", "This username is already in use.");
-//            }
         }
 
         if (errors.getFieldErrorCount("role") == 0){
