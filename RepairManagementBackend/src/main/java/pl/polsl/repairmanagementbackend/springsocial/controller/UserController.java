@@ -1,14 +1,11 @@
 package pl.polsl.repairmanagementbackend.springsocial.controller;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.polsl.repairmanagementbackend.customer.CustomerRepository;
 import pl.polsl.repairmanagementbackend.employee.EmployeeRepository;
 import pl.polsl.repairmanagementbackend.springsocial.exception.ResourceNotFoundException;
 import pl.polsl.repairmanagementbackend.springsocial.repository.SocialUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 import java.time.Instant;
@@ -76,6 +73,20 @@ public class UserController {
         var customer = customerRepository.findById(id);
 
         var user = socialUserRepository.findByEmail(userPrincipal.getName());
+
+        if (user.isPresent() && customer.isPresent()){
+            user.get().setCustomer(customer.get());
+            socialUserRepository.save(user.get());
+        } else {
+            throw  new IllegalArgumentException("Invalid user or customer");
+        }
+    }
+
+    @PutMapping("/user/{userId}/{customerId}")
+     public void assign(@PathVariable Long userId, @PathVariable Integer customerId){
+        var customer = customerRepository.findById(customerId);
+
+        var user = socialUserRepository.findById(userId);
 
         if (user.isPresent() && customer.isPresent()){
             user.get().setCustomer(customer.get());
