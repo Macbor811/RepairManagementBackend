@@ -19,6 +19,9 @@ plugins {
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'application'
+
+mainClassName = "pl.polsl.repairmanagementbackend.RepairManagmentApplication"
 //apply plugin: 'net.ltgt.apt'
 // plugin: 'net.ltgt.apt-idea'
 
