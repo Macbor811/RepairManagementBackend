@@ -22,8 +22,8 @@ public class RequestController {
     }
 
 
-    @PutMapping("request/{id}/finalize")
-    public ResponseEntity<?> update(@PathVariable String id, @RequestBody FinalizationData data){
+    @PutMapping("request/{id}/update")
+    public ResponseEntity<?> update(@PathVariable String id, @RequestBody RequestUpdateDto data){
         var entityOptional = repository.findById(Integer.valueOf(id));
 
         if (entityOptional.isPresent()){
@@ -33,10 +33,10 @@ public class RequestController {
                     .fromString(data.getStatus())
                     .orElseThrow(() -> new IllegalArgumentException("Can't convert string to RequestStatus"));
 
-
             if (status.hasEnded() && oldEntity.getEndDate() == null){
                 oldEntity.setEndDate(Instant.now());
             }
+            oldEntity.setDescription(data.getDescription());
             oldEntity.setResult(data.getResult());
             oldEntity.setStatus(data.getStatus());
 
@@ -46,6 +46,5 @@ public class RequestController {
         } else {
             return ResponseEntity.notFound().build();
         }
-
     }
 }

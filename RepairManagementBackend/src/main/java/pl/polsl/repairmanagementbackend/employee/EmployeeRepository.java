@@ -2,6 +2,9 @@ package pl.polsl.repairmanagementbackend.employee;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.StringPath;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import pl.polsl.repairmanagementbackend.customer.CustomerEntity;
 
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
@@ -48,4 +52,9 @@ public interface EmployeeRepository extends
     Optional<EmployeeEntity> findById(Integer id);
 
     Optional<EmployeeEntity> findByUsername(String username);
+
+    Page<EmployeeEntity> findByFirstNameStartsWithIgnoreCaseOrLastNameStartsWithIgnoreCase(String firstName, String lastName, Pageable pageable);
+
+    Page<EmployeeEntity> findByFirstNameStartsWithIgnoreCaseAndLastNameStartsWithIgnoreCase(String firstName, String lastName, Pageable pageable);
+
 }

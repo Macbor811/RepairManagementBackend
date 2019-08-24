@@ -140,7 +140,7 @@ public class ActivityEntity  {
     }
 
     @ManyToOne
-    @JoinColumn(name = "worker_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "worker_id", referencedColumnName = "id", nullable = true)
     public EmployeeEntity getWorker() {
         return worker;
     }

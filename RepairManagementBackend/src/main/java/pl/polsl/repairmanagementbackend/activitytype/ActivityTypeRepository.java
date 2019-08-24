@@ -17,14 +17,8 @@ import java.util.Optional;
 public interface ActivityTypeRepository extends
         JpaRepository<ActivityTypeEntity, Integer> {
 
-    @Transactional
-    ActivityTypeEntity save(ActivityTypeEntity activity);
+    Optional<ActivityTypeEntity> findByType(String type);
 
 
-    @Transactional
-    List<ActivityTypeEntity> findAll();
-
-    @Transactional
-    Optional<ActivityTypeEntity> findById(Integer id);
 }
 

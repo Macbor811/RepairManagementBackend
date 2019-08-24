@@ -5,6 +5,7 @@ import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.StringPath;
 import org.apache.tomcat.jni.Local;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
@@ -42,14 +44,7 @@ public interface ActivityRepository extends
     }
 
 
-    @Transactional
-    ActivityEntity save(ActivityEntity activity);
-
-
-    @Transactional
-    List<ActivityEntity> findAll();
-
-    @Transactional
-    ActivityEntity findById(int id);
+    @Query("SELECT coalesce(max(ae.sequenceNum), 0) FROM ActivityEntity ae")
+    Integer getMaxSequenceNum();
 
 }

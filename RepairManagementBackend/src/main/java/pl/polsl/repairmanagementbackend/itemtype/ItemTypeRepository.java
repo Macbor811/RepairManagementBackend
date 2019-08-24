@@ -1,5 +1,6 @@
 package pl.polsl.repairmanagementbackend.itemtype;
 
+import com.sun.mail.imap.protocol.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
@@ -17,13 +18,5 @@ import java.util.Optional;
 public interface ItemTypeRepository extends
         JpaRepository<ItemTypeEntity, String> {
 
-    @Transactional
-    ItemTypeEntity save(ItemTypeEntity item);
-
-
-    @Transactional
-    List<ItemTypeEntity> findAll();
-
-    @Transactional
-    Optional<ItemTypeEntity> findById(String id);
+    List<ItemTypeEntity> findByTypeStartsWith(String type);
 }
