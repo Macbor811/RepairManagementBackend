@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "item", schema = "public", catalog = "postgres")
+@Table(name = "item",   catalog = "postgres")
 public class ItemEntity {
     private Integer id;
     private String name;

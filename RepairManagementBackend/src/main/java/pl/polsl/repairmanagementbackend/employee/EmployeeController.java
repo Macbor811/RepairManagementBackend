@@ -6,10 +6,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,4 +48,27 @@ public class EmployeeController {
                 .map(e -> e.getFirstName() + " " + e.getLastName() + "; " + e.getId())
                 .collect(Collectors.toList());
     }
+
+    private  final PasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    @PutMapping("api/employee/{id}/update-user")
+    public ResponseEntity<?> updateUser(@PathVariable Integer id, @RequestBody EmployeeUserDataDto data){
+
+        var entityOptional = employeeRepository.findById(Integer.valueOf(id));
+
+        if (entityOptional.isPresent()){
+            var oldEntity = entityOptional.get();
+
+            if (data.getPassword() != null && data.getPassword().length() > 0)
+                oldEntity.setPassword(encoder.encode(data.getPassword()));
+            oldEntity.setDeactivationDate(data.getDeactivationDate());
+
+            employeeRepository.save(oldEntity);
+
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "item_type", schema = "public", catalog = "postgres")
+@Table(name = "item_type",   catalog = "postgres")
 public class ItemTypeEntity  {
     private String id;
     private String type;

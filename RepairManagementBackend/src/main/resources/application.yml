@@ -11,13 +11,12 @@ spring:
       ddl-auto: create-drop
     properties:
       hibernate:
-        enable_lazy_load_no_trans: true
+        #default_schema: repair_management
+        #enable_lazy_load_no_trans: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
         jdbc:
-          time_zone: "UTC+1"
           lob:
             non_contextual_creation: true
-        session-factory:
   data:
     rest:
       base-path: api
@@ -39,11 +38,11 @@ spring:
             scope:
               - email
               - public_profile
-        provider:
-          facebook:
-            authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
-            tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
-            userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
+#        provider:
+#          facebook:
+#            authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
+#            tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
+#            userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
 app:
   auth:
     tokenSecret: 926D96C90030DD58429D2751AC1BDBBC

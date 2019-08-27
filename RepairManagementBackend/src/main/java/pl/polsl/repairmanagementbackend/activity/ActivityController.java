@@ -51,8 +51,7 @@ public class ActivityController {
                 var request = oldEntity.getRequest();
                 request.setStatus(RequestStatus.IN_PROGRESS.toString());
                 requestRepository.save(request);
-            }
-            if (status.hasEnded() && oldEntity.getEndDate() == null){
+            } else if (status.hasEnded() && oldEntity.getEndDate() == null){
                 oldEntity.setEndDate(Instant.now());
                 oldEntity.setResult(data.getResult());
             }
@@ -60,7 +59,7 @@ public class ActivityController {
             oldEntity.setDescription(data.getDescription());
             oldEntity.setSequenceNum(data.getSequenceNum());
 
-            var employee = employeeRepository.findById(data.getWorkerId()).get();
+            var employee = data.getWorkerId() != null ? employeeRepository.findById(data.getWorkerId()).get() : null;
             var type = activityTypeRepository
                     .findByType(data.getType())
                     .orElseThrow(() -> new IllegalArgumentException("Can't find this activity type."));

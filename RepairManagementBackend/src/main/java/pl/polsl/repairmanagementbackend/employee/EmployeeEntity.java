@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "employee", schema = "public", catalog = "postgres")
+@Table(name = "employee"  )
 public class EmployeeEntity {
 
     private Integer id;

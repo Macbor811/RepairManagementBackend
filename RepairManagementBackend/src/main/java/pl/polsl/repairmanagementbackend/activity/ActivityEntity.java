@@ -12,7 +12,7 @@ import java.time.Instant;
 import java.util.Objects;
 
 @Entity
-@Table(name = "activity", schema = "public", catalog = "postgres")
+@Table(name = "activity",   catalog = "postgres")
 public class ActivityEntity  {
     private Integer id;
     private Integer sequenceNum;
