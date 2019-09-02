@@ -26,7 +26,7 @@ mainClassName = "pl.polsl.repairmanagementbackend.RepairManagmentApplication"
 // plugin: 'net.ltgt.apt-idea'
 
 group = 'pl.polsl'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0-RELEASE'
 sourceCompatibility = '10.0.1'
 
 repositories {
