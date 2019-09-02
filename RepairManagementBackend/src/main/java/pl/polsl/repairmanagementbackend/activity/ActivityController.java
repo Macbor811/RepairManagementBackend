@@ -53,8 +53,8 @@ public class ActivityController {
                 requestRepository.save(request);
             } else if (status.hasEnded() && oldEntity.getEndDate() == null){
                 oldEntity.setEndDate(Instant.now());
-                oldEntity.setResult(data.getResult());
             }
+            oldEntity.setResult(data.getResult());
             oldEntity.setStatus(data.getStatus());
             oldEntity.setDescription(data.getDescription());
             oldEntity.setSequenceNum(data.getSequenceNum());

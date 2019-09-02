@@ -1,4 +1,4 @@
-package pl.polsl.repairmanagementbackend;
+package pl.polsl.repairmanagementbackend.request;
 
 public class FinalizationData{
     public String getResult() {
