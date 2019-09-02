@@ -39,15 +39,6 @@ public class DataLoader implements ApplicationRunner {
                 new AddressEntity("11-111", "Adminowo", "Adminska", "11"));
         employeeRepository.save(adminEmployee);
 
-//        var workerEmployee = new EmployeeEntity("Worker", "Worker", "000000001",
-//                EmployeeUserRole.WORKER.toString(), "worker", new BCryptPasswordEncoder().encode("pass"),
-//                new AddressEntity("11-111", "Workerowo", "Workerska", "11"));
-//        employeeRepository.save(workerEmployee);
-//
-//        var managerEmployee = new EmployeeEntity("Manager", "Manager", "000000002",
-//                EmployeeUserRole.MANAGER.toString(), "manager", new BCryptPasswordEncoder().encode("pass"),
-//                new AddressEntity("11-111", "Managerowo", "Managerska", "11"));
-//        employeeRepository.save(managerEmployee);
 
     }
 }
